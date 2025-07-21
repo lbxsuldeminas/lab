@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LBX Sul de Minas</title>
   <!-- Font Awesome para ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
       --primary-color: #1a1a1a;
@@ -25,63 +25,51 @@
       background-color: var(--light-bg);
       color: #333;
       line-height: 1.6;
-    }
-
-    /* MENU FIXO */
-    #menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background-color: var(--primary-color);
-      padding: 15px 0;
-      text-align: center;
-      z-index: 10000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-
-    #menu a {
-      color: white;
-      margin: 0 20px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    #menu a:hover {
-      color: var(--accent-color);
-      text-decoration: underline;
-    }
-
-    /* ESPAÇAMENTO PARA NÃO SER COBERTO PELO MENU FIXO */
-    section {
-      scroll-margin-top: 80px; /* altura do menu fixo + margem */
-      padding-top: 20px;
+      scroll-behavior: smooth;
     }
 
     header {
       background-color: var(--primary-color);
       color: white;
       padding: 20px 10px;
-      text-align: center;
-      margin-top: 60px; /* para ficar abaixo do menu fixo */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     header h1 {
       font-size: 1.8rem;
+      margin-bottom: 5px;
     }
 
-    header p {
-      font-size: 1rem;
-      opacity: 0.8;
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
-    section {
-      padding: 40px 20px;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #005fa3;
+    }
+
+    section#inicio {
       max-width: 1000px;
-      margin: auto;
+      margin: 30px auto;
+      padding: 0 20px;
     }
 
     .card {
@@ -125,7 +113,6 @@
       color: white;
       text-align: center;
       padding: 20px;
-      margin-top: 40px;
     }
 
     footer a {
@@ -173,68 +160,52 @@
       text-decoration: underline;
     }
 
-    /* Rolagem suave */
-    html {
-      scroll-behavior: smooth;
-    }
-
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.4rem;
+        flex-basis: 100%;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        justify-content: center;
+        width: 100%;
       }
 
       .card {
         padding: 20px;
       }
-
-      #menu a {
-        margin: 0 10px;
-        font-size: 0.9rem;
-      }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- MENU FIXO -->
-  <nav id="menu">
-    <a href="#proximo-torneio">Próximo Torneio</a>
-    <a href="#contatos">Contatos</a>
-    <a href="#galeria">Galeria de Fotos</a>
-    <a href="#resultados">Resultados Anteriores</a>
-  </nav>
-
-  <!-- HEADER -->
   <header>
     <h1>LBX Sul de Minas</h1>
-    <p>Informações sobre os torneios de xadrez na região</p>
+    <nav>
+      <a href="#proximo-torneio">Próximo Torneio</a>
+      <a href="#contatos">Contatos</a>
+      <a href="#galeria">Galeria de Fotos</a>
+      <a href="#resultados">Resultados</a>
+    </nav>
   </header>
 
-  <section id="proximo-torneio">
-    <div class="card">
+  <section id="inicio">
+
+    <!-- Próximo Torneio -->
+    <div class="card" id="proximo-torneio">
       <h2>Próximo Torneio: Itanhandu - MG</h2>
       <p><strong>Data:</strong> 23 de Agosto</p>
       <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
-      <!-- Mapa e botão Google Maps -->
-      <div style="margin-top: 20px; text-align: center;">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.6720589405716!2d-44.83610968465884!3d-22.161391985264633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa6ad32d46f1d0bf%3A0x3f3887507ef5b5d8!2sItanhandu%20-%20MG!5e0!3m2!1spt-BR!2sbr!4v1690020000000!5m2!1spt-BR!2sbr" 
-          width="100%" 
-          height="300" 
-          style="border:0; border-radius: 10px;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a href="https://goo.gl/maps/5H5fVLxFM9W2" target="_blank" 
-           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
-          Ver no Google Maps
-        </a>
-      </div>
+      <button onclick="window.open('https://www.google.com/maps/place/Itanhandu,+MG','_blank')" 
+              style="background-color: var(--accent-color); color: white; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+        Ver no Google Maps
+      </button>
     </div>
-  </section>
 
-  <section id="contatos">
-    <div class="card contact">
+    <!-- Contatos -->
+    <div class="card contact" id="contatos">
       <h3>Contatos</h3>
       <p>
         📞 WhatsApp: 
@@ -247,20 +218,18 @@
         <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
       </p>
     </div>
-  </section>
 
-  <section id="galeria">
-    <div class="card">
+    <!-- Galeria de Fotos -->
+    <div class="card" id="galeria">
       <h3><i class="fas fa-images"></i> Galeria de Fotos</h3>
       <div class="gallery">
         <img src="copa-xadrez-sao-vicente.jpg" alt="Cartaz do torneio em São Vicente de Minas" />
-        <!-- Adicione mais imagens aqui -->
+        <!-- Você pode adicionar mais imagens aqui -->
       </div>
     </div>
-  </section>
 
-  <section id="resultados">
-    <div class="card">
+    <!-- Resultados dos torneios -->
+    <div class="card" id="resultados">
       <button class="toggle-button" id="toggleResultsBtn">Resultados dos Torneios Anteriores</button>
       <div class="results-links" id="resultsLinks">
         <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">1ª Etapa : Recanto da Mata | Baependi 2025</a>
@@ -271,6 +240,7 @@
         <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">6ª Etapa : São Vicente de Minas 2025</a>
       </div>
     </div>
+
   </section>
 
   <footer>
