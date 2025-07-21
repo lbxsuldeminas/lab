@@ -1,341 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LBX Sul de Minas</title>
-  <!-- Font Awesome para ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #1a1a1a;
-      --accent-color: #0077cc;
-      --light-bg: #f4f4f4;
-      --card-bg: #ffffff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LBX Sul de Minas</title>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --accent-color: #0077cc;
+    --light-bg: #f4f4f4;
+    --card-bg: #ffffff;
+  }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--light-bg);
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 20px 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      text-align: center;
-    }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--light-bg);
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth; /* scroll suave */
+  }
 
-    header h1 {
-      font-size: 1.8rem;
-    }
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+  }
 
-    header p {
-      font-size: 1rem;
-      opacity: 0.8;
-    }
+  header h1 {
+    font-size: 1.8rem;
+  }
 
-    main {
-      flex-grow: 1;
-      max-width: 1000px;
-      margin: 30px auto;
-      width: 90%;
-    }
+  header p {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
 
-    /* Estilos das abas */
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      border-bottom: 2px solid var(--accent-color);
-      margin-bottom: 20px;
-      justify-content: center;
-      gap: 10px;
-    }
+  /* Menu fixo no topo */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
 
-    .tab-button {
-      background: var(--card-bg);
-      border: 2px solid var(--accent-color);
-      border-bottom: none;
-      color: var(--accent-color);
-      padding: 10px 20px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 10px 10px 0 0;
-      transition: background-color 0.3s, color 0.3s;
-      flex: 1 1 150px;
-      text-align: center;
-      user-select: none;
-    }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
 
-    .tab-button.active {
-      background-color: var(--accent-color);
-      color: white;
-      cursor: default;
-      border-bottom: 2px solid white;
-    }
+  nav a:hover, nav a:focus {
+    background-color: var(--accent-color);
+    outline: none;
+  }
 
-    /* Conteúdo das abas */
-    .tab-content {
-      background-color: var(--card-bg);
-      border-radius: 0 10px 10px 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 25px;
-      display: none;
-    }
+  main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px 40px;
+  }
 
-    .tab-content.active {
-      display: block;
-    }
+  section {
+    background-color: var(--card-bg);
+    margin-bottom: 40px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
 
-    /* Estilos das seções internas */
-    .card h2, .card h3 {
-      color: var(--primary-color);
-      margin-bottom: 15px;
-    }
+  section h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
 
-    .contact a, .social a {
-      color: var(--accent-color);
-      text-decoration: none;
-      margin-right: 10px;
-      display: inline-block;
-    }
+  /* Estilo botão Google Maps */
+  .btn-maps {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 18px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
 
-    .contact a:hover, .social a:hover {
-      text-decoration: underline;
-    }
+  .btn-maps:hover {
+    background-color: #005fa3;
+  }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+  /* Mapa responsivo */
+  .map-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
+  .map-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    border-radius: 10px;
+  }
 
-    footer {
-      background-color: var(--primary-color);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: auto;
-    }
+  /* Galeria simples */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px;
+  }
 
-    footer a {
-      color: white;
-      text-decoration: none;
-    }
+  .gallery img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
 
-    /* Botão toggle para resultados */
-    .toggle-button {
-      display: inline-block;
-      background-color: var(--accent-color);
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      margin-bottom: 15px;
-      transition: background-color 0.3s ease;
-    }
+  /* Resultados */
+  .results-links a {
+    display: block;
+    color: var(--accent-color);
+    margin: 8px 0;
+    text-decoration: none;
+    font-weight: 500;
+  }
 
-    .toggle-button:hover {
-      background-color: #005fa3;
-    }
+  .results-links a:hover {
+    text-decoration: underline;
+  }
 
-    /* Container dos links, inicialmente escondido */
-    .results-links {
-      display: none;
-      background-color: var(--card-bg);
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-    }
+  /* Contato */
+  .contact a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
 
-    .results-links a {
-      display: block;
-      color: var(--accent-color);
-      margin: 8px 0;
-      text-decoration: none;
-      font-weight: 500;
-    }
+  .contact a:hover {
+    text-decoration: underline;
+  }
 
-    .results-links a:hover {
-      text-decoration: underline;
-    }
+  /* Footer */
+  footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
 
-    /* Mapa responsivo */
-    .map-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      margin-top: 15px;
-    }
+  footer a {
+    color: white;
+    text-decoration: none;
+  }
 
-    .map-container iframe {
-      position: absolute;
-      top:0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 10px;
-    }
-
-    /* Responsividade */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.4rem;
-      }
-      .tab-button {
-        flex: 1 1 100%;
-      }
-    }
-  </style>
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>LBX Sul de Minas</h1>
-    <p>Informações sobre os torneios de xadrez na região</p>
-  </header>
+<header>
+  <h1>LBX Sul de Minas</h1>
+  <p>Informações sobre os torneios de xadrez na região</p>
+</header>
 
-  <main>
+<nav aria-label="Menu de navegação do site">
+  <a href="#proximo-torneio">Próximo Torneio</a>
+  <a href="#contatos">Contatos</a>
+  <a href="#galeria">Galeria de Fotos</a>
+  <a href="#resultados">Resultados</a>
+</nav>
 
-    <div class="tabs" role="tablist">
-      <button class="tab-button active" role="tab" aria-selected="true" aria-controls="tab1" id="tab1-btn">Próximo Torneio</button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab2" id="tab2-btn">Contato</button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab3" id="tab3-btn">Galeria</button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab4" id="tab4-btn">Resultados</button>
+<main>
+  <section id="proximo-torneio" tabindex="-1">
+    <h2>Próximo Torneio: Itanhandu - MG</h2>
+    <p><strong>Data:</strong> 23 de Agosto</p>
+    <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+    <a href="https://www.google.com/maps/place/Itanhandu,+MG" target="_blank" class="btn-maps" rel="noopener">
+      <i class="fas fa-map-marker-alt"></i> Ver no Google Maps
+    </a>
+    <div class="map-container" aria-label="Mapa da localização do próximo torneio">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.796956308889!2d-44.99271518457895!3d-22.33709178525256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa697b569fd8fef%3A0xa993ca21b0a4e297!2sItanhandu%20-%20MG!5e0!3m2!1spt-BR!2sbr!4v1690000000000!5m2!1spt-BR!2sbr"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
+  </section>
 
-    <section id="tab1" class="tab-content active" role="tabpanel" aria-labelledby="tab1-btn">
-      <div class="card">
-        <h2>Próximo Torneio: Itanhandu - MG</h2>
-        <p><strong>Data:</strong> 23 de Agosto</p>
-        <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
-
-        <a href="https://www.google.com/maps/place/Itanhandu,+MG" target="_blank" class="toggle-button" style="margin-top:10px; display:inline-block;">
-          <i class="fas fa-map-marker-alt"></i> Ver no Google Maps
-        </a>
-
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.796956308889!2d-44.99271518457895!3d-22.33709178525256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa697b569fd8fef%3A0xa993ca21b0a4e297!2sItanhandu%20-%20MG!5e0!3m2!1spt-BR!2sbr!4v1690000000000!5m2!1spt-BR!2sbr"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            aria-label="Mapa de Itanhandu - MG">
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <section id="tab2" class="tab-content" role="tabpanel" aria-labelledby="tab2-btn">
-      <div class="card contact">
-        <h3>Contato</h3>
-        <p>
-          📞 WhatsApp:
-          <a href="https://wa.me/5535999291224" target="_blank">(35) 99929-1224</a> |
-          <a href="https://wa.me/5535997648241" target="_blank">(35) 99764-8241</a>
-        </p>
-        <p>
-          <i class="fab fa-instagram"></i>
-          <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
-        </p>
-      </div>
-    </section>
-
-    <section id="tab3" class="tab-content" role="tabpanel" aria-labelledby="tab3-btn">
-      <div class="card">
-        <h3><i class="fas fa-images"></i> Galeria de Fotos</h3>
-        <div class="gallery">
-          <img src="copa-xadrez-sao-vicente.jpg" alt="Cartaz do torneio em São Vicente de Minas" />
-          <!-- Adicione mais imagens aqui -->
-        </div>
-      </div>
-    </section>
-
-    <section id="tab4" class="tab-content" role="tabpanel" aria-labelledby="tab4-btn">
-      <div class="card">
-        <button class="toggle-button" id="toggleResultsBtn">Resultados dos Torneios Anteriores</button>
-        <div class="results-links" id="resultsLinks">
-          <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">1ª Etapa : Recanto da Mata | Baependi 2025</a>
-          <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">2ª Etapa : Caxambu 2025</a>
-          <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">3ª Etapa : São Lourenço 2025</a>
-          <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">4ª Etapa : Paraguaçu 2025</a>
-          <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">5ª Etapa : Cambuquira 2025</a>
-          <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">6ª Etapa : São Vicente de Minas 2025</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>&copy; 2025 LBX Sul de Minas. Todos os direitos reservados.</p>
-    <p><i class="fab fa-instagram"></i>
-      <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
+  <section id="contatos" tabindex="-1">
+    <h2>Contatos</h2>
+    <p>WhatsApp:
+      <a href="https://wa.me/5535999291224" target="_blank" rel="noopener">(35) 99929-1224</a> |
+      <a href="https://wa.me/5535997648241" target="_blank" rel="noopener">(35) 99764-8241</a>
     </p>
-  </footer>
+    <p>
+      <i class="fab fa-instagram"></i>
+      <a href="https://instagram.com/betomeirellesxadrez" target="_blank" rel="noopener">@betomeirellesxadrez</a>
+    </p>
+  </section>
 
-  <script>
-    // Controle das abas
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+  <section id="galeria" tabindex="-1">
+    <h2>Galeria de Fotos</h2>
+    <div class="gallery">
+      <img src="copa-xadrez-sao-vicente.jpg" alt="Cartaz do torneio em São Vicente de Minas" />
+      <!-- Adicione mais imagens aqui -->
+    </div>
+  </section>
 
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active de todos
-        tabButtons.forEach(btn => {
-          btn.classList.remove('active');
-          btn.setAttribute('aria-selected', 'false');
-        });
-        tabContents.forEach(content => content.classList.remove('active'));
+  <section id="resultados" tabindex="-1">
+    <h2>Resultados dos Torneios Anteriores</h2>
+    <div class="results-links">
+      <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank" rel="noopener">1ª Etapa : Recanto da Mata | Baependi 2025</a>
+      <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank" rel="noopener">2ª Etapa : Caxambu 2025</a>
+      <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank" rel="noopener">3ª Etapa : São Lourenço 2025</a>
+      <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank" rel="noopener">4ª Etapa : Paraguaçu 2025</a>
+      <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank" rel="noopener">5ª Etapa : Cambuquira 2025</a>
+      <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank" rel="noopener">6ª Etapa : São Vicente de Minas 2025</a>
+    </div>
+  </section>
+</main>
 
-        // Ativa o clicado
-        button.classList.add('active');
-        button.setAttribute('aria-selected', 'true');
-        const tabId = button.getAttribute('aria-controls');
-        document.getElementById(tabId).classList.add('active');
-      });
-    });
+<footer>
+  <p>&copy; 2025 LBX Sul de Minas. Todos os direitos reservados.</p>
+  <p><i class="fab fa-instagram"></i>
+    <a href="https://instagram.com/betomeirellesxadrez" target="_blank" rel="noopener">@betomeirellesxadrez</a>
+  </p>
+</footer>
 
-    // Toggle dos links de resultados
-    const toggleBtn = document.getElementById('toggleResultsBtn');
-    const resultsDiv = document.getElementById('resultsLinks');
-
-    toggleBtn.addEventListener('click', () => {
-      if (resultsDiv.style.display === 'block') {
-        resultsDiv.style.display = 'none';
-      } else {
-        resultsDiv.style.display = 'block';
-      }
-    });
-  </script>
+<!-- Font Awesome para ícones -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
