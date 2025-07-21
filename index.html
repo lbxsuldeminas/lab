@@ -100,7 +100,6 @@
       text-decoration: none;
     }
 
-    /* Botão toggle para resultados */
     .toggle-button {
       display: inline-block;
       background-color: var(--accent-color);
@@ -118,7 +117,6 @@
       background-color: #005fa3;
     }
 
-    /* Container dos links, inicialmente escondido */
     .results-links {
       display: none;
       background-color: var(--card-bg);
@@ -160,14 +158,46 @@
 
   <section>
 
+    <!-- Próximo Torneio com mapa e botão -->
     <div class="card">
       <h2>Próximo Torneio: Itanhandu - MG</h2>
       <p><strong>Data:</strong> 23 de Agosto</p>
       <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+
+      <div style="margin-top: 25px;">
+        <h3>Localização:</h3>
+        <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.805630722559!2d-44.93738628511628!3d-22.29696482214688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9921f9c1fa49ab%3A0xf43cb195929f1117!2sItanhandu%2C%20MG!5e0!3m2!1spt-BR!2sbr!4v1699898424020!5m2!1spt-BR!2sbr" 
+            width="100%" 
+            height="100%" 
+            style="position: absolute; top: 0; left: 0; border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <a href="https://www.google.com/maps/place/Itanhandu,+MG" target="_blank" style="
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+          " onmouseover="this.style.backgroundColor='#005fa3'" onmouseout="this.style.backgroundColor='var(--accent-color)'">
+            <i class="fas fa-map-marker-alt"></i> Ver no Google Maps
+          </a>
+        </div>
+      </div>
     </div>
 
+    <!-- Contato -->
     <div class="card contact">
-      <h3><i class="fas fa-phone"></i> Contato</h3>
+      <h3>Contato</h3>
       <p>
         📞 WhatsApp: 
         <a href="https://wa.me/5535999291224" target="_blank">(35) 99929-1224</a> 
@@ -180,6 +210,7 @@
       </p>
     </div>
 
+    <!-- Galeria -->
     <div class="card">
       <h3><i class="fas fa-images"></i> Galeria de Fotos</h3>
       <div class="gallery">
@@ -188,7 +219,7 @@
       </div>
     </div>
 
-    <!-- Seção do botão para mostrar/ocultar resultados -->
+    <!-- Resultados -->
     <div class="card">
       <button class="toggle-button" id="toggleResultsBtn">Resultados dos Torneios Anteriores</button>
       <div class="results-links" id="resultsLinks">
@@ -213,11 +244,7 @@
     const resultsDiv = document.getElementById('resultsLinks');
 
     toggleBtn.addEventListener('click', () => {
-      if (resultsDiv.style.display === 'block') {
-        resultsDiv.style.display = 'none';
-      } else {
-        resultsDiv.style.display = 'block';
-      }
+      resultsDiv.style.display = resultsDiv.style.display === 'block' ? 'none' : 'block';
     });
   </script>
 
