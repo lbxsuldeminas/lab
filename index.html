@@ -268,6 +268,19 @@
     .map-btn:hover, .inscritos-btn:hover {
       background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
     }
+    .torneio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#countdown {
+  font-weight: bold;
+  color: var(--accent-color);
+  font-size: 1rem;
+}
   </style>
 </head>
 <body>
@@ -287,9 +300,12 @@
 
     <!-- Próximo Torneio -->
     <div class="card" id="proximo-torneio">
-      <h2>Próximo Torneio: Itanhandu - MG</h2>
-      <p><strong>Data:</strong> 23 de Agosto de 2025</p>
-      <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+     <div class="torneio-header">
+  <h2>Próximo Torneio: Itanhandu - MG</h2>
+  <div id="countdown">Contagem regressiva: </div>
+</div>
+<p><strong>Data:</strong> 23 de Agosto de 2025</p>
+<p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
       <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
       
       <!-- Novo botão "Inscritos" com link correto -->
