@@ -8,7 +8,6 @@
   <!-- Ícone da aba -->
   <link rel="icon" href="urlsite.png" type="image/png" />
 
-
   <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -43,14 +42,14 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       display: flex;
       align-items: center;
-      justify-content: center; /* Centraliza todo o conteúdo no header */
+      justify-content: center;
       flex-wrap: wrap;
     }
 
     header h1 {
       font-size: 1.8rem;
       margin-bottom: 5px;
-      text-align: center; /* Centraliza o título */
+      text-align: center;
       width: 100%;
     }
 
@@ -253,6 +252,22 @@
         min-width: auto;
       }
     }
+
+    /* Estilo para o botão Inscritos */
+    .inscritos-btn {
+      background-color: #28a745; /* Cor de fundo verde */
+      color: white; /* Cor do texto */
+      padding: 15px 30px; /* Tamanho maior do botão */
+      font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+      border: none;
+      border-radius: 8px; /* Borda arredondada */
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .inscritos-btn:hover {
+      background-color: #218838; /* Cor de fundo quando o botão é passado o mouse */
+    }
   </style>
 </head>
 <body>
@@ -276,8 +291,9 @@
       <p><strong>Data:</strong> 23 de Agosto de 2025</p>
       <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
       <button onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
-       <!-- Novo botão "Inscritos" com link correto -->
-   <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
+      
+      <!-- Novo botão "Inscritos" com link correto -->
+      <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
     </div>
 
     <!-- Calendário de Próximos Torneios -->
@@ -320,10 +336,10 @@
         <i class="fab fa-instagram"></i> 
         <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
       </p>
-       <p>
-      <i class="fab fa-facebook"></i> 
-    <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a>
-  </p>
+      <p>
+        <i class="fab fa-facebook"></i> 
+        <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a>
+      </p>
     </div>
 
     <!-- Galeria de Fotos -->
@@ -331,7 +347,6 @@
       <h3><i class="fas fa-images"></i> Galeria de Fotos</h3>
       <div class="gallery">
         <img src="itanhandu.jpg" alt="Cartaz do torneio em Itanhandu" />
-        
       </div>
     </div>
 
