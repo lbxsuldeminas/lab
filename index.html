@@ -302,7 +302,7 @@
       <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
 
       <!-- Contagem regressiva -->
-      <div id="countdown"></div>
+      <div id="countdown">Contagem regressiva: </div>
     </div>
 
     <!-- Calendário de Próximos Torneios -->
@@ -440,7 +440,7 @@
       
       // Exibindo a contagem regressiva
       document.getElementById("countdown").innerHTML = 
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
       
       // Se a data já passou
       if (timeRemaining < 0) {
