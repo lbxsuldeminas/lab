@@ -420,5 +420,33 @@
     </p>
   </footer>
 
+<script>
+    // Contagem regressiva para o próximo torneio
+    const countdownElement = document.getElementById('countdown');
+    const nextTournamentDate = new Date('2025-08-23T00:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = nextTournamentDate - now;
+
+      if (diff <= 0) {
+        countdownElement.textContent = 'O torneio já começou!';
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
 </body>
 </html>
+
