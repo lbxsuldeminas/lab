@@ -301,8 +301,9 @@
       <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
       <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
       
-      <!-- Botão "Premiação" atualizado -->
+      <!-- Botões Premiação e Programação -->
       <button class="map-btn" onclick="window.open('https://raw.githubusercontent.com/lbxsuldeminas/testes/main/premiacao.pdf', '_blank')">Premiação</button>
+      <button class="map-btn" onclick="window.open('https://raw.githubusercontent.com/lbxsuldeminas/testes/main/programacao.pdf', '_blank')">Programação</button>
 
       <!-- Contagem regressiva -->
       <div id="countdown">Contagem regressiva: </div>
@@ -310,86 +311,79 @@
 
     <!-- Calendário de Próximos Torneios -->
     <div class="card" id="calendario">
-      <h2><i class="fas fa-calendar-alt"></i> Calendário dos Próximos Torneios</h2>
+      <h2>Calendário de Próximos Torneios</h2>
       <div class="calendar-list">
         <div class="calendar-item">
-          <h3>7ª Etapa: Itanhandu - MG</h3>
-          <p>Data: 23/08/2025</p>
-          <button onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Local no mapa</button>
+          <h3>Varginha - MG</h3>
+          <p><strong>Data:</strong> 12 de Setembro de 2025</p>
+          <button onclick="window.open('https://maps.app.goo.gl/xyz')">Ver no Google Maps</button>
         </div>
         <div class="calendar-item">
-          <h3>8ª Etapa: Pouso Alegre - MG</h3>
-          <p>Data: 26/09/2025</p>
-          <button onclick="window.open('https://www.google.com/maps/place/Caxambu,+MG','_blank')">Local no mapa</button>
+          <h3>Pouso Alegre - MG</h3>
+          <p><strong>Data:</strong> 20 de Setembro de 2025</p>
+          <button onclick="window.open('https://maps.app.goo.gl/abc')">Ver no Google Maps</button>
         </div>
-        <div class="calendar-item">
-          <h3>9ª Etapa: Três Corações - MG</h3>
-          <p>Data: 25/10/2025</p>
-          <button onclick="window.open('https://www.google.com/maps/place/S%C3%A3o+Louren%C3%A7o,+MG','_blank')">Local no mapa</button>
-        </div>
+        <!-- Mais torneios podem ser adicionados aqui -->
       </div>
     </div>
 
     <!-- Contatos -->
     <div class="card" id="contatos">
       <h2>Contatos</h2>
-      <p>Email: contato@lbxsuldeminas.com</p>
+      <p>Para mais informações, entre em contato conosco:</p>
+      <p>Email: contato@lbx.com.br</p>
       <p>Telefone: (35) 99999-9999</p>
-      <div class="social">
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-lg"></i> Facebook</a>
-        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram fa-lg"></i> Instagram</a>
-        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
-      </div>
+      <p class="social">
+        <a href="https://www.facebook.com/lbxsuldeminas" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://www.instagram.com/lbxsuldeminas" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+      </p>
     </div>
 
     <!-- Galeria de Fotos -->
     <div class="card" id="galeria">
       <h2>Galeria de Fotos</h2>
       <div class="gallery">
-        <img src="foto1.jpg" alt="Foto 1"/>
-        <img src="foto2.jpg" alt="Foto 2"/>
-        <img src="foto3.jpg" alt="Foto 3"/>
-        <!-- Adicione mais fotos aqui -->
+        <img src="foto1.jpg" alt="Foto 1" />
+        <img src="foto2.jpg" alt="Foto 2" />
+        <img src="foto3.jpg" alt="Foto 3" />
       </div>
     </div>
 
     <!-- Resultados -->
     <div class="card" id="resultados">
-      <h2><i class="fas fa-trophy"></i> Resultados</h2>
+      <h2>Resultados</h2>
       <div class="results-list">
         <div class="result-item">
-          <i class="fas fa-chess"></i> 
-          <a href="https://chess-results.com/tnr658989.aspx?lan=10&art=1" target="_blank">Torneio 1 - 06/2024</a>
+          <i class="fas fa-trophy"></i> 
+          <a href="resultado1.html">Campeonato Sul de Minas 2024</a>
         </div>
         <div class="result-item">
-          <i class="fas fa-chess"></i> 
-          <a href="https://chess-results.com/tnr690123.aspx?lan=10&art=1" target="_blank">Torneio 2 - 10/2024</a>
+          <i class="fas fa-trophy"></i>
+          <a href="resultado2.html">Copa Itajubá 2024</a>
         </div>
-        <!-- Mais resultados -->
+        <!-- Mais resultados aqui -->
       </div>
     </div>
 
   </section>
 
   <footer>
-    &copy; 2025 LBX Sul de Minas. Todos os direitos reservados.
+    <p>© 2025 LBX Sul de Minas. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    // Contagem regressiva para o próximo torneio: 23 de Agosto de 2025
+    // Contagem regressiva para o próximo torneio
     const countdownElement = document.getElementById('countdown');
-    const targetDate = new Date('2025-08-23T00:00:00');
+    const tournamentDate = new Date('2025-08-23T00:00:00');
 
     function updateCountdown() {
       const now = new Date();
-      const diff = targetDate - now;
-
-      if(diff <= 0) {
+      const diff = tournamentDate - now;
+      if (diff <= 0) {
         countdownElement.textContent = 'O torneio já começou!';
-        clearInterval(interval);
+        clearInterval(intervalId);
         return;
       }
-
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
@@ -398,9 +392,8 @@
       countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    const interval = setInterval(updateCountdown, 1000);
+    const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
-
 </body>
 </html>
