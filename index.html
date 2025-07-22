@@ -268,14 +268,6 @@
     .map-btn:hover, .inscritos-btn:hover {
       background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
     }
-
-    /* Estilo da contagem regressiva */
-    #countdown {
-      font-size: 1.2rem;
-      color: #0077cc;
-      text-align: right;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -299,14 +291,9 @@
       <p><strong>Data:</strong> 23 de Agosto de 2025</p>
       <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
       <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
-      <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
       
-      <!-- Botões atualizados de Premiação e Programação -->
-      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/premiacaocerta.pdf', '_blank')">Premiação</button>
-      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
-
-      <!-- Contagem regressiva -->
-      <div id="countdown">Contagem regressiva: </div>
+      <!-- Novo botão "Inscritos" com link correto -->
+      <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
     </div>
 
     <!-- Calendário de Próximos Torneios -->
@@ -360,24 +347,60 @@
       <h3><i class="fas fa-images"></i> Galeria de Fotos</h3>
       <div class="gallery">
         <img src="itanhandu.jpg" alt="Cartaz do torneio em Itanhandu" />
-        <img src="xadrez2.jpg" alt="Jogadores concentrados em partida de xadrez" />
-        <img src="xadrez3.jpg" alt="Campeão segurando troféu" />
-        <img src="xadrez4.jpg" alt="Peças de xadrez sobre tabuleiro" />
       </div>
     </div>
 
-    <!-- Resultados -->
+    <!-- Resultados dos torneios -->
     <div class="card" id="resultados">
-      <h3><i class="fas fa-trophy"></i> Resultados</h3>
+      <h3><i class="fas fa-trophy"></i> Resultados dos Torneios Anteriores</h3>
       <div class="results-list">
         <div class="result-item">
-          <i class="fas fa-chess"></i> <a href="https://s2.chess-results.com/tnr712735.aspx?lan=10&art=1&rd=7&turdet=YES&flag=30&wi=821" target="_blank">Aberto de Guaxupé - 1º lugar</a>
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">Ver resultados</a>
+          </div>
         </div>
         <div class="result-item">
-          <i class="fas fa-chess"></i> <a href="https://s2.chess-results.com/tnr710963.aspx?lan=10&art=1&rd=6&turdet=YES&flag=30&wi=821" target="_blank">Torneio em Poços de Caldas - 1º lugar</a>
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>2ª Etapa:</strong> Caxambu - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">Ver resultados</a>
+          </div>
         </div>
         <div class="result-item">
-          <i class="fas fa-chess"></i> <a href="https://s2.chess-results.com/tnr716983.aspx?lan=10&art=1&rd=6&turdet=YES&flag=30&wi=821" target="_blank">Torneio de Itanhandu - 1º lugar</a>
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>3ª Etapa:</strong> São Lourenço - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>4ª Etapa:</strong> Paraguaçu - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>5ª Etapa:</strong> Cambuquira - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>6ª Etapa:</strong> São Vicente de Minas - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">Ver resultados</a>
+          </div>
         </div>
       </div>
     </div>
@@ -385,35 +408,11 @@
   </section>
 
   <footer>
-    &copy; 2025 LBX Sul de Minas. Todos os direitos reservados.
+    <p>&copy; 2025 LBX Sul de Minas. Todos os direitos reservados.</p>
+    <p><i class="fab fa-instagram"></i> 
+      <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
+    </p>
   </footer>
-
-  <script>
-    // Contagem regressiva para o próximo torneio
-    const countdownElement = document.getElementById('countdown');
-    const nextTournamentDate = new Date('2025-08-23T00:00:00');
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = nextTournamentDate - now;
-
-      if (diff <= 0) {
-        countdownElement.textContent = 'O torneio já começou!';
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
 
 </body>
 </html>
