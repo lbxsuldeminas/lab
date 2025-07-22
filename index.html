@@ -253,11 +253,11 @@
       }
     }
 
-    /* Estilo para o botão Inscritos */
-    .inscritos-btn {
-      background-color: var(--accent-color); /* Cor azul (mesma dos botões "Local no mapa") */
+    /* Estilo para o botão Inscritos e Ver no Google Maps */
+    .map-btn, .inscritos-btn {
+      background-color: var(--accent-color); /* Cor azul */
       color: white; /* Cor do texto */
-      padding: 10px 20px; /* Reduzir o tamanho do botão */
+      padding: 10px 20px; /* Tamanho do botão */
       font-size: 1rem; /* Tamanho da fonte ajustado */
       border: none;
       border-radius: 8px; /* Borda arredondada */
@@ -265,7 +265,7 @@
       transition: background-color 0.3s ease;
     }
 
-    .inscritos-btn:hover {
+    .map-btn:hover, .inscritos-btn:hover {
       background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
     }
   </style>
@@ -290,7 +290,7 @@
       <h2>Próximo Torneio: Itanhandu - MG</h2>
       <p><strong>Data:</strong> 23 de Agosto de 2025</p>
       <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
-      <button onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
+      <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
       
       <!-- Novo botão "Inscritos" com link correto -->
       <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
