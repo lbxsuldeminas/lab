@@ -268,6 +268,14 @@
     .map-btn:hover, .inscritos-btn:hover {
       background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
     }
+
+    /* Estilo da contagem regressiva */
+    #countdown {
+      font-size: 1.2rem;
+      color: #0077cc;
+      text-align: right;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -291,9 +299,10 @@
       <p><strong>Data:</strong> 23 de Agosto de 2025</p>
       <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
       <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/cu9Qva9fAt6FbWtNA')">Ver no Google Maps</button>
-      
-      <!-- Novo botão "Inscritos" com link correto -->
       <button class="inscritos-btn" onclick="window.open('https://s2.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1222615')">Inscritos</button>
+
+      <!-- Contagem regressiva -->
+      <div id="countdown"></div>
     </div>
 
     <!-- Calendário de Próximos Torneios -->
@@ -413,6 +422,36 @@
       <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
     </p>
   </footer>
+
+  <script>
+    // Data do torneio
+    const tournamentDate = new Date('August 23, 2025 00:00:00').getTime();
+    
+    // Função para atualizar a contagem regressiva
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeRemaining = tournamentDate - now;
+      
+      // Calculando dias, horas, minutos e segundos restantes
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+      
+      // Exibindo a contagem regressiva
+      document.getElementById("countdown").innerHTML = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      
+      // Se a data já passou
+      if (timeRemaining < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").innerHTML = "O torneio começou!";
+      }
+    }
+    
+    // Atualiza a contagem regressiva a cada segundo
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  </script>
 
 </body>
 </html>
