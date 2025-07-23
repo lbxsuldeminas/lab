@@ -41,9 +41,16 @@ header {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;  /* Garante que a logo e o título fiquem alinhados verticalmente */
-  justify-content: space-between;  /* Isso vai alinhar logo à esquerda e título ao centro */
-  flex-wrap: wrap;
+  flex-direction: column;  /* Organiza os itens em coluna */
+  align-items: center;  /* Alinha todos os itens no centro */
+  text-align: center;  /* Garante que o título seja centralizado */
+}
+
+header .logo-container {
+  display: flex;
+  align-items: center;  /* Alinha a logo à esquerda */
+  justify-content: flex-start;  /* A logo ficará à esquerda */
+  width: 100%;
 }
 
 header img {
@@ -53,30 +60,32 @@ header img {
 }
 
 header h1 {
-  font-size: 1.8rem;
-  margin-bottom: 5px;
-  text-align: center;  /* Título centralizado */
-  flex-grow: 1;  /* Garante que o título ocupe o espaço restante, centralizando-o */
+  font-size: 2rem;  /* Ajuste no tamanho do título */
+  margin-bottom: 10px;
 }
 
 nav {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  justify-content: center;  /* Alinha os links do menu ao centro */
+  width: 100%;  /* Garante que o menu ocupe toda a largura disponível */
+  margin-top: 10px;  /* Dá um pequeno espaço entre o título e o menu */
 }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
 
-    nav a:hover {
-      background-color: #005fa3;
-    }
+nav a:hover {
+  background-color: #005fa3;
+}
+
 
     section#inicio {
       max-width: 1000px;
@@ -292,8 +301,9 @@ nav {
 <body>
 
 <header>
-  <!-- Logo ao lado do título -->
-  <img src="urlsite.png" alt="Logo" style="height: 80px; margin-right: 15px;" />
+  <div class="logo-container">
+    <img src="urlsite.png" alt="Logo" style="height: 80px; margin-right: 15px;" />
+  </div>
   <h1>LBX Sul de Minas</h1>
   <nav>
     <a href="#proximo-torneio">Próximo Torneio</a>
@@ -303,6 +313,7 @@ nav {
     <a href="#resultados">Resultados</a>
   </nav>
 </header>
+
 
   <section id="inicio">
 
