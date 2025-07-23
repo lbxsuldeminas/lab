@@ -32,32 +32,39 @@
       scroll-behavior: smooth;
     }
 
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 20px 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+  header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;  /* Garante que a logo e o título fiquem alinhados verticalmente */
+  justify-content: flex-start;  /* Alinha à esquerda */
+  flex-wrap: wrap;
+}
 
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
-      text-align: center;
-      width: 100%;
-    }
+header img {
+  height: 80px;  /* Aumenta o tamanho da logo */
+  margin-right: 15px;  /* Adiciona espaço à direita da logo */
+  flex-shrink: 0;  /* Impede que a logo encolha */
+}
 
-    nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  text-align: left;  /* Garante que o título fique alinhado à esquerda */
+  width: auto;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 
     nav a {
       color: white;
