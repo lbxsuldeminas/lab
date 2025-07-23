@@ -55,9 +55,11 @@ header .logo-container {
 }
 
 header img {
-  height: 160px;  /* Tamanho da logo */
+  height: 160px;  /* Tamanho da logo ajustado */
+  width: auto;  /* Mantém a proporção da imagem */
   margin-right: 15px;  /* Espaço à direita da logo */
   flex-shrink: 0;  /* Impede que a logo encolha */
+  object-fit: contain;  /* Garante que a imagem se ajuste ao espaço sem distorcer */
 }
 
 header h1 {
