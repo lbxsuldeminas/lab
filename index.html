@@ -35,7 +35,7 @@
 header {
   background-color: var(--primary-color);
   color: white;
-  padding: 20px 10px;
+  padding: 10px 10px; /* Reduzi o padding para diminuir o espaço entre o topo e o título */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -51,6 +51,7 @@ header .logo-container {
   align-items: center;  /* Alinha a logo à esquerda */
   justify-content: flex-start;  /* A logo ficará à esquerda */
   width: 100%;
+  margin-bottom: 10px;  /* Pequeno espaçamento entre a logo e o título */
 }
 
 header img {
@@ -61,7 +62,7 @@ header img {
 
 header h1 {
   font-size: 2rem;  /* Ajuste no tamanho do título */
-  margin-bottom: 10px;
+  margin: 0;  /* Remove o espaço extra em torno do título */
 }
 
 nav {
@@ -70,7 +71,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;  /* Alinha os links do menu ao centro */
   width: 100%;  /* Garante que o menu ocupe toda a largura disponível */
-  margin-top: 10px;  /* Dá um pequeno espaço entre o título e o menu */
+  margin-top: 5px;  /* Reduz o espaço entre o título e o menu */
 }
 
 nav a {
@@ -85,8 +86,6 @@ nav a {
 nav a:hover {
   background-color: #005fa3;
 }
-
-
     section#inicio {
       max-width: 1000px;
       margin: 30px auto;
