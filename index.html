@@ -317,6 +317,20 @@
   #partidas-transmitidas .result-item a:hover {
     text-decoration: underline;
   }
+    /* Estilo para o item "TORNEIO AO VIVO" */
+#partidas-transmitidas .ao-vivo {
+  background-color: #e74c3c; /* Cor vermelha de fundo */
+  border-left: 6px solid #c0392b; /* Cor vermelha mais escura para a borda */
+}
+
+#partidas-transmitidas .ao-vivo a {
+  color: white; /* Mudando a cor do link para branco */
+}
+
+#partidas-transmitidas .ao-vivo a:hover {
+  text-decoration: underline; /* Sobrecarga de hover */
+}
+
 
 </style>
 
@@ -466,10 +480,11 @@
     </div>
     
 <!-- Partidas Transmitidas -->
+<!-- Partidas Transmitidas -->
 <div class="card" id="partidas-transmitidas">
   <h3><i class="fas fa-video"></i> Partidas Transmitidas</h3>
   <div class="results-list">
-    <div class="result-item">
+    <div class="result-item ao-vivo">
       <i class="fas fa-tv"></i>
       <div>
         <strong>TORNEIO AO VIVO (Disponível somente no dia do torneio)</strong>
@@ -495,6 +510,7 @@
     </div>
   </div>
 </div>
+
 
 
   </section>
