@@ -317,14 +317,18 @@
   #partidas-transmitidas .result-item a:hover {
     text-decoration: underline;
   }
-    /* Estilo para o item "TORNEIO AO VIVO" */
+/* Estilo para o item "TORNEIO AO VIVO" */
 #partidas-transmitidas .ao-vivo {
-  background-color: #e74c3c; /* Cor vermelha de fundo */
-  border-left: 6px solid #c0392b; /* Cor vermelha mais escura para a borda */
+  background-color: var(--card-bg); /* Fundo branco */
+  border-left: 6px solid #e74c3c; /* Borda vermelha */
+}
+
+#partidas-transmitidas .ao-vivo i {
+  color: #e74c3c; /* Ícone da TV vermelho */
 }
 
 #partidas-transmitidas .ao-vivo a {
-  color: white; /* Mudando a cor do link para branco */
+  color: #e74c3c; /* Link "Assistir no Twitch" vermelho */
 }
 
 #partidas-transmitidas .ao-vivo a:hover {
