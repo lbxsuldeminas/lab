@@ -65,12 +65,11 @@
       font-weight: 600;
       padding: 8px 12px;
       border-radius: 6px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     nav a:hover {
       background-color: #005fa3;
-      transform: scale(1.1);
     }
 
     section#inicio {
@@ -215,12 +214,11 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     .calendar-item button:hover {
       background-color: #005fa3;
-      transform: scale(1.05);
     }
 
     /* Responsividade para celular */
@@ -253,11 +251,6 @@
       .calendar-item {
         min-width: auto;
       }
-
-      /* Galeria de imagens responsiva */
-      .gallery img {
-        border-radius: 8px;
-      }
     }
 
     /* Estilo para o botão Inscritos e Ver no Google Maps */
@@ -269,34 +262,32 @@
       border: none;
       border-radius: 8px; /* Borda arredondada */
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     .map-btn:hover, .inscritos-btn:hover {
       background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
-      transform: scale(1.05);
     }
-
     .torneio-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-    #countdown {
-      font-weight: bold;
-      color: var(--accent-color);
-      font-size: 1rem;
-    }
+#countdown {
+  font-weight: bold;
+  color: var(--accent-color);
+  font-size: 1rem;
+}
   </style>
 </head>
 <body>
 
   <header>
     <!-- Logo -->
-  <img src="urlsite.png" alt="Logo da LBX Sul de Minas" style="height: 125px; margin-right: 15px;" />
+  <img src="urlsite.png" alt="Logo" style="height: 113px; margin-right: 15px;" />
     <h1>LBX Sul de Minas</h1>
     <nav>
       <a href="#proximo-torneio">Próximo Torneio</a>
@@ -337,18 +328,18 @@
         </div>
         <div class="calendar-item">
           <h3>8ª Etapa: Pouso Alegre - MG</h3>
-          <p>Data: 26/09/2025</p>
+          <p>Data: 27/09/2025</p>
           <button onclick="window.open('https://maps.app.goo.gl/PrYig1V7zZn95jeZ8')">Local no mapa</button>
         </div>
         <div class="calendar-item">
           <h3>9ª Etapa: Três Corações - MG</h3>
           <p>Data: 25/10/2025</p>
-          <button onclick="window.open('https://www.google.com/maps/place/S%C3%A3o+Louren%C3%A7o,+MG','_blank')">Local no mapa</button>
+          <button onclick="window.open('https://maps.app.goo.gl/9S3QpzXZuqDuhiBa8')">Local no mapa</button>
         </div>
         <div class="calendar-item">
           <h3>Final: Conceição do Rio Verde - MG</h3>
           <p>Data: 22/11/2025</p>
-          <button onclick="window.open('https://www.google.com/maps/place/Paragua%C3%A7u,+MG','_blank')">Local no mapa</button>
+          <button onclick="window.open('https://maps.app.goo.gl/UEWuu5ffJ9AgEeHV7')">Local no mapa</button>
         </div>
       </div>
     </div>
@@ -473,3 +464,4 @@
 
 </body>
 </html>
+
