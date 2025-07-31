@@ -351,7 +351,7 @@
       <a href="#contatos">Contatos</a>
       <a href="#galeria">Galeria de Fotos</a>
       <a href="#resultados">Resultados</a>
-      <a href="#partidas">Partidas</a>
+      <a href="#partidas-transmitidas">Partidas</a>
     </nav>
   </header>
 
@@ -551,8 +551,23 @@
 
     const interval = setInterval(updateCountdown, 1000);
     updateCountdown();
-  </script>
+ 
+  <script>
+  // Ajusta a rolagem ao clicar nos links de navegação
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
 
+      const target = document.querySelector(this.getAttribute('href'));
+
+      window.scrollTo({
+        top: target.offsetTop - 100, // Ajuste o valor conforme a altura do cabeçalho fixo
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
 </body>
+
 </html>
 
