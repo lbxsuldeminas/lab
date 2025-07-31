@@ -552,6 +552,26 @@
     const interval = setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+  <script>
+// Ajustar a rolagem suave considerando o cabeçalho fixo
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 173, // Ajuste o valor conforme necessário
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+</script>
+</body>
+
 
 </body>
 </html>
