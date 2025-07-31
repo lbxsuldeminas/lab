@@ -527,33 +527,34 @@
   </footer>
 
 <script>
-    // Contagem regressiva para o próximo torneio
-    const countdownElement = document.getElementById('countdown');
-    const nextTournamentDate = new Date('2025-08-23T00:00:00');
+  // Contagem regressiva para o próximo torneio
+  const countdownElement = document.getElementById('countdown');
+  const nextTournamentDate = new Date('2025-08-23T00:00:00');
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = nextTournamentDate - now;
+  function updateCountdown() {
+    const now = new Date();
+    const diff = nextTournamentDate - now;
 
-      if (diff <= 0) {
-        countdownElement.textContent = 'O torneio já começou!';
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if (diff <= 0) {
+      countdownElement.textContent = 'O torneio já começou!';
+      clearInterval(interval);
+      return;
     }
 
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
- 
-  <script>
-  // Ajusta a rolagem ao clicar nos links de navegação
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+<!-- Ajusta a rolagem ao clicar nos links de navegação -->
+<script>
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -561,12 +562,13 @@
       const target = document.querySelector(this.getAttribute('href'));
 
       window.scrollTo({
-        top: target.offsetTop - 100, // Ajuste o valor conforme a altura do cabeçalho fixo
+        top: target.offsetTop - 173, // Ajuste o valor conforme a altura do cabeçalho fixo
         behavior: 'smooth'
       });
     });
   });
 </script>
+
 </body>
 
 </html>
