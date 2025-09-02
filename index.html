@@ -44,7 +44,6 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    position: relative;
   }
 
   header h1 {
@@ -73,43 +72,6 @@
     background-color: #005fa3;
   }
 
-  /* Botão hambúrguer */
-  .menu-toggle {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
-    display: none; /* escondido em telas grandes */
-  }
-
-  @media (max-width: 768px) {
-    nav {
-      display: none; /* menu fechado por padrão */
-      flex-direction: column;
-      width: 100%;
-      background-color: var(--primary-color);
-      padding: 10px 0;
-    }
-
-    nav a {
-      padding: 10px;
-      text-align: center;
-      width: 100%;
-    }
-
-    nav.active {
-      display: flex; /* abre o menu quando ativo */
-    }
-
-    .menu-toggle {
-      display: block; /* mostra o hambúrguer no mobile */
-      position: absolute;
-      right: 20px;
-    }
-  }
-
-  /* --- O RESTO DO SEU CSS ORIGINAL --- */
   section#inicio {
     max-width: 1000px;
     margin: 30px auto;
@@ -164,6 +126,7 @@
     text-decoration: none;
   }
 
+  /* Seção Resultados com ícones e estilo */
   .results-list {
     display: flex;
     flex-direction: column;
@@ -198,6 +161,7 @@
     text-decoration: underline;
   }
 
+  /* Seção Calendário de Próximos Torneios */
   #calendario {
     max-width: 1000px;
     margin: 30px auto;
@@ -257,6 +221,7 @@
     background-color: #005fa3;
   }
 
+  /* Responsividade para celular */
   @media (max-width: 600px) {
     header h1 {
       font-size: 1.4rem;
@@ -273,6 +238,7 @@
       padding: 20px;
     }
 
+    /* Calendário - lista vertical */
     .calendar-list {
       flex-direction: column;
       gap: 15px;
@@ -287,19 +253,20 @@
     }
   }
 
+  /* Estilo para o botão Inscritos e Ver no Google Maps */
   .map-btn, .inscritos-btn {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
+    background-color: var(--accent-color); /* Cor azul */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Tamanho do botão */
+    font-size: 1rem; /* Tamanho da fonte ajustado */
     border: none;
-    border-radius: 8px;
+    border-radius: 8px; /* Borda arredondada */
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
 
   .map-btn:hover, .inscritos-btn:hover {
-    background-color: #005fa3;
+    background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
   }
 
   .torneio-header {
@@ -316,6 +283,7 @@
     font-size: 1rem;
   }
 
+  /* Estilo para a nova seção "Partidas Transmitidas" */
   #partidas-transmitidas .results-list {
     display: flex;
     flex-direction: column;
@@ -349,45 +317,41 @@
   #partidas-transmitidas .result-item a:hover {
     text-decoration: underline;
   }
+/* Estilo para o item "TORNEIO AO VIVO" */
+#partidas-transmitidas .ao-vivo {
+  background-color: var(--card-bg); /* Fundo branco */
+  border-left: 6px solid #e74c3c; /* Borda vermelha */
+}
 
-  #partidas-transmitidas .ao-vivo {
-    background-color: var(--card-bg);
-    border-left: 6px solid #e74c3c;
-  }
+#partidas-transmitidas .ao-vivo i {
+  color: #e74c3c; /* Ícone da TV vermelho */
+}
 
-  #partidas-transmitidas .ao-vivo i {
-    color: #e74c3c;
-  }
+#partidas-transmitidas .ao-vivo a {
+  color: #e74c3c; /* Link "Assistir no Twitch" vermelho */
+}
 
-  #partidas-transmitidas .ao-vivo a {
-    color: #e74c3c;
-  }
+#partidas-transmitidas .ao-vivo a:hover {
+  text-decoration: underline; /* Sobrecarga de hover */
+}
 
-  #partidas-transmitidas .ao-vivo a:hover {
-    text-decoration: underline;
-  }
 
 </style>
+
 </head>
 <body>
 
   <header>
-    <img src="urlsite.png" alt="Logo" style="height: 113px; margin-right: 15px;" />
+    <!-- Logo -->
+  <img src="urlsite.png" alt="Logo" style="height: 113px; margin-right: 15px;" />
     <h1>LBX Sul de Minas</h1>
-
-    <!-- Botão hambúrguer -->
-    <button class="menu-toggle" aria-label="Abrir menu">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Menu -->
     <nav>
       <a href="#proximo-torneio">Próximo Torneio</a>
       <a href="#calendario">Calendário</a>
-      <a href="#contatos">Contatos</a>
       <a href="#galeria">Galeria de Fotos</a>
       <a href="#resultados">Resultados</a>
       <a href="#partidas-transmitidas">Partidas</a>
+      <a href="#contatos">Contatos</a>
     </nav>
   </header>
 
@@ -395,19 +359,24 @@
 
     <!-- Próximo Torneio -->
     <div class="card" id="proximo-torneio">
-      <div class="torneio-header">
-        <h2>Próximo Torneio: Pouso Alegre - MG</h2>
-        <div id="countdown">Contagem regressiva: </div>
-      </div>
-      <p style="color: red;">INSCRIÇÕES ABERTAS! Entre em contato pelo telefone</p>
-      <p><strong>Data:</strong> 27 de Setembro de 2025</p>
-      <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+     <div class="torneio-header">
+  <h2>Próximo Torneio: Pouso Alegre - MG</h2>
+  <div id="countdown">Contagem regressiva: </div>
+</div>
+  <p style="color: red; font-weight: bold;">INSCRIÇÕES ABERTAS! Entre em contato pelo telefone.</p>
+<p><strong>Data:</strong> 27 de Setembro de 2025</p>
+<p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
       <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
+      
+      <!-- Novo botão "Inscritos" com link correto -->
+ <!--      <button class="inscritos-btn" onclick="window.open('https://s3.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1239615')">Blocos</button> --> 
+        <!-- Botões atualizados de Premiação e Programação -->
+      <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
       <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
       <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
     </div>
 
-    <!-- Calendário -->
+    <!-- Calendário de Próximos Torneios -->
     <div class="card" id="calendario">
       <h2><i class="fas fa-calendar-alt"></i> Calendário dos Próximos Torneios</h2>
       <div class="calendar-list">
@@ -434,16 +403,21 @@
       <h3>Contatos</h3>
       <p>
         📞 WhatsApp: 
-        <a href="https://wa.me/5535999291224" target="_blank">(35) 99929-1224</a> | 
+        <a href="https://wa.me/5535999291224" target="_blank">(35) 99929-1224</a> 
+        | 
         <a href="https://wa.me/5535997648241" target="_blank">(35) 99764-8241</a>
       </p>
-      <p><i class="fab fa-instagram"></i> 
-        <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a></p>
-      <p><i class="fab fa-facebook"></i> 
-        <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a></p>
+      <p>
+        <i class="fab fa-instagram"></i> 
+        <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
+      </p>
+      <p>
+        <i class="fab fa-facebook"></i> 
+        <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a>
+      </p>
     </div>
 
-    <!-- Galeria -->
+    <!-- Galeria de Fotos -->
     <div class="card" id="galeria">
       <h3><i class="fas fa-images"></i> Galeria de Fotos</h3>
       <div class="gallery">
@@ -451,26 +425,79 @@
       </div>
     </div>
 
-    <!-- Resultados -->
-    <div class="card" id="resultados">
-      <h3><i class="fas fa-trophy"></i> Resultados dos Torneios Anteriores</h3>
-      <div class="results-list">
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">Ver resultados</a></div></div>
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>2ª Etapa:</strong> Caxambu - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">Ver resultados</a></div></div>
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>3ª Etapa:</strong> São Lourenço - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">Ver resultados</a></div></div>
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>4ª Etapa:</strong> Paraguaçu - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">Ver resultados</a></div></div>
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>5ª Etapa:</strong> Cambuquira - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">Ver resultados</a></div></div>
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>6ª Etapa:</strong> São Vicente de Minas - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">Ver resultados</a></div></div>
-        <div class="result-item"><i class="fas fa-chess-king"></i><div><strong>7ª Etapa:</strong> Itanhandu - 2025<br /><a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1239615" target="_blank">Ver resultados</a></div></div>
+    <!-- Resultados dos torneios -->
+<div class="card" id="resultados">
+  <h3><i class="fas fa-trophy"></i> Resultados dos Torneios Anteriores</h3>
+  <div class="results-list">
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">Ver resultados</a>
       </div>
     </div>
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>2ª Etapa:</strong> Caxambu - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">Ver resultados</a>
+      </div>
+    </div>
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>3ª Etapa:</strong> São Lourenço - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">Ver resultados</a>
+      </div>
+    </div>
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>4ª Etapa:</strong> Paraguaçu - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">Ver resultados</a>
+      </div>
+    </div>
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>5ª Etapa:</strong> Cambuquira - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">Ver resultados</a>
+      </div>
+    </div>
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>6ª Etapa:</strong> São Vicente de Minas - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">Ver resultados</a>
+      </div>
+    </div>
+    <div class="result-item">
+      <i class="fas fa-chess-king"></i>
+      <div>
+        <strong>7ª Etapa:</strong> Itanhandu - 2025
+        <br />
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1239615" target="_blank">Ver resultados</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Partidas -->
-    <div class="card" id="partidas-transmitidas">
-      <h3><i class="fas fa-video"></i> Partidas Transmitidas</h3>
-      <div class="results-list">
-        <div class="result-item ao-vivo"><i class="fas fa-tv"></i><div><strong>Torneio Ao vivo (Disponível somente no dia do torneio)</strong><br /><a href="https://media.idchess.com/en/tournaments/77f
-<a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025">Assistir</a>
+<!-- Partidas Transmitidas -->
+<div class="card" id="partidas-transmitidas">
+  <h3><i class="fas fa-video"></i> Partidas Transmitidas</h3>
+  <div class="results-list">
+    <div class="result-item ao-vivo">
+      <i class="fas fa-tv"></i>
+      <div>
+        <strong>Torneio Ao vivo (Disponível somente no dia do torneio)</strong>
+        <br />
+        <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025">Assistir</a>
       </div>
     </div>
     <div class="result-item">
@@ -560,3 +587,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
+
+
