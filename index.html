@@ -27,8 +27,8 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #000000; /* ALTERAR: antes era var(--light-bg) */
-    color: #fff;               /* ALTERAR: antes era #333 */
+    background-color: #000000; /* fundo do site */
+    color: #fff; /* texto fora dos cards ficará branco */
     line-height: 1.6;
     scroll-behavior: smooth;
 }
@@ -79,14 +79,13 @@ body {
     margin: 30px auto;
     padding: 0 20px;
   }
-
-  .card {
-    background-color: #111111; /* ALTERAR: antes era var(--card-bg) */
+.card {
+    background-color: #ffffff; /* mantém os cards brancos */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* opcional: ajustar sombra para fundo escuro */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* sombra suave */
     padding: 25px;
     margin-bottom: 30px;
-    color: #fff; /* ADICIONAR: para que o texto dentro dos cards fique visível */
+    color: #333; /* texto dentro dos cards escuro */
 }
 
 
@@ -590,6 +589,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
+
 
 
 
