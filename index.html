@@ -24,13 +24,14 @@
     box-sizing: border-box;
   }
 
-  body {
+body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: var(--light-bg);
-    color: #333;
+    background-color: #000000; /* ALTERAR: antes era var(--light-bg) */
+    color: #fff;               /* ALTERAR: antes era #333 */
     line-height: 1.6;
     scroll-behavior: smooth;
-  }
+}
+
 
   header {
     background-color: var(--primary-color);
@@ -79,12 +80,14 @@
   }
 
   .card {
-    background-color: var(--card-bg);
+    background-color: #111111; /* ALTERAR: antes era var(--card-bg) */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* opcional: ajustar sombra para fundo escuro */
     padding: 25px;
     margin-bottom: 30px;
-  }
+    color: #fff; /* ADICIONAR: para que o texto dentro dos cards fique visível */
+}
+
 
   .card h2, .card h3 {
     color: var(--primary-color);
@@ -586,6 +589,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
+
 
 
 
