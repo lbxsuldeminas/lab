@@ -381,30 +381,37 @@ body {
   <section id="inicio">
 
 <!-- Próximo Torneio -->
-<div class="card" id="proximo-torneio">
-  <div class="torneio-header">
-    <h2>Próximo Torneio: Pouso Alegre - MG</h2>
-    <div id="countdown">Contagem regressiva: </div>
+<div class="card" id="proximo-torneio" style="padding: 25px; background-color: rgba(255,255,255,0.05); backdrop-filter: blur(5px);">
+
+  <!-- Linha do título + aviso + botão -->
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+    <h2 style="color: #fff; margin: 0; font-size: 1.9rem;">Próximo Torneio: Pouso Alegre - MG</h2>
+    
+    <!-- Aviso + botão ao lado do título -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <p style="color: red; font-weight: bold; margin: 0;">INSCRIÇÕES ABERTAS!</p>
+      <button class="inscreva-btn" onclick="window.open('https://wa.me/5535997648241?text=Olá!%20Quero%20me%20inscrever%20no%20torneio%20de%20Pouso%20Alegre.')">Inscreva-se</button>
     </div>
-  <!-- Aviso + Botão lado a lado -->
-  <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
-    <p style="color: red; font-weight: bold; margin: 0;">
-      INSCRIÇÕES ABERTAS!
-    </p>
-    <button class="inscreva-btn" onclick="window.open('https://wa.me/5535997648241?text=Olá!%20Quero%20me%20inscrever%20no%20torneio%20de%20Pouso%20Alegre.')">
-      Inscreva-se
-    </button>
   </div>
 
-  <p><strong>Data:</strong> 27 de Setembro de 2025</p>
-  <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+  <!-- Descrição -->
+  <p style="color: #ddd; text-align: center; margin: 15px 0 20px 0;">Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
 
-  <!-- Outros botões -->
-  <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
-  <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
-  <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
-  <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+  <!-- Botões + contagem regressiva -->
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+      <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
+      <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
+      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
+      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+    </div>
+
+    <!-- Contagem regressiva no canto direito -->
+    <div id="countdown" style="color: #ffcc00; font-weight: bold; font-size: 1.2rem;"></div>
+  </div>
+
 </div>
+
 
 
     <!-- Calendário de Próximos Torneios -->
@@ -622,6 +629,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
+
 
 
 
