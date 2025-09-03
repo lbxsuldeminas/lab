@@ -272,6 +272,21 @@ body {
   .map-btn:hover, .inscritos-btn:hover {
     background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
   }
+    .inscreva-btn {
+  background-color: #25D366; /* verde WhatsApp */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.inscreva-btn:hover {
+  background-color: #1eb346;
+}
+
 
   .torneio-header {
     display: flex;
@@ -361,24 +376,29 @@ body {
 
   <section id="inicio">
 
-    <!-- Próximo Torneio -->
-    <div class="card" id="proximo-torneio">
-     <div class="torneio-header">
-  <h2>Próximo Torneio: Pouso Alegre - MG</h2>
-  <div id="countdown">Contagem regressiva: </div>
-</div>
+  <!-- Próximo Torneio -->
+<div class="card" id="proximo-torneio">
+  <div class="torneio-header">
+    <h2>Próximo Torneio: Pouso Alegre - MG</h2>
+    <div id="countdown">Contagem regressiva: </div>
+  </div>
+
   <p style="color: red; font-weight: bold;">INSCRIÇÕES ABERTAS! Entre em contato pelo telefone.</p>
-<p><strong>Data:</strong> 27 de Setembro de 2025</p>
-<p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
-      <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
-      
-      <!-- Novo botão "Inscritos" com link correto -->
- <!--      <button class="inscritos-btn" onclick="window.open('https://s3.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1239615')">Blocos</button> --> 
-        <!-- Botões atualizados de Premiação e Programação -->
-      <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
-      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
-      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
-    </div>
+  <p><strong>Data:</strong> 27 de Setembro de 2025</p>
+  <p>Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+
+  <!-- Botões -->
+  <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
+  <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
+  <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
+  <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+
+  <!-- Novo botão Inscreva-se -->
+  <button class="inscreva-btn" onclick="window.open('https://wa.me/5535997648241?text=Olá!%20Quero%20me%20inscrever%20no%20torneio%20de%20Pouso%20Alegre.')">
+    Inscreva-se
+  </button>
+</div>
+
 
     <!-- Calendário de Próximos Torneios -->
     <div class="card" id="calendario">
@@ -595,6 +615,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
+
 
 
 
