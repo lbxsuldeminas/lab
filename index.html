@@ -10,363 +10,375 @@
 
   <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-  :root {
-    --primary-color: #1a1a1a;
-    --accent-color: #3399ff; /* ALTERAR: azul mais vibrante para contraste */
-    --light-bg: #f4f4f4; /* já não será usado mais */
-    --card-bg: #ffffff;   /* já não será usado mais */
-}
-
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #000000; /* fundo do site */
-    color: #fff; /* texto fora dos cards ficará branco */
-    line-height: 1.6;
-    scroll-behavior: smooth;
-}
-
-
-  header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px 10px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  header h1 {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-    text-align: center;
-    width: 100%;
-  }
-
-  nav {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-  }
-
-  nav a:hover {
-    background-color: #005fa3;
-  }
-
-  section#inicio {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-.card {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(5px);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* sombra suave */
-    padding: 25px;
-    margin-bottom: 30px;
-    color: #333; /* texto dentro dos cards escuro */
-}
-
-
-  .card h2, .card h3 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-  }
-
-  .contact a, .social a {
-    color: var(--accent-color);
-    text-decoration: none;
-    margin-right: 10px;
-    display: inline-block;
-  }
-
-  .contact a:hover, .social a:hover {
-    text-decoration: underline;
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-
-  .gallery img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-
-  footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 20px;
-  }
-
-  footer a {
-    color: white;
-    text-decoration: none;
-  }
-
-  /* Seção Resultados com ícones e estilo */
-  .results-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .result-item {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 12px 18px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    border-left: 6px solid var(--accent-color);
-  }
-
-  .result-item i {
-    font-size: 24px;
-    color: var(--accent-color);
-    margin-right: 15px;
-    min-width: 30px;
-    text-align: center;
-  }
-
-  .result-item a {
-    color: var(--accent-color);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .result-item a:hover {
-    text-decoration: underline;
-  }
-
-  /* Seção Calendário de Próximos Torneios */
-  #calendario {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 15px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  #calendario h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-
-  .calendar-list {
-    display: flex;
-    gap: 20px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-
-  .calendar-item {
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    min-width: 200px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .calendar-item h3 {
-    margin-bottom: 10px;
-    color: var(--accent-color);
-  }
-
-  .calendar-item p {
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-
-  .calendar-item button {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 10px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-  }
-
-  .calendar-item button:hover {
-    background-color: #005fa3;
-  }
-
-  /* Responsividade para celular */
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 1.4rem;
-      flex-basis: 100%;
-      margin-bottom: 10px;
+    /* ==================== Variáveis CSS ==================== */
+    :root {
+      --primary-color: #1a1a1a;
+      --accent-color: #3399ff; /* ALTERAR: azul mais vibrante para contraste */
+      --light-bg: #f4f4f4; /* já não será usado mais */
+      --card-bg: #ffffff;   /* já não será usado mais */
     }
 
-    nav {
+    /* ==================== Reset e global ==================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000000; /* fundo do site */
+      color: #fff; /* texto fora dos cards ficará branco */
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* ==================== Header e Navegação ==================== */
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 20px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      text-align: center;
       width: 100%;
     }
 
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #005fa3;
+    }
+
+    /* ==================== Seção principal ==================== */
+    section#inicio {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* ==================== Cards ==================== */
     .card {
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(5px);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* sombra suave */
+      padding: 25px;
+      margin-bottom: 30px;
+      color: #333; /* texto dentro dos cards escuro */
+    }
+
+    .card h2, .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    /* ==================== Links e Contatos ==================== */
+    .contact a, .social a {
+      color: var(--accent-color);
+      text-decoration: none;
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    .contact a:hover, .social a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==================== Galeria de Fotos ==================== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ==================== Footer ==================== */
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
       padding: 20px;
     }
 
-    /* Calendário - lista vertical */
-    .calendar-list {
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* ==================== Resultados ==================== */
+    .results-list {
+      display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 18px;
+    }
+
+    .result-item {
+      display: flex;
+      align-items: center;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 12px 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-left: 6px solid var(--accent-color);
+    }
+
+    .result-item i {
+      font-size: 24px;
+      color: var(--accent-color);
+      margin-right: 15px;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .result-item a {
+      color: var(--accent-color);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .result-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==================== Calendário de Próximos Torneios ==================== */
+    #calendario {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px 15px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     #calendario h2 {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+
+    .calendar-list {
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 10px;
     }
 
     .calendar-item {
-      min-width: auto;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      min-width: 200px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-  }
 
-  /* Estilo para o botão Inscritos e Ver no Google Maps */
-  .map-btn, .inscritos-btn {
-    background-color: var(--accent-color); /* Cor azul */
-    color: white; /* Cor do texto */
-    padding: 10px 20px; /* Tamanho do botão */
-    font-size: 1rem; /* Tamanho da fonte ajustado */
-    border: none;
-    border-radius: 8px; /* Borda arredondada */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+    .calendar-item h3 {
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
 
-  .map-btn:hover, .inscritos-btn:hover {
-    background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
-  }
- .inscreva-btn {
-  background-color: #e74c3c; /* vermelho */
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  white-space: nowrap; /* mantém o botão na mesma linha */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+    .calendar-item p {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
 
-.inscreva-btn:hover {
-  background-color: #c0392b; /* vermelho mais escuro ao passar o mouse */
-  transform: scale(1.05);
-}
+    .calendar-item button {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
 
+    .calendar-item button:hover {
+      background-color: #005fa3;
+    }
 
+    /* ==================== Responsividade ==================== */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.4rem;
+        flex-basis: 100%;
+        margin-bottom: 10px;
+      }
 
-  .torneio-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+      nav {
+        justify-content: center;
+        width: 100%;
+      }
 
-  #countdown {
-    font-weight: bold;
-    color: var(--accent-color);
-    font-size: 1rem;
-  }
+      .card {
+        padding: 20px;
+      }
 
-  /* Estilo para a nova seção "Partidas Transmitidas" */
-  #partidas-transmitidas .results-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+      /* Calendário - lista vertical */
+      .calendar-list {
+        flex-direction: column;
+        gap: 15px;
+      }
 
-  #partidas-transmitidas .result-item {
-    display: flex;
-    align-items: center;
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 12px 18px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    border-left: 6px solid var(--accent-color);
-  }
+      #calendario h2 {
+        font-size: 1.2rem;
+      }
 
-  #partidas-transmitidas .result-item i {
-    font-size: 24px;
-    color: var(--accent-color);
-    margin-right: 15px;
-    min-width: 30px;
-    text-align: center;
-  }
+      .calendar-item {
+        min-width: auto;
+      }
+    }
 
-  #partidas-transmitidas .result-item a {
-    color: var(--accent-color);
-    font-weight: 600;
-    text-decoration: none;
-  }
+    /* ==================== Botões ==================== */
+    .map-btn, .inscritos-btn {
+      background-color: var(--accent-color); /* Cor azul */
+      color: white; /* Cor do texto */
+      padding: 10px 20px; /* Tamanho do botão */
+      font-size: 1rem; /* Tamanho da fonte ajustado */
+      border: none;
+      border-radius: 8px; /* Borda arredondada */
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-  #partidas-transmitidas .result-item a:hover {
-    text-decoration: underline;
-  }
-/* Estilo para o item "TORNEIO AO VIVO" */
-#partidas-transmitidas .ao-vivo {
-  background-color: var(--card-bg); /* Fundo branco */
-  border-left: 6px solid #e74c3c; /* Borda vermelha */
-}
+    .map-btn:hover, .inscritos-btn:hover {
+      background-color: #005fa3; /* Cor de fundo mais escura ao passar o mouse */
+    }
 
-#partidas-transmitidas .ao-vivo i {
-  color: #e74c3c; /* Ícone da TV vermelho */
-}
+    .inscreva-btn {
+      background-color: #e74c3c; /* vermelho */
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap; /* mantém o botão na mesma linha */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-#partidas-transmitidas .ao-vivo a {
-  color: #e74c3c; /* Link "Assistir no Twitch" vermelho */
-}
+    .inscreva-btn:hover {
+      background-color: #c0392b; /* vermelho mais escuro ao passar o mouse */
+      transform: scale(1.05);
+    }
 
-#partidas-transmitidas .ao-vivo a:hover {
-  text-decoration: underline; /* Sobrecarga de hover */
-}
+    /* ==================== Torneio header ==================== */
+    .torneio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
+    #countdown {
+      font-weight: bold;
+      color: var(--accent-color);
+      font-size: 0.94rem;
+    }
 
-</style>
+    /* ==================== Partidas Transmitidas ==================== */
+    #partidas-transmitidas .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
+    #partidas-transmitidas .result-item {
+      display: flex;
+      align-items: center;
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 12px 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-left: 6px solid var(--accent-color);
+    }
+
+    #partidas-transmitidas .result-item i {
+      font-size: 24px;
+      color: var(--accent-color);
+      margin-right: 15px;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    #partidas-transmitidas .result-item a {
+      color: var(--accent-color);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    #partidas-transmitidas .result-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Estilo para o item "TORNEIO AO VIVO" */
+    #partidas-transmitidas .ao-vivo {
+      background-color: var(--card-bg); /* Fundo branco */
+      border-left: 6px solid #e74c3c; /* Borda vermelha */
+    }
+
+    #partidas-transmitidas .ao-vivo i {
+      color: #e74c3c; /* Ícone da TV vermelho */
+    }
+
+    #partidas-transmitidas .ao-vivo a {
+      color: #e74c3c; /* Link "Assistir no Twitch" vermelho */
+    }
+
+    #partidas-transmitidas .ao-vivo a:hover {
+      text-decoration: underline; /* Sobrecarga de hover */
+    }
+
+    #proximo-torneio {
+      padding-top: 18px; /* ajusta só esse card */
+    }
+
+  </style>
 </head>
+
 <body>
 
+  <!-- ==================== Header ==================== -->
   <header>
     <!-- Logo -->
-  <img src="urlsite.png" alt="Logo" style="height: 113px; margin-right: 15px;" />
+    <img src="urlsite.png" alt="Logo" style="height: 113px; margin-right: 15px;" />
     <h1>LBX Sul de Minas</h1>
     <nav>
       <a href="#proximo-torneio">Próximo Torneio</a>
@@ -378,47 +390,45 @@ body {
     </nav>
   </header>
 
+  <!-- ==================== Seção Principal ==================== -->
   <section id="inicio">
 
-<!-- Próximo Torneio -->
-<div class="card" id="proximo-torneio">
+    <!-- Próximo Torneio -->
+    <div class="card" id="proximo-torneio">
+      <!-- Linha do título + aviso + botão -->
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+        <h2 style="color: var(--primary-color); margin: 0; font-size: 1.9rem;">Próximo Torneio: Pouso Alegre - MG</h2>
+        
+        <!-- Aviso + botão ao lado do título -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <p style="color: red; font-weight: bold; margin: 0;">INSCRIÇÕES ABERTAS!</p>
+          <button class="inscreva-btn" onclick="window.open('https://wa.me/5535997648241?text=Ol%C3%A1!%20Quero%20me%20inscrever%20no%20torneio%20de%20Pouso%20Alegre.')">
+           Inscreva-se
+          </button>
+        </div>
+      </div>
 
-  <!-- Linha do título + aviso + botão -->
-  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
-    <h2 style="color: var(--primary-color); margin: 0; font-size: 1.9rem;">Próximo Torneio: Pouso Alegre - MG</h2>
-    
-    <!-- Aviso + botão ao lado do título -->
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <p style="color: red; font-weight: bold; margin: 0;">INSCRIÇÕES ABERTAS!</p>
-      <button class="inscreva-btn" onclick="window.open('https://wa.me/5535997648241?text=Ol%C3%A1!%20Quero%20me%20inscrever%20no%20torneio%20de%20Pouso%20Alegre.')">
-        <i class="fab fa-whatsapp" style="margin-right:5px;"></i> Inscreva-se
-      </button>
+      <!-- Data do torneio -->
+      <p style="margin: 10px 0; color: var(--primary-color); font-weight: 600;"><strong>Data:</strong> 27 de Setembro de 2025</p>
+
+      <!-- Frase informativa alinhada à esquerda -->
+      <p style="color: var(--primary-color); margin-bottom: 20px;">Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
+
+      <!-- Botões + contagem regressiva -->
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
+          <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
+          <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
+          <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+        </div>
+
+        <!-- Contagem regressiva no canto direito com ícone -->
+        <div id="countdown" style="color: #3399ff; font-weight: bold; display: flex; align-items: center;">
+          <i class="fas fa-clock" style="margin-right:5px;"></i>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <!-- Data do torneio -->
-  <p style="margin: 10px 0; color: var(--primary-color); font-weight: 600;"><strong>Data:</strong> 27 de Setembro de 2025</p>
-
-  <!-- Frase informativa alinhada à esquerda -->
-  <p style="color: var(--primary-color); margin-bottom: 20px;">Prepare-se para mais um grande evento de xadrez no Sul de Minas!</p>
-
-  <!-- Botões + contagem regressiva -->
-  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
-    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-      <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
-      <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
-      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
-      <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
-    </div>
-
-    <!-- Contagem regressiva no canto direito com ícone -->
-    <div id="countdown" style="color: #3399ff; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center;">
-      <i class="fas fa-clock" style="margin-right:5px;"></i>
-    </div>
-  </div>
-
-</div>
-
 
     <!-- Calendário de Próximos Torneios -->
     <div class="card" id="calendario">
@@ -451,134 +461,134 @@ body {
     </div>
 
     <!-- Resultados dos torneios -->
-<div class="card" id="resultados">
-  <h3><i class="fas fa-trophy"></i> Resultados dos Torneios Anteriores</h3>
-  <div class="results-list">
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">Ver resultados</a>
+    <div class="card" id="resultados">
+      <h3><i class="fas fa-trophy"></i> Resultados dos Torneios Anteriores</h3>
+      <div class="results-list">
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>2ª Etapa:</strong> Caxambu - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>3ª Etapa:</strong> São Lourenço - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>4ª Etapa:</strong> Paraguaçu - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>5ª Etapa:</strong> Cambuquira - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>6ª Etapa:</strong> São Vicente de Minas - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">Ver resultados</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-chess-king"></i>
+          <div>
+            <strong>7ª Etapa:</strong> Itanhandu - 2025
+            <br />
+            <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1239615" target="_blank">Ver resultados</a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>2ª Etapa:</strong> Caxambu - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">Ver resultados</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>3ª Etapa:</strong> São Lourenço - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">Ver resultados</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>4ª Etapa:</strong> Paraguaçu - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">Ver resultados</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>5ª Etapa:</strong> Cambuquira - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">Ver resultados</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>6ª Etapa:</strong> São Vicente de Minas - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">Ver resultados</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-chess-king"></i>
-      <div>
-        <strong>7ª Etapa:</strong> Itanhandu - 2025
-        <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1239615" target="_blank">Ver resultados</a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Partidas Transmitidas -->
-<div class="card" id="partidas-transmitidas">
-  <h3><i class="fas fa-video"></i> Partidas Transmitidas</h3>
-  <div class="results-list">
-    <div class="result-item ao-vivo">
-      <i class="fas fa-tv"></i>
-      <div>
-        <strong>Torneio Ao vivo (Disponível somente no dia do torneio)</strong>
-        <br />
-        <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025">Assistir</a>
+    <!-- Partidas Transmitidas -->
+    <div class="card" id="partidas-transmitidas">
+      <h3><i class="fas fa-video"></i> Partidas Transmitidas</h3>
+      <div class="results-list">
+        <div class="result-item ao-vivo">
+          <i class="fas fa-tv"></i>
+          <div>
+            <strong>Torneio Ao vivo (Disponível somente no dia do torneio)</strong>
+            <br />
+            <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025">Assistir</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-tv"></i>
+          <div>
+            <strong>Partidas transmitidas em Cambuquira</strong>
+            <br />
+            <a href="https://lichess.org/study/QYx7Wh4c/5nO6tLks" target="_blank">Assistir</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-tv"></i>
+          <div>
+            <strong>Partidas transmitidas em São Vicente de Minas</strong>
+            <br />
+            <a href="https://lichess.org/study/kf4cSYZV/879mP8Xm" target="_blank">Assistir</a>
+          </div>
+        </div>
+        <div class="result-item">
+          <i class="fas fa-tv"></i>
+          <div>
+            <strong>Partidas transmitidas em Itanhandu</strong>
+            <br />
+            <a href="https://media.idchess.com/en/tournaments/YGf94H/copa-lbx-sul-de-minas---torneio-da-fundao-itanhandu-mg-2025" target="_blank">Assistir</a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="result-item">
-      <i class="fas fa-tv"></i>
-      <div>
-        <strong>Partidas transmitidas em Cambuquira</strong>
-        <br />
-        <a href="https://lichess.org/study/QYx7Wh4c/5nO6tLks" target="_blank">Assistir</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-tv"></i>
-      <div>
-        <strong>Partidas transmitidas em São Vicente de Minas</strong>
-        <br />
-        <a href="https://lichess.org/study/kf4cSYZV/879mP8Xm" target="_blank">Assistir</a>
-      </div>
-    </div>
-    <div class="result-item">
-      <i class="fas fa-tv"></i>
-      <div>
-        <strong>Partidas transmitidas em Itanhandu</strong>
-        <br />
-        <a href="https://media.idchess.com/en/tournaments/YGf94H/copa-lbx-sul-de-minas---torneio-da-fundao-itanhandu-mg-2025" target="_blank">Assistir</a>
-      </div>
-    </div>
-  </div>
-</div>
-     <!-- Contatos -->
-<div class="card contact" id="contatos">
-  <h3>Contatos</h3>
-  <p>
-    <a href="https://wa.me/5535999291224" target="_blank">
-      <i class="fab fa-whatsapp" style="color:#000000; font-size: 24px;"></i>
-      (35) 99929-1224
-    </a>
-    |
-    <a href="https://wa.me/5535997648241" target="_blank">
-      <i class="fab fa-whatsapp" style="color:#000000; font-size: 24px;"></i>
-      (35) 99764-8241
-    </a>
-  </p>
-  <p>
-    <i class="fab fa-instagram" style="color:#000000;"></i> 
-    <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
-  </p>
-  <p>
-    <i class="fab fa-facebook" style="color:#000000;"></i> 
-    <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a>
-  </p>
-</div>
 
-
+    <!-- Contatos -->
+    <div class="card contact" id="contatos">
+      <h3>Contatos</h3>
+      <p>
+        <a href="https://wa.me/5535999291224" target="_blank">
+          <i class="fab fa-whatsapp" style="color:#000000; font-size: 24px;"></i>
+          (35) 99929-1224
+        </a>
+        |
+        <a href="https://wa.me/5535997648241" target="_blank">
+          <i class="fab fa-whatsapp" style="color:#000000; font-size: 24px;"></i>
+          (35) 99764-8241
+        </a>
+      </p>
+      <p>
+        <i class="fab fa-instagram" style="color:#000000;"></i> 
+        <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
+      </p>
+      <p>
+        <i class="fab fa-facebook" style="color:#000000;"></i> 
+        <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a>
+      </p>
+    </div>
 
   </section>
 
+  <!-- ==================== Footer ==================== -->
   <footer>
     <p>&copy; 2025 LBX Sul de Minas. Todos os direitos reservados.</p>
     <p><i class="fab fa-instagram"></i> 
@@ -586,7 +596,8 @@ body {
     </p>
   </footer>
 
-<script>
+  <!-- ==================== Scripts ==================== -->
+  <script>
     // Contagem regressiva para o próximo torneio
     const countdownElement = document.getElementById('countdown');
     const nextTournamentDate = new Date('2025-09-27T00:00:00');
@@ -612,45 +623,24 @@ body {
     const interval = setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+
   <script>
-// Ajustar a rolagem suave considerando o cabeçalho fixo
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
+    // Ajustar a rolagem suave considerando o cabeçalho fixo
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-    const targetId = this.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetId);
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
 
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 300, // Ajuste o valor conforme necessário
-        behavior: 'smooth'
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 300, // Ajuste o valor conforme necessário
+            behavior: 'smooth'
+          });
+        }
       });
-    }
-  });
-});
-</script>
-</body>
-
-
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
