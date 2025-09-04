@@ -412,10 +412,14 @@ footer a {
   transform: translateY(0);
 }
 
-    .toggle-seta {
+#proximo-torneio {
+  position: relative; /* necessário para a seta se posicionar corretamente */
+}
+
+.toggle-seta {
   position: absolute;
-  right: 0;
-  top: 50%; /* centraliza verticalmente entre INSCRIÇÕES e contagem regressiva */
+  right: 15px;       /* distância da borda direita */
+  top: 50%;           /* centraliza verticalmente no card */
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -423,6 +427,7 @@ footer a {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 
   </style>
 </head>
@@ -447,6 +452,7 @@ footer a {
   <section id="inicio">
 
 <!-- Próximo Torneio -->
+<!-- Próximo Torneio -->
 <div class="card" id="proximo-torneio">
   <div id="proximoTorneioConteudo">
     <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px;">
@@ -469,7 +475,7 @@ footer a {
       Prepare-se para mais um grande evento de xadrez no Sul de Minas!
     </p>
 
-    <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content:space-between; gap:12px; position:relative;">
+    <div style="display:flex; flex-wrap: wrap; align-items:center; gap:12px;">
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
         <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/buoRBodbqSdVq9GU6')">Ver no Google Maps</button>
         <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnrWZ.aspx?lan=10&SNode=S0&tno=1243378')">Inscritos</button>
@@ -477,22 +483,23 @@ footer a {
         <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
       </div>
 
-      <div id="countdown" style="color: #3399ff; font-weight:bold; display:flex; align-items:center;">
+      <div id="countdown" style="color: #3399ff; font-weight:bold; display:flex; align-items:center; margin-left: auto;">
         <i class="fas fa-clock" style="margin-right:5px;"></i>
       </div>
-
-      <!-- Botão de toggle (seta direita) -->
-      <button id="toggleBanner" class="toggle-seta">
-        <i class="fas fa-chevron-right"></i>
-      </button>
     </div>
   </div>
+
+  <!-- Botão de toggle (seta direita) -->
+  <button id="toggleBanner" class="toggle-seta">
+    <i class="fas fa-chevron-right"></i>
+  </button>
 
   <!-- Banner do torneio (inicialmente oculto) -->
   <div id="bannerTorneio">
     <img src="imagens/banner-torneio.png" alt="Banner do Torneio" style="width:100%; border-radius:10px;">
   </div>
 </div>
+
    
 <!-- Galeria de Fotos -->
 <div class="card" id="galeria">
@@ -927,23 +934,4 @@ filterResults();
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
