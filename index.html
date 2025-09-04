@@ -482,16 +482,19 @@ footer a {
 
 <!-- Galeria de Fotos -->
 <div class="card" id="galeria">
-  <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
+  <div class="gallery-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:15px;">
+    <h3 style="margin:0;"><i class="fas fa-camera"></i> Galeria de Fotos</h3>
 
-  <!-- Dropdown para filtrar por ano -->
-  <label for="yearFilter" style="margin-right:10px;">Selecione o ano:</label>
-  <select id="yearFilter">
-    <option value="all">Todos</option>
-    <option value="2025">2025</option>
-    <option value="2024">2024</option>
-    <!-- Adicione outros anos conforme precisar -->
-  </select>
+    <!-- Dropdown para filtrar por ano -->
+    <div style="display:flex; align-items:center; gap:10px;">
+      <label for="yearFilter" style="margin:0; font-weight:600;">Selecione o ano:</label>
+      <select id="yearFilter" style="padding:5px 10px; border-radius:6px; border:1px solid #ccc;">
+        <option value="all">Todos</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+      </select>
+    </div>
+  </div>
 
   <div class="results-list">
     <div class="result-item" data-year="2025">
@@ -721,5 +724,6 @@ footer a {
 
 </body>
 </html>
+
 
 
