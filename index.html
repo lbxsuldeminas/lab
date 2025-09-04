@@ -489,7 +489,6 @@ footer a {
     <div style="display:flex; align-items:center; gap:10px;">
       <label for="yearFilter" style="margin:0; font-weight:600;">Selecione o ano:</label>
       <select id="yearFilter" style="padding:5px 10px; border-radius:6px; border:1px solid #ccc;">
-        <option value="all">Todos</option>
         <option value="2025">2025</option>
         <option value="2024">2024</option>
       </select>
@@ -708,22 +707,32 @@ footer a {
   // ==================== FILTRO DE ANO GALERIA ====================
   const yearFilter = document.getElementById('yearFilter');
   const galleryItems = document.querySelectorAll('#galeria .result-item');
+const yearFilter = document.getElementById('yearFilter');
+const galleryItems = document.querySelectorAll('#galeria .result-item');
 
-  yearFilter.addEventListener('change', function() {
-    const selectedYear = this.value;
+function filterGallery() {
+  const selectedYear = yearFilter.value;
 
-    galleryItems.forEach(item => {
-      if (selectedYear === 'all' || item.dataset.year === selectedYear) {
-        item.style.display = 'flex'; // ou 'block', dependendo do layout
-      } else {
-        item.style.display = 'none';
-      }
-    });
+  galleryItems.forEach(item => {
+    if (item.dataset.year === selectedYear) {
+      item.style.display = 'flex'; // ou 'block'
+    } else {
+      item.style.display = 'none';
+    }
   });
+}
+
+// Filtra quando muda o dropdown
+yearFilter.addEventListener('change', filterGallery);
+
+// Filtra ao carregar a página (ano pré-selecionado)
+filterGallery();
+
 </script>
 
 </body>
 </html>
+
 
 
 
