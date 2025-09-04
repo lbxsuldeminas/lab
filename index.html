@@ -399,6 +399,96 @@ footer a {
     min-width: auto;
   }
 }
+    /* ==================== Galeria de Fotos Bonita ==================== */
+#galeria {
+  padding-top: 16px;
+}
+
+#galeria .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#galeria .card-header h3 {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+}
+
+#galeria #galeria-ano {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: white;
+  color: var(--primary-color);
+  transition: 0.3s;
+}
+
+#galeria #galeria-ano:hover {
+  border-color: var(--accent-color);
+}
+
+/* Grid de fotos */
+#galeria .results-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Cards individuais da galeria */
+#galeria .result-item {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 15px;
+}
+
+#galeria .result-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+#galeria .result-item i.fas.fa-image {
+  font-size: 36px;
+  color: var(--accent-color);
+  min-width: 40px;
+  text-align: center;
+}
+
+#galeria .result-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+#galeria .result-item a {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+#galeria .result-item a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  #galeria .results-list {
+    grid-template-columns: 1fr;
+  }
+
+  #galeria #galeria-ano {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+}
   </style>
 </head>
 
@@ -479,30 +569,53 @@ footer a {
         </div>
       </div>
     </div>
-
-<!--------- Galeria de Fotos ------------->
+ <!-- ==================== Galeria de Fotos ==================== -->
 <div class="card" id="galeria">
-  <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
-
-  <!-- Dropdown de anos -->
-  <div class="dropdown">
-    <select id="anoFiltro">
-      <option value="">Selecione o ano</option>
-      <option value="2025">2025</option>
+  <div class="card-header">
+    <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
+    <select id="galeria-ano" onchange="filtrarGaleria()">
+      <option value="2025" selected>2025</option>
       <option value="2024">2024</option>
       <option value="2023">2023</option>
     </select>
   </div>
 
-  <!-- Lista de torneios -->
-  <div class="results-list" id="galeria-list"></div>
+  <div class="results-list">
+    <!-- Fotos 2025 -->
+    <div class="result-item galeria-2025">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>São Vicente de Minas - 2025</strong><br />
+        <a href="https://drive.google.com/drive/folders/1u9FEanatZ0xmk25PZDk_OrAgAa387Ozs?usp=sharing">Ver fotos</a>
+      </div>
+    </div>
+    <div class="result-item galeria-2025">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Cambuquira - 2025</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
+      </div>
+    </div>
+
+    <!-- Fotos 2024 -->
+    <div class="result-item galeria-2024" style="display:none;">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Baependi - 2024</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
+      </div>
+    </div>
+
+    <!-- Fotos 2023 -->
+    <div class="result-item galeria-2023" style="display:none;">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Três Corações - 2023</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
+      </div>
+    </div>
+  </div>
 </div>
-
-<!-- Inclua no final do body -->
-<script src="galeria.js"></script>
-<link rel="stylesheet" href="galeria.css">
-
-
 
     <!-- Resultados dos torneios -->
     <div class="card" id="resultados">
@@ -642,54 +755,78 @@ footer a {
       <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
     </p>
   </footer>
+  
+<!-- ==================== Scripts ==================== -->
+<script>
+  // ==================== Contagem regressiva ====================
+  const countdownElement = document.getElementById('countdown');
+  const nextTournamentDate = new Date('2025-09-27T00:00:00');
 
-  <!-- ==================== Scripts ==================== -->
-  <script>
-    // Contagem regressiva para o próximo torneio
-    const countdownElement = document.getElementById('countdown');
-    const nextTournamentDate = new Date('2025-09-27T00:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = nextTournamentDate - now;
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = nextTournamentDate - now;
-
-      if (diff <= 0) {
-        countdownElement.textContent = 'O torneio já começou!';
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if (diff <= 0) {
+      countdownElement.textContent = 'O torneio já começou!';
+      clearInterval(interval);
+      return;
     }
 
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-  <script>
-    // Ajustar a rolagem suave considerando o cabeçalho fixo
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+    countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
 
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 300, // Ajuste o valor conforme necessário
-            behavior: 'smooth'
-          });
-        }
-      });
+<script>
+  // ==================== Rolagem suave ====================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 300, // ajuste conforme necessário
+          behavior: 'smooth'
+        });
+      }
     });
-  </script>
+  });
+</script>
+
+<script>
+  // ==================== Filtro de anos da galeria ====================
+  function filtrarGaleria() {
+    const anoSelecionado = document.getElementById("galeria-ano").value;
+
+    // Esconde todos os itens
+    document.querySelectorAll('[class^="galeria-"]').forEach(el => {
+      el.style.display = "none";
+    });
+
+    // Mostra apenas os itens do ano selecionado
+    document.querySelectorAll('.galeria-' + anoSelecionado).forEach(el => {
+      el.style.display = "flex";
+    });
+  }
+
+  // Chama o filtro ao carregar a página (2025 será exibido por padrão)
+  window.addEventListener('DOMContentLoaded', () => {
+    filtrarGaleria();
+  });
+</script>
+  
 </body>
 </html>
+
 
 
