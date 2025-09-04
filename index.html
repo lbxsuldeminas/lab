@@ -479,12 +479,10 @@ footer a {
         </div>
       </div>
     </div>
-
+ <!-- ==================== Galeria de Fotos ==================== -->
 <div class="card" id="galeria">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
+  <div class="card-header">
     <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
-
-    <!-- Menu de seleção do ano -->
     <select id="galeria-ano" onchange="filtrarGaleria()">
       <option value="2025" selected>2025</option>
       <option value="2024">2024</option>
@@ -498,7 +496,7 @@ footer a {
       <i class="fas fa-image"></i>
       <div>
         <strong>São Vicente de Minas - 2025</strong><br />
-        <a href="LINK_PASTA">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1u9FEanatZ0xmk25PZDk_OrAgAa387Ozs?usp=sharing">Ver fotos</a>
       </div>
     </div>
     <div class="result-item galeria-2025">
@@ -667,72 +665,79 @@ footer a {
       <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
     </p>
   </footer>
+  
+<!-- ==================== Scripts ==================== -->
+<script>
+  // ==================== Contagem regressiva ====================
+  const countdownElement = document.getElementById('countdown');
+  const nextTournamentDate = new Date('2025-09-27T00:00:00');
 
-  <!-- ==================== Scripts ==================== -->
-  <script>
-    // Contagem regressiva para o próximo torneio
-    const countdownElement = document.getElementById('countdown');
-    const nextTournamentDate = new Date('2025-09-27T00:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = nextTournamentDate - now;
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = nextTournamentDate - now;
+    if (diff <= 0) {
+      countdownElement.textContent = 'O torneio já começou!';
+      clearInterval(interval);
+      return;
+    }
 
-      if (diff <= 0) {
-        countdownElement.textContent = 'O torneio já começou!';
-        clearInterval(interval);
-        return;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+<script>
+  // ==================== Rolagem suave ====================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 300, // ajuste conforme necessário
+          behavior: 'smooth'
+        });
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
-
-  <script>
-    // Ajustar a rolagem suave considerando o cabeçalho fixo
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 300, // Ajuste o valor conforme necessário
-            behavior: 'smooth'
-          });
-        }
-      });
     });
-  </script>
+  });
+</script>
 
-  <script>
-    // Filtro da galeria por ano
-    function filtrarGaleria() {
-      const anoSelecionado = document.getElementById("galeria-ano").value;
+<script>
+  // ==================== Filtro de anos da galeria ====================
+  function filtrarGaleria() {
+    const anoSelecionado = document.getElementById("galeria-ano").value;
 
-      // esconde todos
-      document.querySelectorAll('[class^="galeria-"]').forEach(el => {
-        el.style.display = "none";
-      });
+    // Esconde todos os itens
+    document.querySelectorAll('[class^="galeria-"]').forEach(el => {
+      el.style.display = "none";
+    });
 
-      // mostra apenas os do ano selecionado
-      document.querySelectorAll('.galeria-' + anoSelecionado).forEach(el => {
-        el.style.display = "flex";
-      });
-    }
-  </script>
+    // Mostra apenas os itens do ano selecionado
+    document.querySelectorAll('.galeria-' + anoSelecionado).forEach(el => {
+      el.style.display = "flex";
+    });
+  }
+
+  // Chama o filtro ao carregar a página (2025 será exibido por padrão)
+  window.addEventListener('DOMContentLoaded', () => {
+    filtrarGaleria();
+  });
+</script>
+  
 </body>
 </html>
+
 
 
 
