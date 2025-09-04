@@ -483,8 +483,18 @@ footer a {
 <!-- Galeria de Fotos -->
 <div class="card" id="galeria">
   <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
+
+  <!-- Dropdown para filtrar por ano -->
+  <label for="yearFilter" style="margin-right:10px;">Selecione o ano:</label>
+  <select id="yearFilter">
+    <option value="all">Todos</option>
+    <option value="2025">2025</option>
+    <option value="2024">2024</option>
+    <!-- Adicione outros anos conforme precisar -->
+  </select>
+
   <div class="results-list">
-    <div class="result-item">
+    <div class="result-item" data-year="2025">
       <i class="fas fa-image"></i>
       <div>
         <strong>São Vicente de Minas - 2025</strong>
@@ -492,7 +502,7 @@ footer a {
         <a href="https://drive.google.com/drive/folders/1u9FEanatZ0xmk25PZDk_OrAgAa387Ozs?usp=sharing">Ver fotos</a>
       </div>
     </div>
-    <div class="result-item">
+    <div class="result-item" data-year="2025">
       <i class="fas fa-image"></i>
       <div>
         <strong>Cambuquira - 2025</strong>
@@ -500,18 +510,16 @@ footer a {
         <a href="https://drive.google.com/drive/folder/ID_DA_PASTA2" target="_blank">Ver fotos</a>
       </div>
     </div>
-    <div class="result-item">
+    <div class="result-item" data-year="2024">
       <i class="fas fa-image"></i>
       <div>
-        <strong>Itanhandu - 2025</strong>
+        <strong>Itanhandu - 2024</strong>
         <br />
         <a href="https://drive.google.com/drive/folder/ID_DA_PASTA3" target="_blank">Ver fotos</a>
       </div>
     </div>
-    <!-- Adicione mais torneios conforme precisar -->
   </div>
 </div>
-
 
     <!-- Resultados dos torneios -->
     <div class="card" id="resultados">
@@ -653,51 +661,65 @@ footer a {
   </footer>
 
   <!-- ==================== Scripts ==================== -->
-  <script>
-    // Contagem regressiva para o próximo torneio
-    const countdownElement = document.getElementById('countdown');
-    const nextTournamentDate = new Date('2025-09-27T00:00:00');
+<script>
+  // ==================== CONTAGEM REGRESSIVA ====================
+  const countdownElement = document.getElementById('countdown');
+  const nextTournamentDate = new Date('2025-09-27T00:00:00');
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = nextTournamentDate - now;
+  function updateCountdown() {
+    const now = new Date();
+    const diff = nextTournamentDate - now;
 
-      if (diff <= 0) {
-        countdownElement.textContent = 'O torneio já começou!';
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    if (diff <= 0) {
+      countdownElement.textContent = 'O torneio já começou!';
+      clearInterval(interval);
+      return;
     }
 
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-  <script>
-    // Ajustar a rolagem suave considerando o cabeçalho fixo
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+    countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 300, // Ajuste o valor conforme necessário
-            behavior: 'smooth'
-          });
-        }
-      });
+  // ==================== ROLAGEM SUAVE ====================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 300, // ajuste conforme necessário
+          behavior: 'smooth'
+        });
+      }
     });
-  </script>
+  });
+
+  // ==================== FILTRO DE ANO GALERIA ====================
+  const yearFilter = document.getElementById('yearFilter');
+  const galleryItems = document.querySelectorAll('#galeria .result-item');
+
+  yearFilter.addEventListener('change', function() {
+    const selectedYear = this.value;
+
+    galleryItems.forEach(item => {
+      if (selectedYear === 'all' || item.dataset.year === selectedYear) {
+        item.style.display = 'flex'; // ou 'block', dependendo do layout
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
+
 
