@@ -663,8 +663,9 @@ footer a {
   </footer>
 
   <!-- ==================== Scripts ==================== -->
+<!-- ==================== FILTRO DE ANO GALERIA ==================== -->
 <script>
-  // ==================== CONTAGEM REGRESSIVA ====================
+  // Contagem regressiva
   const countdownElement = document.getElementById('countdown');
   const nextTournamentDate = new Date('2025-09-27T00:00:00');
 
@@ -689,7 +690,7 @@ footer a {
   const interval = setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // ==================== ROLAGEM SUAVE ====================
+  // Rolagem suave
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -697,41 +698,40 @@ footer a {
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         window.scrollTo({
-          top: targetElement.offsetTop - 300, // ajuste conforme necessário
+          top: targetElement.offsetTop - 300,
           behavior: 'smooth'
         });
       }
     });
   });
 
-  // ==================== FILTRO DE ANO GALERIA ====================
+  // Filtro de ano da galeria
   const yearFilter = document.getElementById('yearFilter');
   const galleryItems = document.querySelectorAll('#galeria .result-item');
-const yearFilter = document.getElementById('yearFilter');
-const galleryItems = document.querySelectorAll('#galeria .result-item');
 
-function filterGallery() {
-  const selectedYear = yearFilter.value;
+  function filterGallery() {
+    const selectedYear = yearFilter.value;
 
-  galleryItems.forEach(item => {
-    if (item.dataset.year === selectedYear) {
-      item.style.display = 'flex'; // ou 'block'
-    } else {
-      item.style.display = 'none';
-    }
-  });
-}
+    galleryItems.forEach(item => {
+      if (item.dataset.year === selectedYear) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
 
-// Filtra quando muda o dropdown
-yearFilter.addEventListener('change', filterGallery);
+  // Aplica o filtro ao mudar o dropdown
+  yearFilter.addEventListener('change', filterGallery);
 
-// Filtra ao carregar a página (ano pré-selecionado)
-filterGallery();
-
+  // Filtra ao carregar a página
+  filterGallery();
 </script>
+
 
 </body>
 </html>
+
 
 
 
