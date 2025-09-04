@@ -480,38 +480,54 @@ footer a {
       </div>
     </div>
 
-<!-- Galeria de Fotos -->
 <div class="card" id="galeria">
-  <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3><i class="fas fa-camera"></i> Galeria de Fotos</h3>
+
+    <!-- Menu de seleção do ano -->
+    <select id="galeria-ano" onchange="filtrarGaleria()">
+      <option value="2025" selected>2025</option>
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+    </select>
+  </div>
+
   <div class="results-list">
-    <div class="result-item">
+    <!-- Fotos 2025 -->
+    <div class="result-item galeria-2025">
       <i class="fas fa-image"></i>
       <div>
-        <strong>São Vicente de Minas - 2025</strong>
-        <br />
-        <a href="https://drive.google.com/drive/folders/1u9FEanatZ0xmk25PZDk_OrAgAa387Ozs?usp=sharing">Ver fotos</a>
+        <strong>São Vicente de Minas - 2025</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
       </div>
     </div>
-    <div class="result-item">
+    <div class="result-item galeria-2025">
       <i class="fas fa-image"></i>
       <div>
-        <strong>Cambuquira - 2025</strong>
-        <br />
-        <a href="https://drive.google.com/drive/folder/ID_DA_PASTA2" target="_blank">Ver fotos</a>
+        <strong>Cambuquira - 2025</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
       </div>
     </div>
-    <div class="result-item">
+
+    <!-- Fotos 2024 -->
+    <div class="result-item galeria-2024" style="display:none;">
       <i class="fas fa-image"></i>
       <div>
-        <strong>Itanhandu - 2025</strong>
-        <br />
-        <a href="https://drive.google.com/drive/folder/ID_DA_PASTA3" target="_blank">Ver fotos</a>
+        <strong>Baependi - 2024</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
       </div>
     </div>
-    <!-- Adicione mais torneios conforme precisar -->
+
+    <!-- Fotos 2023 -->
+    <div class="result-item galeria-2023" style="display:none;">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Três Corações - 2023</strong><br />
+        <a href="LINK_PASTA">Ver fotos</a>
+      </div>
+    </div>
   </div>
 </div>
-
 
     <!-- Resultados dos torneios -->
     <div class="card" id="resultados">
@@ -698,8 +714,27 @@ footer a {
       });
     });
   </script>
+
+  <script>
+    // Filtro da galeria por ano
+    function filtrarGaleria() {
+      const anoSelecionado = document.getElementById("galeria-ano").value;
+
+      // esconde todos
+      document.querySelectorAll('[class^="galeria-"]').forEach(el => {
+        el.style.display = "none";
+      });
+
+      // mostra apenas os do ano selecionado
+      document.querySelectorAll('.galeria-' + anoSelecionado).forEach(el => {
+        el.style.display = "flex";
+      });
+    }
+  </script>
 </body>
 </html>
+
+
 
 
 
