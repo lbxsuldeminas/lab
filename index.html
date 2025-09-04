@@ -435,7 +435,8 @@ footer a {
   <section id="inicio">
 
     <!-- Próximo Torneio -->
-   <div class="card" id="proximo-torneio">
+   <!-- ==================== Próximo Torneio ==================== -->
+<div class="card" id="proximo-torneio">
 
   <!-- Conteúdo textual do card -->
   <div id="proximoTorneioConteudo">
@@ -473,17 +474,56 @@ footer a {
     </div>
   </div>
 
-  <!-- Setinha para expandir o banner -->
+  <!-- Botão de toggle -->
   <button id="toggleBanner" style="background:none; border:none; color: var(--accent-color); cursor:pointer; font-size:1.5rem; margin-top:10px;">
     <i class="fas fa-chevron-down"></i>
   </button>
 
-  <!-- Banner do torneio (oculto por padrão) -->
-  <div id="bannerTorneio" style="display:none; opacity:0; transform: translateY(-10px); transition: all 0.5s ease; margin-top:15px;">
-    <img src="urlsite.png" alt="Banner do Torneio" style="width:100%; border-radius:10px;">
+  <!-- Banner do torneio (inicialmente oculto) -->
+  <div id="bannerTorneio">
+    <img src="imagens/banner-torneio.png" alt="Banner do Torneio" style="width:100%; border-radius:10px;">
   </div>
+
 </div>
-  </div>
+
+<!-- ==================== CSS para o Banner ==================== -->
+<style>
+#bannerTorneio {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease;
+}
+
+#bannerTorneio.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<!-- ==================== JS para Toggle ==================== -->
+<script>
+const toggleBtn = document.getElementById('toggleBanner');
+const banner = document.getElementById('bannerTorneio');
+const conteudo = document.getElementById('proximoTorneioConteudo');
+
+toggleBtn.addEventListener('click', () => {
+  if (banner.classList.contains('show')) {
+    // Esconder banner
+    banner.classList.remove('show');
+    setTimeout(() => { banner.style.display = 'none'; }, 500);
+    conteudo.style.display = 'block';
+    toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+  } else {
+    // Mostrar banner
+    banner.style.display = 'block';
+    setTimeout(() => { banner.classList.add('show'); }, 10);
+    conteudo.style.display = 'none';
+    toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+  }
+});
+</script>
+
     
 <!-- Galeria de Fotos -->
 <div class="card" id="galeria">
@@ -922,6 +962,7 @@ toggleBtn.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
