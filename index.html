@@ -399,6 +399,19 @@ footer a {
     min-width: auto;
   }
 }
+
+    #bannerTorneio {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease;
+}
+
+#bannerTorneio.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
   </style>
 </head>
 
@@ -909,6 +922,7 @@ toggleBtn.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
