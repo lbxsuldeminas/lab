@@ -428,6 +428,30 @@ footer a {
   cursor: pointer;
 }
 
+    .share-buttons {
+  position: absolute;
+  top: 10px; /* distância do topo do banner */
+  right: 10px; /* distância da direita */
+  display: flex;
+  gap: 10px;
+}
+
+.share-buttons a {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.share-buttons a:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
 
   </style>
 </head>
@@ -496,6 +520,18 @@ footer a {
   <!-- Banner do torneio (inicialmente oculto) -->
   <div id="bannerTorneio">
     <img src="PA.jpg" alt="Banner do Torneio" style="width:100%; border-radius:10px;">
+    <!-- Botão de compartilhamento sobre o banner -->
+<div class="share-buttons">
+  <a href="https://api.whatsapp.com/send?text=Ol%C3%A1!%20Veja%20este%20torneio%20incr%C3%ADvel!%20https://seusite.com" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com" target="_blank">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="mailto:?subject=Veja este torneio&body=Ol%C3%A1!%20Veja%20este%20torneio%20incr%C3%ADvel!%20https://seusite.com" target="_blank">
+    <i class="fas fa-envelope"></i>
+  </a>
+</div>
   </div>
 </div>
 
@@ -954,6 +990,7 @@ filterResults();
 
 </body>
 </html>
+
 
 
 
