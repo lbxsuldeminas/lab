@@ -165,23 +165,6 @@ section#inicio {
   background-color: #005fa3;
 }
 
-/* ==================== Galeria de Fotos ==================== */
-#galeria {
-  padding-top: 16px;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
 /* ==================== Resultados ==================== */
 #resultados {
   padding-top: 16px;
@@ -399,7 +382,8 @@ footer a {
     min-width: auto;
   }
 }
-    /* ==================== Galeria de Fotos Bonita ==================== */
+   
+/* ==================== Galeria de Fotos ==================== */
 #galeria {
   padding-top: 16px;
 }
@@ -431,43 +415,39 @@ footer a {
   border-color: var(--accent-color);
 }
 
-/* Grid de fotos */
+/* Lista de fotos em coluna */
 #galeria .results-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column; /* itens empilhados, não lado a lado */
+  gap: 15px;
 }
 
 /* Cards individuais da galeria */
 #galeria .result-item {
   display: flex;
-  align-items: flex-start; /* mantém alinhamento do texto no topo */
+  align-items: center; /* ícone e texto alinhados no meio */
   background-color: rgba(255, 255, 255, 0.85); /* mesmo estilo dos outros cards */
   padding: 20px; /* mesmo padding dos outros cards */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* mesma sombra */
   gap: 15px;
-  flex-direction: row; /* mantém ícone e texto lado a lado */
 }
 
-
-#galeria .result-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-}
-
+/* Ícone menor para não aumentar demais o card */
 #galeria .result-item i.fas.fa-image {
-  font-size: 36px;
+  font-size: 24px; 
   color: var(--accent-color);
-  min-width: 40px;
+  min-width: 30px;
   text-align: center;
 }
 
+/* Conteúdo dentro do card */
 #galeria .result-item div {
   display: flex;
   flex-direction: column;
 }
 
+/* Link dentro do card */
 #galeria .result-item a {
   color: var(--accent-color);
   font-weight: 600;
@@ -828,6 +808,7 @@ footer a {
   
 </body>
 </html>
+
 
 
 
