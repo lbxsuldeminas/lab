@@ -35,7 +35,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* ==================== Header ==================== */
+/* ==================== Header e Navegação ==================== */
 header {
   background-color: var(--primary-color);
   color: white;
@@ -45,61 +45,32 @@ header {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;          /* centraliza verticalmente */
+  justify-content: space-between; /* logo à esquerda, título+menu centralizados */
+  padding: 15px 20px;
   flex-wrap: wrap;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #fff;
 
-  /* Xadrez de fundo */
+   /* Xadrez de fundo */
   background-image: repeating-conic-gradient(
-    rgba(255,255,255,0.1) 0% 25%,
+    rgba(255,255,255,0.1) 0% 25%,   /* quadrado branco com transparência */
     transparent 0% 50%
   );
   background-size: 80px 80px;
 }
 
-/* Contêiner para título + hamburger */
-.header-text {
-  display: flex;
-  justify-content: center;      /* centraliza o título */
-  align-items: center;          /* alinha verticalmente o hamburger com o título */
-  gap: 15px;                    /* espaço entre título e hamburger */
-  flex: 1;
-  position: relative;
-}
-
-/* Logo à esquerda */
-header img {
-  display: block;
-  max-width: 120px;
-  margin-right: 15px;
-}
-
-/* Título */
 header h1 {
-  margin: 0;
   font-size: 1.8rem;
-  text-align: center;
+  margin: 0 0 5px 0;
 }
 
-/* Hamburger */
-.hamburger {
-  display: none;               /* só aparece no mobile */
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-/* Menu desktop */
-nav.desktop-menu {
+    
+nav {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
 }
 
-/* Links do menu */
 nav a {
   color: white;
   text-decoration: none;
@@ -113,31 +84,6 @@ nav a:hover {
   background-color: #005fa3;
 }
 
-/* Menu mobile (inicialmente oculto) */
-nav.mobile-menu {
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-  width: 100%;
-  align-items: center;
-}
-
-/* ==================== Responsividade ==================== */
-@media (max-width: 600px) {
-  nav.desktop-menu {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .header-text {
-    justify-content: center; /* título centralizado com hamburger do lado */
-    width: 100%;
-  }
-}
 /* ==================== Seção principal ==================== */
 section#inicio {
   max-width: 1000px;
@@ -431,6 +377,21 @@ footer a {
   text-decoration: none;
 }
 
+/* ==================== Responsividade ==================== */
+@media (max-width: 600px) {
+ header h1 {
+  font-size: 1.8rem;
+  margin: 0 0 5px 0;
+  text-align: center;
+}
+
+ nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;      /* centraliza links do menu */
+}
+
   .card {
     padding: 20px;
   }
@@ -502,35 +463,39 @@ footer a {
   background-color: var(--accent-color);
   color: white;
 }
+   
+
+header img {
+  max-width: 120px;
+  height: auto;
+}
+
+   .header-text {
+  display: flex;
+  flex-direction: column;       /* título em cima, menu embaixo */
+  align-items: center;          /* centraliza horizontalmente */
+  flex: 1;                      /* ocupa espaço restante */
+}
 
   </style>
 </head>
 
 <body>
   <!-- ==================== Header ==================== -->
+  <header>
+  <img src="urlsite.png" alt="Logo" />
   <div class="header-text">
-  <h1>LBX Sul de Minas</h1>
-  <button class="hamburger">
-    <i class="fas fa-bars"></i>
-  </button>
-  <nav class="desktop-menu">
-    <a href="#proximo-torneio">Próximo Torneio</a>
-    <a href="#calendario">Calendário</a>
-    <a href="#galeria">Galeria de Fotos</a>
-    <a href="#resultados">Resultados</a>
-    <a href="#partidas-transmitidas">Partidas</a>
-    <a href="#contatos">Contatos</a>
-  </nav>
-  <nav class="mobile-menu">
-    <a href="#proximo-torneio">Próximo Torneio</a>
-    <a href="#calendario">Calendário</a>
-    <a href="#galeria">Galeria de Fotos</a>
-    <a href="#resultados">Resultados</a>
-    <a href="#partidas-transmitidas">Partidas</a>
-    <a href="#contatos">Contatos</a>
-  </nav>
-</div>
-
+    <h1>LBX Sul de Minas</h1>
+    <nav>
+      <a href="#proximo-torneio">Próximo Torneio</a>
+      <a href="#calendario">Calendário</a>
+      <a href="#galeria">Galeria de Fotos</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#partidas-transmitidas">Partidas</a>
+      <a href="#contatos">Contatos</a>
+    </nav>
+  </div>
+</header>
   <!-- ==================== Seção Principal ==================== -->
   <section id="inicio">
 
@@ -1041,41 +1006,7 @@ function filterResults() {
 
 yearResultsFilter.addEventListener('change', filterResults);
 filterResults();
-
-const hamburger = document.querySelector('.hamburger');
-const mobileMenu = document.querySelector('.mobile-menu');
-
-hamburger.addEventListener('click', () => {
-  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
-});
-
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
