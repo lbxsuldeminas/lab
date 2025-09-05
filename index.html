@@ -36,52 +36,122 @@ body {
 }
 
 /* ==================== Header e Navegação ==================== */
+/* ==================== Header ==================== */
 header {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 20px 10px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;          /* centraliza verticalmente */
-  justify-content: space-between; /* logo à esquerda, título+menu centralizados */
+  align-items: center;
+  justify-content: space-between; /* logo à esquerda, título+menu central */
   padding: 15px 20px;
   flex-wrap: wrap;
   border-bottom: 2px solid #fff;
 
-   /* Xadrez de fundo */
+  /* Xadrez de fundo (mantido do seu CSS original) */
+  background-color: var(--primary-color);
   background-image: repeating-conic-gradient(
-    rgba(255,255,255,0.1) 0% 25%,   /* quadrado branco com transparência */
+    rgba(255,255,255,0.1) 0% 25%,
     transparent 0% 50%
   );
   background-size: 80px 80px;
+  color: white;
 }
 
+/* Logo */
+header img {
+  max-width: 120px;
+  height: auto;
+}
+
+/* Bloco título + menu */
+.header-text {
+  display: flex;
+  flex-direction: column;       /* título em cima, menu embaixo */
+  align-items: center;          /* centraliza horizontalmente */
+  flex: 1;                      /* ocupa o espaço restante */
+}
+
+/* Título */
 header h1 {
   font-size: 1.8rem;
   margin: 0 0 5px 0;
+  text-align: center;
 }
 
-    
-nav {
+/* ===== Menu Desktop ===== */
+nav.desktop-menu {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-nav a {
-  color: white;
+nav.desktop-menu a {
+  white-space: nowrap;         /* evita quebra de palavras */
   text-decoration: none;
+  color: white;
+  padding: 6px 10px;
   font-weight: 600;
-  padding: 8px 12px;
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
-nav a:hover {
+nav.desktop-menu a:hover {
   background-color: #005fa3;
+}
+
+/* ===== Menu Hamburger (Mobile) ===== */
+.hamburger {
+  display: none;               /* escondido no desktop */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+nav.mobile-menu {
+  display: none;               /* escondido por padrão */
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+nav.mobile-menu a {
+  white-space: nowrap;
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+nav.mobile-menu a:hover {
+  background-color: #005fa3;
+}
+
+/* ==================== Responsividade ==================== */
+@media (max-width: 600px) {
+
+  /* Esconde menu desktop, mostra hamburger */
+  nav.desktop-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Título e menu centralizados em mobile */
+  .header-text {
+    width: 100%;
+  }
+
+  nav.mobile-menu {
+    display: none; /* só aparece ao clicar no hamburger */
+  }
 }
 
 /* ==================== Seção principal ==================== */
@@ -377,21 +447,6 @@ footer a {
   text-decoration: none;
 }
 
-/* ==================== Responsividade ==================== */
-@media (max-width: 600px) {
- header h1 {
-  font-size: 1.8rem;
-  margin: 0 0 5px 0;
-  text-align: center;
-}
-
- nav {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;      /* centraliza links do menu */
-}
-
   .card {
     padding: 20px;
   }
@@ -463,19 +518,6 @@ footer a {
   background-color: var(--accent-color);
   color: white;
 }
-   
-
-header img {
-  max-width: 120px;
-  height: auto;
-}
-
-   .header-text {
-  display: flex;
-  flex-direction: column;       /* título em cima, menu embaixo */
-  align-items: center;          /* centraliza horizontalmente */
-  flex: 1;                      /* ocupa espaço restante */
-}
 
   </style>
 </head>
@@ -484,9 +526,25 @@ header img {
   <!-- ==================== Header ==================== -->
   <header>
   <img src="urlsite.png" alt="Logo" />
+
   <div class="header-text">
     <h1>LBX Sul de Minas</h1>
-    <nav>
+
+    <!-- Menu normal -->
+    <nav class="desktop-menu">
+      <a href="#proximo-torneio">Próximo Torneio</a>
+      <a href="#calendario">Calendário</a>
+      <a href="#galeria">Galeria de Fotos</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#partidas-transmitidas">Partidas</a>
+      <a href="#contatos">Contatos</a>
+    </nav>
+
+    <!-- Menu hamburger para mobile -->
+    <button class="hamburger" aria-label="Abrir menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="mobile-menu">
       <a href="#proximo-torneio">Próximo Torneio</a>
       <a href="#calendario">Calendário</a>
       <a href="#galeria">Galeria de Fotos</a>
@@ -496,6 +554,7 @@ header img {
     </nav>
   </div>
 </header>
+
   <!-- ==================== Seção Principal ==================== -->
   <section id="inicio">
 
@@ -1006,10 +1065,19 @@ function filterResults() {
 
 yearResultsFilter.addEventListener('change', filterResults);
 filterResults();
+
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
 </script>
 
 </body>
 </html>
+
 
 
 
