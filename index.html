@@ -50,12 +50,13 @@ header {
   flex-wrap: wrap;
   border-bottom: 2px solid #ffffff;
 
-   /* Xadrez de quadrados */
+   /* Xadrez suave */
   background-image: repeating-conic-gradient(
-    #000 0% 25%, 
-    #fff 0% 50%
+    rgba(255,255,255,0.1) 0% 25%,   /* quadrado branco com transparência */
+    transparent 0% 50%
   );
-  background-size: 40px 40px; /* tamanho dos quadrados */
+  background-size: 80px 80px;
+}
 }
 
 header h1 {
@@ -995,6 +996,7 @@ filterResults();
 
 </body>
 </html>
+
 
 
 
