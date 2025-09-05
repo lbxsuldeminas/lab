@@ -10,14 +10,14 @@
 
   <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-/* ==================== Variáveis CSS ==================== */
+  
+ <style>
+  /* ==================== Variáveis CSS ==================== */
 :root {
-  --primary-color: #000000;
-  --accent-color: #3399ff; /* azul mais vibrante para contraste */
-  --light-bg: #f4f4f4;     /* não usado mais */
-  --card-bg: #ffffff;       /* não usado mais */
+  --primary-color: #ffffff;       /* títulos fora dos cards */
+  --accent-color: #3399ff;        /* azul vibrante para destaques e links */
+  --card-bg: rgba(255,255,255,0.9); /* fundo dos cards */
+  --text-color: #000000;          /* texto dentro dos cards */
 }
 
 /* ==================== Reset e estilos globais ==================== */
@@ -30,16 +30,15 @@
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #000000; /* fundo do site */
-  color: #fff;                /* texto fora dos cards ficará branco */
+  color: var(--primary-color); /* texto principal fora dos cards */
   line-height: 1.6;
   scroll-behavior: smooth;
 }
 
 /* ==================== Header e Navegação ==================== */
-/* ==================== Header ==================== */
 header {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: #111; /* fundo do header */
+  color: var(--primary-color);
   padding: 20px 10px;
   position: sticky;
   top: 0;
@@ -48,13 +47,12 @@ header {
   display: flex;
   align-items: center;          
   justify-content: space-between; 
-  padding: 15px 20px;
   flex-wrap: wrap;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--primary-color);
 
   /* Xadrez de fundo */
   background-image: repeating-conic-gradient(
-    rgba(255,255,255,0.1) 0% 25%,   
+    rgba(255,255,255,0.05) 0% 25%,   
     transparent 0% 50%
   );
   background-size: 80px 80px;
@@ -85,7 +83,7 @@ nav {
 }
 
 nav a {
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
   padding: 8px 12px;
@@ -110,7 +108,7 @@ nav a:hover {
 .hamburger span {
   display: block;
   height: 3px;
-  background: white;
+  background: var(--primary-color);
   border-radius: 3px;
   transition: all 0.3s ease;
 }
@@ -126,7 +124,7 @@ nav a:hover {
 }
 
 .nav-mobile a {
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
   padding: 8px 0;
@@ -142,13 +140,13 @@ section#inicio {
 
 /* ==================== Cards gerais ==================== */
 .card {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: var(--card-bg);
   backdrop-filter: blur(5px);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   padding: 25px;
   margin-bottom: 30px;
-  color: #333;
+  color: var(--text-color);
 }
 
 .card h2, .card h3 {
@@ -195,6 +193,7 @@ section#inicio {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: var(--text-color);
 }
 
 .calendar-item h3 {
@@ -258,6 +257,7 @@ section#inicio {
   padding: 12px 18px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   border-left: 6px solid var(--accent-color);
+  color: var(--text-color);
 }
 
 .result-item i {
@@ -297,41 +297,16 @@ section#inicio {
   padding: 12px 18px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   border-left: 6px solid var(--accent-color);
-}
-
-#partidas-transmitidas .result-item i {
-  font-size: 24px;
-  color: var(--accent-color);
-  margin-right: 15px;
-  min-width: 30px;
-  text-align: center;
-}
-
-#partidas-transmitidas .result-item a {
-  color: var(--accent-color);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-#partidas-transmitidas .result-item a:hover {
-  text-decoration: underline;
+  color: var(--text-color);
 }
 
 #partidas-transmitidas .ao-vivo {
-  background-color: var(--card-bg);
   border-left: 6px solid #e74c3c;
 }
 
-#partidas-transmitidas .ao-vivo i {
-  color: #e74c3c;
-}
-
+#partidas-transmitidas .ao-vivo i,
 #partidas-transmitidas .ao-vivo a {
   color: #e74c3c;
-}
-
-#partidas-transmitidas .ao-vivo a:hover {
-  text-decoration: underline;
 }
 
 /* ==================== Seção Contatos ==================== */
@@ -356,7 +331,7 @@ section#inicio {
 
 .contact i.fab {
   font-size: 18px;
-  color: #000000;
+  color: var(--accent-color);
   vertical-align: middle;
   margin-right: 5px;
 }
@@ -412,15 +387,15 @@ section#inicio {
 
 /* ==================== Footer ==================== */
 footer {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: #111;
+  color: var(--primary-color);
   text-align: center;
   padding: 20px;
-  border-top: 2px solid #fff; 
+  border-top: 2px solid var(--primary-color);
 }
 
 footer a {
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -487,16 +462,16 @@ footer a {
   }
 
   nav {
-    display: none; /* esconde menu desktop */
+    display: none;
   }
 
   .hamburger {
-    display: flex; /* mostra hambúrguer */
+    display: flex;
   }
 
   .nav-mobile {
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: #111;
     padding: 10px 0;
   }
 
@@ -524,6 +499,8 @@ footer a {
     min-width: auto;
   }
 }
+</style>
+</head>
 
 <body>
   <!-- ==================== Header ==================== -->
@@ -1071,4 +1048,5 @@ hamburgerBtn.addEventListener('click', () => {
 
 </body>
 </html>
+
 
