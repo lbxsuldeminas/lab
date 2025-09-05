@@ -45,9 +45,9 @@ header {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;       /* centraliza verticalmente */
-  justify-content: flex-start; /* tudo começa da esquerda */
-  padding: 15px 20px;        /* menor que antes para reduzir altura */
+  align-items: center;          /* centraliza verticalmente */
+  justify-content: space-between; /* logo à esquerda, título+menu centralizados */
+  padding: 15px 20px;
   flex-wrap: wrap;
   border-bottom: 2px solid #fff;
 
@@ -379,16 +379,18 @@ footer a {
 
 /* ==================== Responsividade ==================== */
 @media (max-width: 600px) {
-  header h1 {
-    font-size: 1.4rem;
-    flex-basis: 100%;
-    margin-bottom: 10px;
-  }
+ header h1 {
+  font-size: 1.8rem;
+  margin: 0 0 5px 0;
+  text-align: center;
+}
 
-  nav {
-    justify-content: center;
-    width: 100%;
-  }
+ nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;      /* centraliza links do menu */
+}
 
   .card {
     padding: 20px;
@@ -462,15 +464,17 @@ footer a {
   color: white;
 }
    
+
 header img {
   max-width: 120px;
   height: auto;
-  margin-right: 20px;       /* espaço entre logo e título/menu */
 }
 
-    .header-text {
+   .header-text {
   display: flex;
-  flex-direction: column;    /* título em cima, menu embaixo */
+  flex-direction: column;       /* título em cima, menu embaixo */
+  align-items: center;          /* centraliza horizontalmente */
+  flex: 1;                      /* ocupa espaço restante */
 }
 
   </style>
@@ -492,8 +496,6 @@ header img {
     </nav>
   </div>
 </header>
-
-
   <!-- ==================== Seção Principal ==================== -->
   <section id="inicio">
 
@@ -1008,6 +1010,7 @@ filterResults();
 
 </body>
 </html>
+
 
 
 
