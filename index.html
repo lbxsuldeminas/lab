@@ -64,7 +64,6 @@ header h1 {
   margin: 0 0 5px 0;
 }
 
-    
 nav {
   display: flex;
   gap: 15px;
@@ -379,18 +378,59 @@ footer a {
 
 /* ==================== Responsividade ==================== */
 @media (max-width: 600px) {
- header h1 {
-  font-size: 1.8rem;
-  margin: 0 0 5px 0;
-  text-align: center;
-}
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 5px 0;
+    text-align: center;
+  }
 
- nav {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;      /* centraliza links do menu */
-}
+  nav {
+    display: none; /* escondido no mobile */
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0,0,0,0.9);
+    padding: 15px;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    width: 200px;
+    text-align: right;
+    z-index: 1000;
+  }
+
+  nav.show {
+    display: flex; /* aparece quando ativo */
+  }
+
+  /* Botão hamburguer */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+
+  .menu-toggle span {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  /* Ajustar header-text no mobile */
+  .header-text {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+  }
 
   .card {
     padding: 20px;
@@ -411,7 +451,7 @@ footer a {
   }
 }
 
-    #bannerTorneio {
+#bannerTorneio {
   display: none;
   opacity: 0;
   transform: translateY(-10px);
@@ -429,8 +469,8 @@ footer a {
 
 .toggle-seta {
   position: absolute;
-  right: 15px;       /* distância da borda direita */
-  top: 50%;           /* centraliza verticalmente no card */
+  right: 15px;
+  top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -439,10 +479,10 @@ footer a {
   cursor: pointer;
 }
 
-    .share-buttons {
+.share-buttons {
   position: absolute;
-  top: 10px; /* distância do topo do banner */
-  right: 10px; /* distância da direita */
+  top: 10px;
+  right: 10px;
   display: flex;
   gap: 10px;
 }
@@ -463,7 +503,6 @@ footer a {
   background-color: var(--accent-color);
   color: white;
 }
-   
 
 header img {
   max-width: 120px;
@@ -472,22 +511,28 @@ header img {
   left: 50px; /* desloca só a logo */
 }
 
-   .header-text {
+.header-text {
   display: flex;
-  flex-direction: column;       /* título em cima, menu embaixo */
-  align-items: center;          /* centraliza horizontalmente */
-  flex: 1;                      /* ocupa espaço restante */
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
-
-  </style>
+     </style>
 </head>
-
 <body>
   <!-- ==================== Header ==================== -->
   <header>
   <img src="lbx.png" alt="Logo" />
   <div class="header-text">
     <h1>LBX Sul de Minas</h1>
+
+    <!-- Botão menu hamburguer (aparece só no mobile) -->
+    <button class="menu-toggle">
+      <i class="fas fa-bars"></i>
+      <span>MENU</span>
+    </button>
+
+    <!-- Navegação -->
     <nav>
       <a href="#proximo-torneio">Próximo Torneio</a>
       <a href="#calendario">Calendário</a>
@@ -498,9 +543,9 @@ header img {
     </nav>
   </div>
 </header>
+
   <!-- ==================== Seção Principal ==================== -->
   <section id="inicio">
-
 <!-- Próximo Torneio -->
 <div class="card" id="proximo-torneio">
   <div id="proximoTorneioConteudo">
@@ -1012,6 +1057,7 @@ filterResults();
 
 </body>
 </html>
+
 
 
 
