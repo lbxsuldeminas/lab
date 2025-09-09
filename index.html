@@ -541,31 +541,6 @@ header img {
     #sobre {
   margin-bottom: 40px; /* Cria espaço abaixo da seção "Sobre" */
 }
-    #videoSobre {
-  display: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.5s ease;
-}
-
-#videoSobre.show {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-    #sobre .toggle-seta {
-  background: none;
-  border: none;
-  color: var(--accent-color);
-  font-size: 2rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-#sobre .toggle-seta:hover {
-  transform: scale(1.2);
-}
 
      </style>
 </head>
@@ -635,7 +610,7 @@ header img {
     </div>
   </div>
 </div>
-   
+  
 <!-- Próximo Torneio -->
 <div class="card" id="proximo-torneio">
   <div id="proximoTorneioConteudo">
@@ -1174,39 +1149,8 @@ const navMenu = document.querySelector('header nav');
 menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('show');
 });
-
-   const toggleBtn = document.getElementById('toggleVideo');
-  const videoContainer = document.getElementById('videoSobre');
-  const sobreInfo = document.getElementById('sobreInfo');
-  const icon = toggleBtn.querySelector('i');
-
-  toggleBtn.addEventListener('click', () => {
-    const isVideoVisible = videoContainer.style.display === 'block';
-    
-    if (isVideoVisible) {
-      // Esconde o vídeo e mostra o conteúdo
-      videoContainer.style.display = 'none';
-      sobreInfo.style.display = 'block';
-      icon.classList.remove('fa-chevron-down');
-      icon.classList.add('fa-chevron-right');
-    } else {
-      // Mostra o vídeo e esconde o conteúdo
-      videoContainer.style.display = 'block';
-      sobreInfo.style.display = 'none';
-      icon.classList.remove('fa-chevron-right');
-      icon.classList.add('fa-chevron-down');
-    }
-  });
-
+  
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
