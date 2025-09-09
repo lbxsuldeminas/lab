@@ -1053,7 +1053,7 @@ header img {
     </p>
   </footer>
 
-  <!-- ==================== Scripts ==================== -->
+<!-- ==================== Scripts ==================== -->
 <script>
 // ===== Contagem regressiva =====
 const countdownElement = document.getElementById('countdown');
@@ -1080,7 +1080,7 @@ function updateCountdown() {
 const interval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ===== Toggle do banner =====
+// ===== Toggle do banner Próximo Torneio =====
 const toggleBtn = document.getElementById('toggleBanner');
 const banner = document.getElementById('bannerTorneio');
 const conteudo = document.getElementById('proximoTorneioConteudo');
@@ -1096,6 +1096,33 @@ toggleBtn.addEventListener('click', () => {
     setTimeout(() => banner.classList.add('show'), 10);
     conteudo.style.display = 'none';
     toggleBtn.innerHTML = '<i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>';
+  }
+});
+
+// ===== Toggle do vídeo Seção Sobre =====
+const toggleVideoBtn = document.getElementById('toggleVideo');
+const videoContainer = document.getElementById('videoSobre');
+const sobreContent = document.getElementById('SobreConteudo');
+
+toggleVideoBtn.addEventListener('click', () => {
+  if (videoContainer.style.display === 'block') {
+    // Fecha o vídeo e mostra o conteúdo
+    videoContainer.style.display = 'none';
+    sobreContent.querySelectorAll('p, h2, div').forEach(el => {
+      if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
+        el.style.display = 'block';
+      }
+    });
+    toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+  } else {
+    // Mostra o vídeo e oculta o conteúdo
+    videoContainer.style.display = 'block';
+    sobreContent.querySelectorAll('p, h2, div').forEach(el => {
+      if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
+        el.style.display = 'none';
+      }
+    });
+    toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>';
   }
 });
 
@@ -1154,3 +1181,4 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
