@@ -554,6 +554,19 @@ header img {
   transform: translateY(0);
 }
 
+    #sobre .toggle-seta {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#sobre .toggle-seta:hover {
+  transform: scale(1.2);
+}
+
      </style>
 </head>
 <body>
@@ -587,16 +600,9 @@ header img {
 <!-- Sobre -->  
 <div class="card" id="sobre">
   <div id="SobreConteudo">
-    <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px; position: relative;">
-      <h2 style="color: var(--primary-color); margin:0; font-size:1.9rem;">
-        Sobre
-      </h2> 
-
-      <!-- Botão seta -->
-      <button id="toggleVideo" class="toggle-seta">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
+    <h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.9rem;">
+      Sobre
+    </h2> 
 
     <p style="color: var(--primary-color); margin-bottom:15px;">
       A LBX – Liga Brasileira de Xadrez tem sede em Salvador-BA e, nos últimos anos, vem levando sua paixão pelo xadrez a todo o Brasil. 
@@ -607,11 +613,18 @@ header img {
       ♟️ A COPA LBX SUL DE MINAS traz categorias para todos os públicos: Sub 07, Sub 09, Sub 11, Sub 14, Sub 17, Sub 20, Adulto, Veteranos, Pais e S2000.
     </p>
 
+    <!-- Botão seta centralizado -->
+    <div style="display:flex; justify-content:center; margin-top:20px;">
+      <button id="toggleVideo" class="toggle-seta">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
     <!-- Container do vídeo (inicialmente escondido) -->
-    <div id="videoSobre" style="display:none; margin-top:15px; text-align:center;">
+    <div id="videoSobre" style="display:none; margin-top:20px; text-align:center;">
       <video width="100%" controls style="max-width:600px; border-radius:10px;">
-        <source src="SEU_VIDEO.mp4" type="video/mp4">
-        Seu navegador não suporta vídeo.
+        <source src="exemplo.mp4" type="video/mp4">
+        Exemplo.
       </video>
     </div>
   </div>
@@ -1156,12 +1169,13 @@ menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('show');
 });
 
-  // Sobre: seta que abre vídeo
   const toggleVideo = document.getElementById('toggleVideo');
   const videoSobre = document.getElementById('videoSobre');
 
   toggleVideo.addEventListener('click', () => {
-    videoSobre.classList.toggle('show');
+    videoSobre.style.display = videoSobre.style.display === 'block' ? 'none' : 'block';
+
+    // Alterna ícone da seta
     const icon = toggleVideo.querySelector('i');
     icon.classList.toggle('fa-chevron-right');
     icon.classList.toggle('fa-chevron-down');
@@ -1171,5 +1185,6 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
