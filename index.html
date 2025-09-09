@@ -541,6 +541,18 @@ header img {
     #sobre {
   margin-bottom: 40px; /* Cria espaço abaixo da seção "Sobre" */
 }
+    #videoSobre {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s ease;
+}
+
+#videoSobre.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
 
      </style>
 </head>
@@ -575,22 +587,36 @@ header img {
 <!-- Sobre -->  
 <div class="card" id="sobre">
   <div id="SobreConteudo">
-    <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px;">
+    <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px; position: relative;">
       <h2 style="color: var(--primary-color); margin:0; font-size:1.9rem;">
         Sobre
       </h2> 
-        <p style="color: var(--primary-color); margin-bottom:5px;">
-        A LBX – Liga Brasileira de Xadrez tem sede em Salvador-BA e, nos últimos anos, vem levando sua paixão pelo xadrez a todo o Brasil. 
-        Em Minas Gerais, estamos presentes no Triângulo Mineiro e no Sul de Minas, promovendo torneios que reúnem jogadores de todas as idades.
-          <p>
 
-          <p style="color: var(--primary-color); margin-bottom:5px;"> 
- A COPA LBX SUL DE MINAS traz categorias para todos os públicos: Sub 07, Sub 09, Sub 11, Sub 14, Sub 17, Sub 20, Adulto, Veteranos, Pais e S2000.
-         <p>
+      <!-- Botão seta -->
+      <button id="toggleVideo" class="toggle-seta">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <p style="color: var(--primary-color); margin-bottom:15px;">
+      A LBX – Liga Brasileira de Xadrez tem sede em Salvador-BA e, nos últimos anos, vem levando sua paixão pelo xadrez a todo o Brasil. 
+      Em Minas Gerais, estamos presentes no Triângulo Mineiro e no Sul de Minas, promovendo torneios que reúnem jogadores de todas as idades.
+    </p>
+
+    <p style="color: var(--primary-color); margin-bottom:15px;"> 
+      ♟️ A COPA LBX SUL DE MINAS traz categorias para todos os públicos: Sub 07, Sub 09, Sub 11, Sub 14, Sub 17, Sub 20, Adulto, Veteranos, Pais e S2000.
+    </p>
+
+    <!-- Container do vídeo (inicialmente escondido) -->
+    <div id="videoSobre" style="display:none; margin-top:15px; text-align:center;">
+      <video width="100%" controls style="max-width:600px; border-radius:10px;">
+        <source src="SEU_VIDEO.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
     </div>
   </div>
-</div>   
-  
+</div>
+   
 <!-- Próximo Torneio -->
 <div class="card" id="proximo-torneio">
   <div id="proximoTorneioConteudo">
@@ -1129,31 +1155,21 @@ const navMenu = document.querySelector('header nav');
 menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('show');
 });
-  
+
+  // Sobre: seta que abre vídeo
+  const toggleVideo = document.getElementById('toggleVideo');
+  const videoSobre = document.getElementById('videoSobre');
+
+  toggleVideo.addEventListener('click', () => {
+    videoSobre.classList.toggle('show');
+    const icon = toggleVideo.querySelector('i');
+    icon.classList.toggle('fa-chevron-right');
+    icon.classList.toggle('fa-chevron-down');
+  });
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
