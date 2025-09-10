@@ -759,7 +759,75 @@ header img {
   </div>
 </div>
 
+
+<!-- Ranking -->
+<div class="card" id="ranking">
+  <h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.9rem;">
+    Ranking de Jogadores
+  </h2>
+  
+  <div id="rankingConteudo" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
     
+    <!-- Ranking Geral -->
+    <div class="rankingTabela" style="flex:1; min-width:250px;">
+      <h3 style="color: var(--primary-color); text-align:center;">🏆 Geral</h3>
+      <table style="width:100%; border-collapse: collapse; text-align:center;">
+        <thead>
+          <tr style="background: var(--primary-color); color:white;">
+            <th>Pos</th>
+            <th>Jogador</th>
+            <th>Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1º</td><td>João Silva</td><td>1200</td></tr>
+          <tr><td>2º</td><td>Maria Souza</td><td>1150</td></tr>
+          <tr><td>3º</td><td>Carlos Lima</td><td>1100</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ranking Masculino -->
+    <div class="rankingTabela" style="flex:1; min-width:250px;">
+      <h3 style="color: var(--primary-color); text-align:center;">👨 Masculino</h3>
+      <table style="width:100%; border-collapse: collapse; text-align:center;">
+        <thead>
+          <tr style="background: var(--primary-color); color:white;">
+            <th>Pos</th>
+            <th>Jogador</th>
+            <th>Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1º</td><td>João Silva</td><td>1200</td></tr>
+          <tr><td>2º</td><td>Carlos Lima</td><td>1100</td></tr>
+          <tr><td>3º</td><td>Pedro Alves</td><td>1080</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ranking Feminino -->
+    <div class="rankingTabela" style="flex:1; min-width:250px;">
+      <h3 style="color: var(--primary-color); text-align:center;">👩 Feminino</h3>
+      <table style="width:100%; border-collapse: collapse; text-align:center;">
+        <thead>
+          <tr style="background: var(--primary-color); color:white;">
+            <th>Pos</th>
+            <th>Jogadora</th>
+            <th>Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1º</td><td>Maria Souza</td><td>1150</td></tr>
+          <tr><td>2º</td><td>Ana Pereira</td><td>1050</td></tr>
+          <tr><td>3º</td><td>Julia Mendes</td><td>980</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+        
     <!-- Resultados dos torneios -->
 <div class="card" id="resultados">
   <div class="results-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:15px;">
@@ -1186,6 +1254,7 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
