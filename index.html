@@ -554,6 +554,22 @@ header img {
   background: #f9f9f9;
 }
 
+/* Destaque dos 3 primeiros lugares */
+.ouro {
+  background: #ffd700 !important; /* dourado */
+  font-weight: bold;
+}
+
+.prata {
+  background: #c0c0c0 !important; /* prata */
+  font-weight: bold;
+}
+
+.bronze {
+  background: #cd7f32 !important; /* bronze */
+  font-weight: bold;
+}
+
      </style>
 </head>
 <body>
@@ -770,14 +786,15 @@ header img {
 </div>
 
 <!-- Ranking -->
+<!-- Ranking -->
 <div class="card" id="ranking">
-<h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.5rem; display:flex; align-items:center; gap:8px;">
-  <i class="fas fa-trophy"></i>
-  Ranking de Jogadores
-</h2>
-
+  <h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.5rem; display:flex; align-items:center; gap:8px;">
+    <i class="fas fa-trophy"></i> <!-- ou bi bi-trophy-fill se usar Bootstrap Icons -->
+    Ranking de Jogadores
+  </h2>
+  
   <div id="rankingConteudo" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
-
+    
     <!-- Ranking Masculino -->
     <div class="rankingTabela" style="flex:1; min-width:250px;">
       <h3 style="color: var(--primary-color); text-align:center;">👨 Masculino</h3>
@@ -790,9 +807,9 @@ header img {
           </tr>
         </thead>
         <tbody>
-          <tr><td>1º</td><td>Cristian da Silva Romão</td><td>2352</td></tr>
-          <tr><td>2º</td><td>Ezequias Morais de Lima Pereira</td><td>2343</td></tr>
-          <tr><td>3º</td><td>Júlio Reinaldo dos Santos</td><td>2331</td></tr>
+          <tr class="ouro"><td>1º</td><td>João Silva</td><td>1200</td></tr>
+          <tr class="prata"><td>2º</td><td>Carlos Lima</td><td>1100</td></tr>
+          <tr class="bronze"><td>3º</td><td>Pedro Alves</td><td>1080</td></tr>
         </tbody>
       </table>
     </div>
@@ -809,9 +826,9 @@ header img {
           </tr>
         </thead>
         <tbody>
-          <tr><td>1º</td><td>Yasmin Oliveira Carvalho</td><td>2297</td></tr>
-          <tr><td>2º</td><td>Maria Luz Gonçalves Vicencio</td><td>2292</td></tr>
-          <tr><td>3º</td><td>Lara de Fátima Carvalho Faria</td><td>2274</td></tr>
+          <tr class="ouro"><td>1º</td><td>Maria Souza</td><td>1150</td></tr>
+          <tr class="prata"><td>2º</td><td>Ana Pereira</td><td>1050</td></tr>
+          <tr class="bronze"><td>3º</td><td>Julia Mendes</td><td>980</td></tr>
         </tbody>
       </table>
     </div>
@@ -1246,6 +1263,7 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
