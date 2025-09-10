@@ -554,47 +554,23 @@ header img {
   background: #f9f9f9;
 }
 
-/* Destaque dos 3 primeiros lugares */
+/* Linha inteira com cor */
 .ouro {
   background: #ffd700 !important; /* dourado */
   font-weight: bold;
+  color: #000; /* texto preto para contraste */
 }
 
 .prata {
   background: #c0c0c0 !important; /* prata */
   font-weight: bold;
+  color: #000;
 }
 
 .bronze {
   background: #cd7f32 !important; /* bronze */
   font-weight: bold;
-}
-
-/* Estilo das medalhas (coluna Pos) */
-.ouro, .prata, .bronze {
-  font-weight: bold;
-  color: #fff;
-  border-radius: 50%;     /* deixa redondo */
-  width: 40px;            /* largura fixa */
-  height: 40px;           /* altura fixa */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;           /* centraliza dentro da célula */
-  box-shadow: 0 0 8px rgba(0,0,0,0.3); /* efeito de destaque */
-}
-
-/* Cores específicas */
-.ouro {
-  background: #ffd700; /* dourado */
-}
-
-.prata {
-  background: #c0c0c0; /* prata */
-}
-
-.bronze {
-  background: #cd7f32; /* bronze */
+  color: #fff; /* branco fica melhor no bronze */
 }
 
      </style>
@@ -834,9 +810,9 @@ header img {
           </tr>
         </thead>
         <tbody>
-          <tr><td class="ouro">1º</td><td>João Silva</td><td>1200</td></tr>
-          <tr><td class="prata">2º</td><td>Carlos Lima</td><td>1100</td></tr>
-          <tr><td class="bronze">3º</td><td>Pedro Alves</td><td>1080</td></tr>
+          <tr class="ouro"><td>1º</td><td>João Silva</td><td>1200</td></tr>
+          <tr class="prata"><td>2º</td><td>Carlos Lima</td><td>1100</td></tr>
+          <tr class="bronze"><td>3º</td><td>Pedro Alves</td><td>1080</td></tr>
         </tbody>
       </table>
     </div>
@@ -853,9 +829,9 @@ header img {
           </tr>
         </thead>
         <tbody>
-          <tr><td class="ouro">1º</td><td>Maria Souza</td><td>1150</td></tr>
-          <tr><td class="prata">2º</td><td>Ana Pereira</td><td>1050</td></tr>
-          <tr><td class="bronze">3º</td><td>Julia Mendes</td><td>980</td></tr>
+          <tr class="ouro"><td>1º</td><td>Maria Souza</td><td>1150</td></tr>
+          <tr class="prata"><td>2º</td><td>Ana Pereira</td><td>1050</td></tr>
+          <tr class="bronze"><td>3º</td><td>Julia Mendes</td><td>980</td></tr>
         </tbody>
       </table>
     </div>
@@ -1290,6 +1266,7 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
