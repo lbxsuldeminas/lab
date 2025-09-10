@@ -570,6 +570,33 @@ header img {
   font-weight: bold;
 }
 
+/* Estilo das medalhas (coluna Pos) */
+.ouro, .prata, .bronze {
+  font-weight: bold;
+  color: #fff;
+  border-radius: 50%;     /* deixa redondo */
+  width: 40px;            /* largura fixa */
+  height: 40px;           /* altura fixa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;           /* centraliza dentro da célula */
+  box-shadow: 0 0 8px rgba(0,0,0,0.3); /* efeito de destaque */
+}
+
+/* Cores específicas */
+.ouro {
+  background: #ffd700; /* dourado */
+}
+
+.prata {
+  background: #c0c0c0; /* prata */
+}
+
+.bronze {
+  background: #cd7f32; /* bronze */
+}
+
      </style>
 </head>
 <body>
@@ -786,9 +813,10 @@ header img {
 </div>
 
 <!-- Ranking -->
+<!-- Ranking -->
 <div class="card" id="ranking">
   <h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.5rem; display:flex; align-items:center; gap:8px;">
-    <i class="fas fa-trophy"></i> <!-- ou bi bi-trophy-fill se usar Bootstrap Icons -->
+    <i class="fas fa-trophy"></i>
     Ranking de Jogadores
   </h2>
   
@@ -834,6 +862,7 @@ header img {
 
   </div>
 </div>
+
      
     <!-- Resultados dos torneios -->
 <div class="card" id="resultados">
@@ -1261,6 +1290,7 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
