@@ -572,6 +572,17 @@ header img {
   font-weight: bold;
 }
 
+    rankingTabela a {
+  color: inherit;         /* herda a cor do texto da célula */
+  text-decoration: none;  /* remove o sublinhado */
+  font-weight: bold;      /* deixa em negrito, opcional */
+}
+
+.rankingTabela a:hover {
+  text-decoration: underline; /* sublinha só quando passa o mouse */
+  color: var(--primary-color); /* cor personalizada no hover */
+}
+
      </style>
 </head>
 <body>
@@ -1296,6 +1307,7 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
