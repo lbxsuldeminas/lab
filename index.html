@@ -523,7 +523,7 @@ header img {
 }
     
 /* controla a abertura do banner em elas grandes */
-    #bannerTorneio img {
+#bannerTorneio img {
   width: 100%;
   max-width: 600px; /* controla o tamanho máximo do banner */
   height: auto;
@@ -532,48 +532,76 @@ header img {
   border-radius: 10px;
 }
 
-    @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   #bannerTorneio img {
     max-width: 600px; /* menor ainda no PC */
   }
 }
 
-    #sobre {
+#sobre {
   margin-bottom: 40px; /* Cria espaço abaixo da seção "Sobre" */
   padding-top: 8px; /* diminui o espaço superior do card */
   padding: 23px; /* espaço interno do card em todas as telas */
   box-sizing: border-box; /* garante que padding não quebre o tamanho */
 }
 
-#ranking table, #ranking th, #ranking td {
-  border: 1px solid #ccc;
-  padding: 8px;
+/* ==================== Ranking de Jogadores ==================== */
+#ranking table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* espaço entre as linhas */
 }
 
-#ranking tr:nth-child(even) {
-  background: #f9f9f9;
+#ranking thead tr {
+  background: var(--primary-color);
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
-/* Linha inteira com cor */
-.ouro {
-  background: #ffd700 !important; /* dourado */
+#ranking th {
+  padding: 12px;
+  border-radius: 8px 8px 0 0;
+}
+
+#ranking td {
+  padding: 12px;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ranking tr:hover td {
+  background: #f0f8ff;
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Destaques das medalhas */
+.ouro td {
+  background: linear-gradient(135deg, #ffd700, #ffec8b);
+  color: #333;
   font-weight: bold;
 }
 
-.prata {
-  background: #c0c0c0 !important; /* prata */
+.prata td {
+  background: linear-gradient(135deg, #c0c0c0, #e0e0e0);
+  color: #333;
   font-weight: bold;
 }
 
-.bronze {
-  background: #cd7f32 !important; /* bronze */
+.bronze td {
+  background: linear-gradient(135deg, #cd7f32, #e6a36a);
+  color: #fff;
   font-weight: bold;
 }
 
-    .rankingTabela a {
-  color: inherit;         /* herda a cor do texto da célula */
-  text-decoration: none;  /* remove o sublinhado */
-  font-weight: bold;      /* opcional */
+.rankingTabela a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .rankingTabela a:hover {
@@ -598,6 +626,7 @@ header img {
 .evolucao.same {
   color: gray;   /* mesma posição */
 }
+
     
      </style>
 </head>
@@ -1352,4 +1381,5 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
