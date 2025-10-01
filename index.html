@@ -579,68 +579,29 @@ header img {
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Destaques das medalhas */
-.ouro td {
-  background: linear-gradient(135deg, #ffd700, #ffec8b);
-  color: #333;
+/* ==================== Medalhas (coluna inteira da colocação) ==================== */
+#ranking .ouro td:first-child {
+  background: linear-gradient(135deg, #ffd700, #ffec8b) !important;
+  color: #333 !important;
   font-weight: bold;
-}
-
-.prata td {
-  background: linear-gradient(135deg, #c0c0c0, #e0e0e0);
-  color: #333;
-  font-weight: bold;
-}
-
-.bronze td {
-  background: linear-gradient(135deg, #cd7f32, #e6a36a);
-  color: #fff;
-  font-weight: bold;
-}
-
-.rankingTabela a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.rankingTabela a:hover {
-  text-decoration: underline; 
-  color: var(--primary-color); 
-}
-
-.evolucao {
-  font-size: 0.9rem;
-  margin-left: 6px;
-  font-weight: bold;
-}
-
-.evolucao.up {
-  color: green;  /* subiu */
-}
-
-.evolucao.down {
-  color: red;    /* desceu */
-}
-
-.evolucao.same {
-  color: gray;   /* mesma posição */
-}
-
-
-    #ranking .ouro td:first-child {
-  color: #ffd700 !important;   /* Ouro */
-  font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
 }
 
 #ranking .prata td:first-child {
-  color: #c0c0c0 !important;   /* Prata */
+  background: linear-gradient(135deg, #c0c0c0, #e0e0e0) !important;
+  color: #333 !important;
   font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
 }
 
 #ranking .bronze td:first-child {
-  color: #cd7f32 !important;   /* Bronze */
+  background: linear-gradient(135deg, #cd7f32, #e6a36a) !important;
+  color: #fff !important;
   font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
 }
 
     
@@ -1397,6 +1358,7 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
