@@ -523,7 +523,7 @@ header img {
 }
     
 /* controla a abertura do banner em elas grandes */
-#bannerTorneio img {
+    #bannerTorneio img {
   width: 100%;
   max-width: 600px; /* controla o tamanho máximo do banner */
   height: auto;
@@ -532,78 +532,72 @@ header img {
   border-radius: 10px;
 }
 
-@media (min-width: 1024px) {
+    @media (min-width: 1024px) {
   #bannerTorneio img {
     max-width: 600px; /* menor ainda no PC */
   }
 }
 
-#sobre {
+    #sobre {
   margin-bottom: 40px; /* Cria espaço abaixo da seção "Sobre" */
   padding-top: 8px; /* diminui o espaço superior do card */
   padding: 23px; /* espaço interno do card em todas as telas */
   box-sizing: border-box; /* garante que padding não quebre o tamanho */
 }
 
-/* ==================== Ranking de Jogadores ==================== */
-#ranking table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 8px; /* espaço entre as linhas */
+#ranking table, #ranking th, #ranking td {
+  border: 1px solid #ccc;
+  padding: 8px;
 }
 
-#ranking thead tr {
-  background: var(--primary-color);
-  color: white;
-  text-transform: uppercase;
+#ranking tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Linha inteira com cor */
+.ouro {
+  background: #ffd700 !important; /* dourado */
+  font-weight: bold;
+}
+
+.prata {
+  background: #c0c0c0 !important; /* prata */
+  font-weight: bold;
+}
+
+.bronze {
+  background: #cd7f32 !important; /* bronze */
+  font-weight: bold;
+}
+
+    .rankingTabela a {
+  color: inherit;         /* herda a cor do texto da célula */
+  text-decoration: none;  /* remove o sublinhado */
+  font-weight: bold;      /* opcional */
+}
+
+.rankingTabela a:hover {
+  text-decoration: underline; 
+  color: var(--primary-color); 
+}
+
+.evolucao {
   font-size: 0.9rem;
-}
-
-#ranking th {
-  padding: 12px;
-  border-radius: 8px 8px 0 0;
-}
-
-#ranking td {
-  padding: 12px;
-  background: #fff;
-  color: #333;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-#ranking tr:hover td {
-  background: #f0f8ff;
-  transform: scale(1.01);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* ==================== Medalhas (coluna inteira da colocação) ==================== */
-#ranking .ouro td:first-child {
-  background: linear-gradient(135deg, #ffd700, #ffec8b) !important;
-  color: #333 !important;
+  margin-left: 6px;
   font-weight: bold;
-  text-align: center;
-  border-radius: 8px;
 }
 
-#ranking .prata td:first-child {
-  background: linear-gradient(135deg, #c0c0c0, #e0e0e0) !important;
-  color: #333 !important;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 8px;
+.evolucao.up {
+  color: green;  /* subiu */
 }
 
-#ranking .bronze td:first-child {
-  background: linear-gradient(135deg, #cd7f32, #e6a36a) !important;
-  color: #fff !important;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 8px;
+.evolucao.down {
+  color: red;    /* desceu */
 }
 
+.evolucao.same {
+  color: gray;   /* mesma posição */
+}
     
      </style>
 </head>
@@ -626,7 +620,7 @@ header img {
       <a href="#sobre">Sobre</a>
       <a href="#proximo-torneio">Próximo Torneio</a>
       <a href="#calendario">Calendário</a>
-      <a href="#galeria">Galeria de Fotos</a>
+      <a href="#galeria">Galeria</a>
       <a href="#ranking">Ranking</a>
       <a href="#resultados">Resultados</a>
       <a href="#partidas-transmitidas">Partidas</a>
@@ -704,8 +698,8 @@ header img {
     <div style="display:flex; flex-wrap: wrap; align-items:center; gap:12px;">
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
         <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/p5pwaMfjxkG4vAvF8')">Ver no Google Maps</button>
- <!--       <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnr1243378.aspx?lan=10')">Inscritos</button> 
-        <button class="map-btn" onclick="window.open('https://s3.chess-results.com/Tnr1259676.aspx?lan=10&SNode=S0')">Blocos</button> -->
+        <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnr1264913.aspx?lan=10')">Inscritos</button> 
+    <!--    <button class="map-btn" onclick="window.open('https://s3.chess-results.com/Tnr1259676.aspx?lan=10&SNode=S0')">Blocos</button> -->
         <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
         <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
       </div>
@@ -741,12 +735,6 @@ header img {
   <i class="fas fa-calendar-alt" style="font-size:1.57rem;"></i> 
   Calendário dos Torneios
 </h2>
-      <div class="calendar-list">
-        <div class="calendar-item">
-          <h3>8ª Etapa: Pouso Alegre - MG</h3>
-          <p>Data: 27/09/2025</p>
-          <button onclick="window.open('https://maps.app.goo.gl/PrYig1V7zZn95jeZ8')">Local no mapa</button>
-        </div>
         <div class="calendar-item">
           <h3>9ª Etapa: Três Corações - MG</h3>
           <p>Data: 01/11/2025</p>
@@ -817,6 +805,14 @@ header img {
       </div>
     </div>
 
+      <div class="result-item" data-year="2025">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Itanhandu - 2025</strong><br />
+        <a href="https://drive.google.com/drive/folders/1EW8BgT_iEpCsGiBxDnpWMlCHUDGgqrzd?usp=sharing">Ver fotos</a>
+      </div>
+    </div>
+    
      <div class="result-item" data-year="2025">
       <i class="fas fa-image"></i>
       <div>
@@ -824,6 +820,15 @@ header img {
         <a href="https://drive.google.com/drive/folders/1rcBqPwStlXwPLAoWTEesrVX6C7mbejuC?usp=sharing">Ver fotos</a>
       </div>
     </div>
+
+     <div class="result-item" data-year="2025">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Santana da Vargem - 2025 (Etapa extra)</strong><br />
+        <a href="https://drive.google.com/drive/folders/18rVi-mC3SOwQS5YOgIlwuoWp9EXmXDvA?usp=sharing">Ver fotos</a>
+      </div>
+    </div>
+    
 
     <div class="result-item" data-year="2024">
       <i class="fas fa-image"></i>
@@ -859,21 +864,21 @@ header img {
           <tr class="ouro">
             <td>1º</td>
             <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Cristian da Silva Romão</a> <span class="evolucao same">–</span></td>
-            <td>2352</td>
+            <td>2367</td>
           </tr>
           <tr class="prata">
             <td>2º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=311953" target="_blank">Ezequias Morais de Lima Pereira</a> <span class="evolucao same">–</span></td>
-            <td>2343</td>
+            <td><a href="https://lbx.org.br/atleta/?ID=311953" target="_blank">Júlio Reinaldo dos Santos</a> <span class="evolucao up">▲</span></td>
+            <td>2347</td>
           </tr>
           <tr class="bronze">
             <td>3º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=312066" target="_blank">Júlio Reinaldo dos Santos</a> <span class="evolucao same">–</span></td>
-            <td>2331</td>
+            <td><a href="https://lbx.org.br/atleta/?ID=312066" target="_blank">Ezequias Morais de Lima Pereira</a> <span class="evolucao down">▼</span></td>
+            <td>2343</td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </div>     <!-- ▲ ▼ – same up down  -->
 
     <!-- Ranking Feminino -->
     <div class="rankingTabela" style="flex:1; min-width:250px;">
@@ -890,17 +895,17 @@ header img {
           <tr class="ouro">
             <td>1º</td>
             <td><a href="https://lbx.org.br/atleta/?ID=312574" target="_blank">Yasmin Oliveira Carvalho</a> <span class="evolucao same">–</span></td>
-            <td>2297</td>
+            <td>2317</td>
           </tr>
           <tr class="prata">
             <td>2º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank">Maria Luz Gonçalves Vicencio</a> <span class="evolucao up">▲</span></td>
+            <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank">Maria Luz Gonçalves Vicencio</a> <span class="evolucao same">–</span></td>
             <td>2292</td>
           </tr>
           <tr class="bronze">
             <td>3º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao down">▼</span></td>
-            <td>2274</td>
+            <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao same">–</span></td>
+            <td>2273</td>
           </tr>
         </tbody>
       </table>
@@ -989,6 +994,14 @@ header img {
     <strong>8ª Etapa:</strong> Pouso Alegre - 2025
     <br />
     <a href="https://s3.chess-results.com/tnr1259676.aspx?lan=10" target="_blank">Ver resultados</a>
+  </div>
+</div>
+    <div class="result-item" data-year="2025">
+  <i class="fas fa-chess-king"></i>
+  <div>
+    <strong>Etapa extra:</strong> Santana da Vargem - 2025
+    <br />
+    <a href="https://s1.chess-results.com/tnr1265837.aspx?lan=10&turdet=YES&SNode=S0">Ver resultados</a>
   </div>
 </div>
  <!-- Resultados 2024 -->
@@ -1150,7 +1163,7 @@ header img {
       <div>
         <strong>Torneio Ao vivo (Disponível somente no dia do torneio)</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/mmfJEI/copa-lbx-sul-de-minas---trs-coraes-mg-2025">Assistir</a>
+        <a href="https://media.idchess.com/en/tournaments/rffJEI/copa-lbx-sul-de-minas---trs-coraes-mg-2025">Assistir</a>
       </div>
     </div>
 
@@ -1182,16 +1195,28 @@ header img {
     </div>
 
     <div class="result-item">
-      <i class="fas fa-tv"></i>
-      <div>
-        <strong>Partidas transmitidas em Pouso Alegre</strong>
-        <br />
-        <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025" target="_blank">Assistir</a>
-      </div>
-    </div>
-
+  <i class="fas fa-tv"></i>
+  <div>
+    <strong>Partidas transmitidas em Pouso Alegre</strong>
+    <br />
+    <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025" target="_blank" class="assistir-btn">Assistir (Masculino) </a>
+    <a href="https://lichess.org/study/21xYjmQZ/YWQKJtxQ" target="_blank" class="assistir-btn"> - Assistir (Feminino) </a>
   </div>
 </div>
+
+    <div class="result-item">
+  <i class="fas fa-tv"></i>
+  <div>
+    <strong>Partidas transmitidas em Santana da Vargem</strong>
+    <br />
+    <a href="https://media.idchess.com/en/tournaments/M9fJFI/2--torneio-de-santana-da-vargem-mg-lbx-2025" target="_blank" class="assistir-btn">Assistir (Abs A) </a>
+    <a href="https://lichess.org/study/0KFtuzWa" target="_blank" class="assistir-btn"> - Assistir (Abs B) </a>
+  </div>
+</div>
+    
+  </div>
+</div>
+
 
     <!-- Contatos -->
 <div class="card contact" id="contatos">
@@ -1358,7 +1383,3 @@ menuToggle.addEventListener('click', () => {
 
 </body>
 </html>
-
-
-
-
