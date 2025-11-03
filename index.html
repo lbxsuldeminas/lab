@@ -683,7 +683,7 @@ header img {
     <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px;">
       <h2 style="color: var(--primary-color); margin:0; font-size:1.67rem;">
        <i class="fa-solid fa-chess-king" style="font-size:1.5rem;"></i>
-        Próximo Torneio: Final - Conceição do Rio Verde MG
+        Final: Conceição do Rio Verde - MG
       </h2>
       <div style="display:flex; align-items:center; gap:10px;">
         <p style="color:red; font-weight:bold; margin:0;">INSCRIÇÕES ABERTAS!</p>
@@ -700,15 +700,25 @@ header img {
       Prepare-se para mais um grande evento de xadrez no Sul de Minas!
     </p>
 
-    <div style="display:flex; flex-wrap: wrap; align-items:center; gap:12px;">
-      <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/nAkzep5Z4mMH7Seo8')">Ver no Google Maps</button>
-        <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnr1264913.aspx?lan=10')">Inscritos</button> 
-        <button class="map-btn" onclick="window.open('https://s2.chess-results.com/tnr1284670.aspx?lan=10&SNode=S0')">Classificados Masculino</button>
-        <button class="map-btn" onclick="window.open('https://s2.chess-results.com/tnr1284670.aspx?lan=10&SNode=S0')">Classificados Feminino</button>
-        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
-        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+<div style="display:flex; flex-wrap: wrap; align-items:center; gap:12px;">
+  <div style="display:flex; flex-wrap:wrap; gap:12px;">
+    <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/nAkzep5Z4mMH7Seo8')">Ver no Google Maps</button>
+    <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnr1264913.aspx?lan=10')">Inscritos</button> 
+
+    <!-- Botão principal -->
+    <div style="position: relative;">
+      <button class="map-btn" onclick="toggleClassificados()">Classificados</button>
+      <!-- Botões ocultos -->
+      <div id="classificados-sub" style="display:none; flex-direction: column; gap:8px; position:absolute; top:45px; left:0;">
+        <button class="map-btn" onclick="window.open('https://s3.chess-results.com/tnr1239336.aspx?lan=10')">Masculino</button>
+        <button class="map-btn" onclick="window.open('https://s3.chess-results.com/tnr1131307.aspx?lan=10')">Feminino</button>
       </div>
+    </div>
+
+    <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
+    <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+  </div>
+</div>
 
       <div id="countdown" style="color: #3399ff; font-weight:bold; display:flex; align-items:center; margin-left: auto;">
         <i class="fas fa-clock" style="margin-right:5px;"></i>
@@ -741,11 +751,6 @@ header img {
   <i class="fas fa-calendar-alt" style="font-size:1.57rem;"></i> 
   Calendário dos Próximos Torneios
 </h2>
-        <div class="calendar-item">
-          <h3>9ª Etapa: Três Corações - MG</h3>
-          <p>Data: 01/11/2025</p>
-          <button onclick="window.open('https://maps.app.goo.gl/p5pwaMfjxkG4vAvF8')">Local no mapa</button>
-        </div>
         <div class="calendar-item">
           <h3>Final: Conceição do Rio Verde - MG</h3>
           <p>Data: 29/11/2025</p>
@@ -1265,7 +1270,7 @@ header img {
 <script>
 // ===== Contagem regressiva =====
 const countdownElement = document.getElementById('countdown');
-const nextTournamentDate = new Date('2025-11-01T00:00:00');
+const nextTournamentDate = new Date('2025-11-29T00:00:00');
 
 function updateCountdown() {
   const now = new Date();
@@ -1384,10 +1389,17 @@ const navMenu = document.querySelector('header nav');
 menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('show');
 });
+
+  function toggleClassificados() {
+    const sub = document.getElementById('classificados-sub');
+    sub.style.display = (sub.style.display === 'none' || sub.style.display === '') ? 'flex' : 'none';
+  }
   
 </script>
 
 </body>
 </html>
+
+
 
 
