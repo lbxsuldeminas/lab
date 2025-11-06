@@ -603,7 +603,18 @@ header img {
   margin-bottom: 20px; /* espaco entre etapas calendario (2etapas)*/
 }
 
-    
+.rankingTabela tr.quarto,
+.rankingTabela tr.quinto {
+  background-color: rgba(180, 180, 180, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.rankingTabela tr.quarto:hover,
+.rankingTabela tr.quinto:hover {
+  background-color: rgba(180, 180, 180, 0.4);
+}
+
+
      </style>
 </head>
 <body>
@@ -715,9 +726,9 @@ header img {
           </div>
         </div>
         
-        <button class="map-btn" onclick="window.open('https://s1.chess-results.com/tnr1264913.aspx?lan=10')">Inscritos</button>
-        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/premiacao$.pdf', '_blank')">Premiação</button>
-        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/testes/raw/main/programacaocerta.pdf', '_blank')">Programação</button>
+        <button class="map-btn" onclick="window.open('https://s2.chess-results.com/Tnr1287417.aspx?lan=10&SNode=S0')">Inscritos</button>
+        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/Premiação Final Copa LBX Sul de Minas - 2025.pdf', '_blank')">Premiação da Final</button>
+        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/Programação Final Copa LBX Sul de Minas2025.pdf', '_blank')">Programação da Final</button>
       </div>
     </div>
 
@@ -725,20 +736,19 @@ header img {
       <i class="fas fa-clock" style="margin-right:5px;"></i>
     </div>
 
-    <!-- AQUI A SETA FICA DENTRO DO CARD, CENTRALIZADA -->
+    <!-- Seta dentro do card -->
     <div style="display:flex; justify-content:center; margin-top:20px;">
       <button id="toggleBanner" class="toggle-seta">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
-
   </div> <!-- fecha proximoTorneioConteudo -->
 
-  <!-- Banner do torneio (inicialmente oculto) -->
-  <div id="bannerTorneio" style="display:none;">
+  <!-- Banner do torneio -->
+  <div id="bannerTorneio" style="display:none; position: relative; margin-top:10px;">
     <img src="CRV.jpg" alt="Banner do Torneio" style="width:100%; border-radius:10px;">
     
-    <!-- Botão de compartilhamento sobre o banner -->
+    <!-- Botão de compartilhamento -->
     <a href="https://api.whatsapp.com/send?text=Ol%C3%A1!%20Veja%20este%20torneio%20incr%C3%ADvel!%20https://lbxsuldeminas.com.br" 
        target="_blank" 
        style="position: absolute; top: 10px; right: 10px; background-color: #25D366; color: white; padding: 10px 12px; border-radius: 50%; font-size: 1.2rem; text-decoration: none;">
@@ -746,7 +756,6 @@ header img {
     </a>
   </div>
 </div>
-
 
     <!-- Calendário de Próximos Torneios -->
     <div class="card" id="calendario">
@@ -863,67 +872,87 @@ header img {
   
   <div id="rankingConteudo" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
     
-    <!-- Ranking Masculino -->
-    <div class="rankingTabela" style="flex:1; min-width:250px;">
-      <h3 style="color: var(--primary-color); text-align:center;">👨 Masculino</h3>
-      <table style="width:100%; border-collapse: collapse; text-align:center;">
-        <thead>
-          <tr style="background: var(--primary-color); color:white;">
-            <th>Pos</th>
-            <th>Jogador</th>
-            <th>Pontos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="ouro">  
-            <td>1º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=312066" target="_blank">Júlio Reinaldo dos Santos</a> <span class="evolucao up">▲</span></td>
-            <td>2368</td>
-          </tr>
-          <tr class="prata">
-            <td>2º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=311883" target="_blank">Nataniel Julio Pereira Mota</a> <span class="evolucao up">▲</span></td>
-            <td>2349</td>
-          </tr>
-          <tr class="bronze">
-            <td>3º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Cristian da Silva Romão</a> <span class="evolucao down">▼</span></td>
-            <td>2344</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>     <!-- ▲ ▼ – same up down  -->
+<!-- Ranking Masculino -->
+<div class="rankingTabela" style="flex:1; min-width:250px;">
+  <h3 style="color: var(--primary-color); text-align:center;">👨 Masculino</h3>
+  <table style="width:100%; border-collapse: collapse; text-align:center;">
+    <thead>
+      <tr style="background: var(--primary-color); color:white;">
+        <th>Pos</th>
+        <th>Jogador</th>
+        <th>Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ouro">  
+        <td>1º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312066" target="_blank">Júlio Reinaldo dos Santos</a> <span class="evolucao up">▲</span></td>
+        <td>2368</td>
+      </tr>
+      <tr class="prata">
+        <td>2º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311883" target="_blank">Nataniel Júlio Pereira Mota</a> <span class="evolucao up">▲</span></td>
+        <td>2349</td>
+      </tr>
+      <tr class="bronze">
+        <td>3º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Cristian da Silva Romão</a> <span class="evolucao down">▼</span></td>
+        <td>2344</td>
+      </tr>
+      <tr class="quarto">
+        <td>4º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=314300" target="_blank">Simão Posciônio Dias</a> <span class="evolucao up">▲</span></td>
+        <td>2309</td>
+      </tr>
+      <tr class="quinto">
+        <td>5º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=351759" target="_blank">Joaquim de Deus Filho</a> <span class="evolucao down">▼</span></td>
+        <td>2306</td>
+      </tr>
+    </tbody>
+  </table>
+</div>     <!-- ▲ ▼ – same up down  -->
 
-    <!-- Ranking Feminino -->
-    <div class="rankingTabela" style="flex:1; min-width:250px;">
-      <h3 style="color: var(--primary-color); text-align:center;">👩 Feminino</h3>
-      <table style="width:100%; border-collapse: collapse; text-align:center;">
-        <thead>
-          <tr style="background: var(--primary-color); color:white;">
-            <th>Pos</th>
-            <th>Jogadora</th>
-            <th>Pontos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="ouro">
-            <td>1º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=312574" target="_blank">Yasmin Oliveira Carvalho</a> <span class="evolucao same">–</span></td>
-            <td>2325</td>
-          </tr>
-          <tr class="prata">
-            <td>2º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank">Maria Luz Gonçalves Vicencio</a> <span class="evolucao same">–</span></td>
-            <td>2292</td>
-          </tr>
-          <tr class="bronze">
-            <td>3º</td>
-            <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao same">–</span></td>
-            <td>2284</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- Ranking Feminino -->
+<div class="rankingTabela" style="flex:1; min-width:250px;">
+  <h3 style="color: var(--primary-color); text-align:center;">👩 Feminino</h3>
+  <table style="width:100%; border-collapse: collapse; text-align:center;">
+    <thead>
+      <tr style="background: var(--primary-color); color:white;">
+        <th>Pos</th>
+        <th>Jogadora</th>
+        <th>Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ouro">
+        <td>1º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312574" target="_blank">Yasmin Oliveira Carvalho</a> <span class="evolucao same">–</span></td>
+        <td>2325</td>
+      </tr>
+      <tr class="prata">
+        <td>2º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank">Maria Luz Gonçalves Vicencio</a> <span class="evolucao same">–</span></td>
+        <td>2292</td>
+      </tr>
+      <tr class="bronze">
+        <td>3º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao same">–</span></td>
+        <td>2284</td>
+      </tr>
+      <tr class="quarto">
+        <td>4º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank">Vitoria Aparecida Barros de Oliveira</a> <span class="evolucao same">–</span></td>
+        <td>2233</td>
+      </tr>
+      <tr class="quinto">
+        <td>5º</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=602669" target="_blank">Cecilia Sanches S. Gomes de Macedo</a> <span class="evolucao up">▲</span></td>
+        <td>2229</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
   </div>
 </div>
@@ -1410,13 +1439,28 @@ menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('show');
 });
 
-  function toggleClassificados() {
-    const sub = document.getElementById('classificados-sub');
-    sub.style.display = (sub.style.display === 'none' || sub.style.display === '') ? 'flex' : 'none';
-  }
+function toggleClassificados() {
+  const sub = document.getElementById("classificados-sub");
+  sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
+}
+
   
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
