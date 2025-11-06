@@ -614,6 +614,7 @@ header img {
   background-color: rgba(180, 180, 180, 0.4);
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
      </style>
 </head>
@@ -1469,51 +1470,79 @@ function toggleClassificados() {
   sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
 }
   
-  // Simulação de base de dados
-  const jogadores = {
-    "LBX001": "Carlos Pereira",
-    "LBX002": "Mariana Silva",
-    "LBX003": "João Souza",
-    "LBX004": "André Meirelles"
-  };
+  let dadosJogadores = {}; // será preenchido com os dados da planilha
 
-  function buscarJogador() {
-    const id = document.getElementById("idLBX").value.trim().toUpperCase();
-    const nomeCampo = document.getElementById("nome");
-    const pixArea = document.getElementById("pix-area");
-    const confirmacao = document.getElementById("confirmacao");
+// Função para carregar a planilha hospedada no site
+async function carregarPlanilha() {
+  try {
+    const response = await fetch("dados/atletas.xlsx"); // caminho da planilha no servidor
+    const arrayBuffer = await response.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: "array" });
+    const primeiraAba = workbook.SheetNames[0];
+    const planilha = workbook.Sheets[primeiraAba];
+    const dados = XLSX.utils.sheet_to_json(planilha, { header: 1 }); // converte pra array
 
-    confirmacao.style.display = "none";
-
-    if (jogadores[id]) {
-      nomeCampo.value = jogadores[id];
-      pixArea.style.display = "block";
-    } else {
-      nomeCampo.value = "";
-      pixArea.style.display = "none";
-      alert("ID LBX não encontrado. Verifique e tente novamente.");
+    // Espera-se que a primeira linha tenha ["ID", "Nome"]
+    for (let i = 1; i < dados.length; i++) {
+      const linha = dados[i];
+      const id = String(linha[0]).trim().toUpperCase();
+      const nome = linha[1] ? String(linha[1]).trim() : "";
+      if (id && nome) {
+        dadosJogadores[id] = nome;
+      }
     }
+
+    console.log("Planilha carregada com sucesso:", Object.keys(dadosJogadores).length, "jogadores");
+  } catch (erro) {
+    console.error("Erro ao carregar planilha:", erro);
+    alert("Não foi possível carregar os dados da planilha.");
   }
+}
 
-  function gerarPix() {
-    const qrArea = document.getElementById("qr-area");
-    const confirmacao = document.getElementById("confirmacao");
+// Chama a função assim que o site carregar
+window.addEventListener("DOMContentLoaded", carregarPlanilha);
 
-    qrArea.innerHTML = `
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=PIX-LBX-DEMO-R$30&size=180x180" alt="QR Pix" style="border-radius:10px;">
-      <p style="margin-top:8px;">Escaneie o QR Code para efetuar o pagamento.</p>
-    `;
+// Busca o jogador pelo ID
+function buscarJogador() {
+  const id = document.getElementById("idLBX").value.trim().toUpperCase();
+  const nomeCampo = document.getElementById("nome");
+  const pixArea = document.getElementById("pix-area");
+  const confirmacao = document.getElementById("confirmacao");
 
-    setTimeout(() => {
-      confirmacao.style.display = "block";
-      confirmacao.textContent = "Inscrição confirmada com sucesso!";
-    }, 2000);
+  confirmacao.style.display = "none";
+
+  if (dadosJogadores[id]) {
+    nomeCampo.value = dadosJogadores[id];
+    pixArea.style.display = "block";
+  } else {
+    nomeCampo.value = "";
+    pixArea.style.display = "none";
+    alert("ID LBX não encontrado. Verifique e tente novamente.");
+  }
+}
+
+// Gera o QR Pix (mantido igual)
+function gerarPix() {
+  const qrArea = document.getElementById("qr-area");
+  const confirmacao = document.getElementById("confirmacao");
+
+  qrArea.innerHTML = `
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=PIX-LBX-DEMO-R$30&size=180x180" alt="QR Pix" style="border-radius:10px;">
+    <p style="margin-top:8px;">Escaneie o QR Code para efetuar o pagamento.</p>
+  `;
+
+  setTimeout(() => {
+    confirmacao.style.display = "block";
+    confirmacao.textContent = "Inscrição confirmada com sucesso!";
+  }, 2000);
+}
   }
   
 </script>
 
 </body>
 </html>
+
 
 
 
