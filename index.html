@@ -1342,6 +1342,7 @@ header img {
   </footer>
 
 <!-- ==================== Scripts ==================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 // ===== Contagem regressiva =====
 const countdownElement = document.getElementById('countdown');
@@ -1394,7 +1395,6 @@ const sobreContent = document.getElementById('SobreConteudo');
 
 toggleVideoBtn.addEventListener('click', () => {
   if (videoContainer.style.display === 'block') {
-    // Fecha o vídeo e mostra o conteúdo
     videoContainer.style.display = 'none';
     sobreContent.querySelectorAll('p, h2, div').forEach(el => {
       if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
@@ -1403,7 +1403,6 @@ toggleVideoBtn.addEventListener('click', () => {
     });
     toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
   } else {
-    // Mostra o vídeo e oculta o conteúdo
     videoContainer.style.display = 'block';
     sobreContent.querySelectorAll('p, h2, div').forEach(el => {
       if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
@@ -1469,27 +1468,27 @@ function toggleClassificados() {
   const sub = document.getElementById("classificados-sub");
   sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
 }
-  
-  let dadosJogadores = {}; // será preenchido com os dados da planilha
 
-// Função para carregar a planilha hospedada no site
+// ============================
+// ===== SISTEMA DE INSCRIÇÃO
+// ============================
+
+let dadosJogadores = {}; // será preenchido com os dados da planilha
+
 async function carregarPlanilha() {
   try {
-    const response = await fetch("dados/atletas.xls"); // caminho da planilha no servidor
+    const response = await fetch("atletas.xls"); // o arquivo está no mesmo diretório
     const arrayBuffer = await response.arrayBuffer();
     const workbook = XLSX.read(arrayBuffer, { type: "array" });
     const primeiraAba = workbook.SheetNames[0];
     const planilha = workbook.Sheets[primeiraAba];
-    const dados = XLSX.utils.sheet_to_json(planilha, { header: 1 }); // converte pra array
+    const dados = XLSX.utils.sheet_to_json(planilha, { header: 1 });
 
-    // Espera-se que a primeira linha tenha ["ID", "Nome"]
     for (let i = 1; i < dados.length; i++) {
       const linha = dados[i];
       const id = String(linha[0]).trim().toUpperCase();
       const nome = linha[1] ? String(linha[1]).trim() : "";
-      if (id && nome) {
-        dadosJogadores[id] = nome;
-      }
+      if (id && nome) dadosJogadores[id] = nome;
     }
 
     console.log("Planilha carregada com sucesso:", Object.keys(dadosJogadores).length, "jogadores");
@@ -1499,10 +1498,8 @@ async function carregarPlanilha() {
   }
 }
 
-// Chama a função assim que o site carregar
 window.addEventListener("DOMContentLoaded", carregarPlanilha);
 
-// Busca o jogador pelo ID
 function buscarJogador() {
   const id = document.getElementById("idLBX").value.trim().toUpperCase();
   const nomeCampo = document.getElementById("nome");
@@ -1521,7 +1518,6 @@ function buscarJogador() {
   }
 }
 
-// Gera o QR Pix (mantido igual)
 function gerarPix() {
   const qrArea = document.getElementById("qr-area");
   const confirmacao = document.getElementById("confirmacao");
@@ -1536,27 +1532,8 @@ function gerarPix() {
     confirmacao.textContent = "Inscrição confirmada com sucesso!";
   }, 2000);
 }
-  
 </script>
+
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
