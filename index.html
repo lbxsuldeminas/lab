@@ -1475,7 +1475,7 @@ function toggleClassificados() {
 // Função para carregar a planilha hospedada no site
 async function carregarPlanilha() {
   try {
-    const response = await fetch("dados/atletas.xlsx"); // caminho da planilha no servidor
+    const response = await fetch("dados/atletas.xls"); // caminho da planilha no servidor
     const arrayBuffer = await response.arrayBuffer();
     const workbook = XLSX.read(arrayBuffer, { type: "array" });
     const primeiraAba = workbook.SheetNames[0];
@@ -1542,6 +1542,7 @@ function gerarPix() {
 
 </body>
 </html>
+
 
 
 
