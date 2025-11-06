@@ -757,6 +757,31 @@ header img {
   </div>
 </div>
 
+    <!-- ==================== Inscrição LBX ==================== -->
+<div class="card" id="inscricao-lbx">
+  <h2 style="color: var(--primary-color); margin-bottom: 15px;">
+    <i class="fa-solid fa-user-pen" style="margin-right:8px; color:var(--accent-color);"></i>
+    Inscrição Online - LBX Sul de Minas
+  </h2>
+
+  <label for="idLBX" style="font-weight:bold;">ID LBX:</label>
+  <input type="text" id="idLBX" placeholder="Digite seu ID LBX" style="width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid #ccc;">
+
+  <label for="nome" style="font-weight:bold; margin-top:12px; display:block;">Nome Completo:</label>
+  <input type="text" id="nome" placeholder="Seu nome" readonly style="width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid #ccc; background:#f2f2f2;">
+
+  <button class="inscreva-btn" style="margin-top:18px;" onclick="buscarJogador()">Buscar Jogador</button>
+
+  <div id="pix-area" style="margin-top:22px; display:none; text-align:center;">
+    <p><strong>Valor da inscrição:</strong> R$ 30,00</p>
+    <button class="inscreva-btn" onclick="gerarPix()">Gerar QR Pix</button>
+    <div id="qr-area" style="margin-top:14px;"></div>
+    <p id="confirmacao" style="color:green; font-weight:bold; margin-top:12px; display:none;">
+      Inscrição confirmada com sucesso!
+    </p>
+  </div>
+</div>
+
     <!-- Calendário de Próximos Torneios -->
     <div class="card" id="calendario">
      <h2>
@@ -1443,12 +1468,53 @@ function toggleClassificados() {
   const sub = document.getElementById("classificados-sub");
   sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
 }
+  
+  // Simulação de base de dados
+  const jogadores = {
+    "LBX001": "Carlos Pereira",
+    "LBX002": "Mariana Silva",
+    "LBX003": "João Souza",
+    "LBX004": "André Meirelles"
+  };
 
+  function buscarJogador() {
+    const id = document.getElementById("idLBX").value.trim().toUpperCase();
+    const nomeCampo = document.getElementById("nome");
+    const pixArea = document.getElementById("pix-area");
+    const confirmacao = document.getElementById("confirmacao");
+
+    confirmacao.style.display = "none";
+
+    if (jogadores[id]) {
+      nomeCampo.value = jogadores[id];
+      pixArea.style.display = "block";
+    } else {
+      nomeCampo.value = "";
+      pixArea.style.display = "none";
+      alert("ID LBX não encontrado. Verifique e tente novamente.");
+    }
+  }
+
+  function gerarPix() {
+    const qrArea = document.getElementById("qr-area");
+    const confirmacao = document.getElementById("confirmacao");
+
+    qrArea.innerHTML = `
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=PIX-LBX-DEMO-R$30&size=180x180" alt="QR Pix" style="border-radius:10px;">
+      <p style="margin-top:8px;">Escaneie o QR Code para efetuar o pagamento.</p>
+    `;
+
+    setTimeout(() => {
+      confirmacao.style.display = "block";
+      confirmacao.textContent = "Inscrição confirmada com sucesso!";
+    }, 2000);
+  }
   
 </script>
 
 </body>
 </html>
+
 
 
 
