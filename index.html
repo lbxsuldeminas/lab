@@ -17,7 +17,7 @@
   --primary-color: #000000;
   --accent-color: #3399ff; /* azul mais vibrante para contraste */
   --light-bg: #f4f4f4;     /* não usado mais */
-  --card-bg: #ffffff;       /* não usado mais */
+  --card-bg: #ffffff;       
 }
 
 /* ==================== Reset e estilos globais ==================== */
@@ -614,7 +614,6 @@ header img {
   background-color: rgba(180, 180, 180, 0.4);
 }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
      </style>
 </head>
@@ -660,11 +659,11 @@ header img {
     <div id="sobreInfo">
       <p style="color: var(--primary-color); margin-bottom:5px;">
         A LBX – Liga Brasileira de Xadrez tem sede em Salvador-BA e, nos últimos anos, vem levando sua paixão pelo xadrez a todo o Brasil. 
-        Em Minas Gerais, estamos presentes no Triângulo Mineiro e no Sul de Minas, promovendo torneios que reúnem jogadores de todas as idades.
+        Em Minas Gerais, estamos presentes no Sul de Minas, Campo das Vertentes e Zona da Mata, promovendo torneios que reúnem jogadores de todas as idades.
       </p>
 
       <p style="color: var(--primary-color); margin-bottom:5px;"> 
-        A COPA LBX SUL DE MINAS traz categorias para todos os públicos: Sub 07, Sub 09, Sub 11, Sub 14, Sub 17, Sub 20, Adulto, Veteranos, Pais e S2000.
+        A COPA LBX SUL DE MINAS traz categorias para todos os públicos: Sub 07, Sub 09, Sub 11, Sub 14, Sub 17, Sub 20, Adulto, Veteranos e Pais.
       </p>
     </div>
 
@@ -677,7 +676,7 @@ header img {
 
     <!-- Container do vídeo (inicialmente escondido) -->
     <div id="videoSobre" style="display:none; margin-top:20px; text-align:center;">
-      <h3 style="color: var(--primary-color); margin-bottom:10px;">Exemplo de uma etapa realizada em 2023.</h3>
+      <h3 style="color: var(--primary-color); margin-bottom:10px;">Exemplo de uma etapa realizada em 2023</h3>
       <iframe width="100%" style="max-width:600px; height:340px; border-radius:10px;" 
               src="https://www.youtube.com/embed/y9cpVJwlwg8" 
               title="YouTube video player" 
@@ -695,7 +694,7 @@ header img {
     <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px;">
       <h2 style="color: var(--primary-color); margin:0; font-size:1.67rem;">
         <i class="fa-solid fa-chess-king" style="font-size:1.5rem;"></i>
-        Final: Conceição do Rio Verde - MG
+        Copa Andrelândia de Xadrez - MG
       </h2>
       <div style="display:flex; align-items:center; gap:10px;">
         <p style="color:red; font-weight:bold; margin:0;">INSCRIÇÕES ABERTAS!</p>
@@ -706,7 +705,7 @@ header img {
     </div>
 
     <p style="margin:10px 0; color: var(--primary-color); font-weight:600;">
-      <strong>Data:</strong> 29 de Novembro de 2025
+      <strong>Data:</strong> 07 de Março de 2026
     </p>
 
     <p style="color: var(--primary-color); margin-bottom:20px;">
@@ -715,21 +714,11 @@ header img {
 
     <div style="display:flex; flex-wrap: wrap; align-items:center; gap:12px;">
       <div style="display:flex; flex-wrap:wrap; gap:12px;">
-        <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/nAkzep5Z4mMH7Seo8')">Ver no Google Maps</button>
-        
-        <!-- Botão principal -->
-        <div style="position: relative;">
-          <button class="map-btn" onclick="toggleClassificados()">Classificados</button>
-          <!-- Botões ocultos -->
-          <div id="classificados-sub" style="display:none; flex-direction: column; gap:8px; position:absolute; top:45px; left:0;">
-            <button class="map-btn" onclick="window.open('https://s3.chess-results.com/tnr1239336.aspx?lan=10')">Masculino</button>
-            <button class="map-btn" onclick="window.open('https://s3.chess-results.com/tnr1131307.aspx?lan=10')">Feminino</button>
-          </div>
-        </div>
-        
-        <button class="map-btn" onclick="window.open('https://s2.chess-results.com/Tnr1287417.aspx?lan=10&SNode=S0')">Inscritos</button>
-        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/Premiação Final Copa LBX Sul de Minas - 2025.pdf', '_blank')">Premiação da Final</button>
-        <button class="map-btn" onclick="window.open('https://github.com/lbxsuldeminas/mg/raw/main/Programação Final Copa LBX Sul de Minas2025.pdf', '_blank')">Programação da Final</button>
+        <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/964Fmzx7FBwab39g8')">Ver no Google Maps</button>     
+        <button class="map-btn" onclick="window.open('https://s2.chess-results.com/tnr1352749.aspx?lan=10&turdet=YES&SNode=S0')">Inscritos</button>   
+     <!--      <button class="map-btn" onclick="window.open('https://s2.chess-results.com/tnr1337961.aspx?lan=10&SNode=S0')">Blocos</button> -->
+        <button class="map-btn" onclick="window.open('premiacao.html', '_blank')">Premiação</button> 
+        <button class="map-btn" onclick="window.open('programacao.html', '_blank')">Programação</button>
       </div>
     </div>
 
@@ -758,44 +747,32 @@ header img {
   </div>
 </div>
 
-    <!-- ==================== Inscrição LBX ==================== -->
-<div class="card" id="inscricao-lbx">
-  <h2 style="color: var(--primary-color); margin-bottom: 15px;">
-    <i class="fa-solid fa-user-pen" style="margin-right:8px; color:var(--accent-color);"></i>
-    Inscrição Online - LBX Sul de Minas
+    <!-- Calendário de Próximos Torneios -->
+<div class="card" id="calendario">
+  <h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.5rem; display:flex; align-items:center; gap:8px;">
+    <i class="fas fa-calendar-alt" style="font-size:1.57rem;"></i>
+    Calendário dos Próximos Torneios
   </h2>
 
-  <label for="idLBX" style="font-weight:bold;">ID LBX:</label>
-  <input type="text" id="idLBX" placeholder="Digite seu ID LBX" style="width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid #ccc;">
+  <div class="calendar">
+    <div class="calendar-item">
+      <h3>Andrelândia - MG</h3>
+      <p>Data: 07/03/2026</p>
+      <button onclick="window.open('https://maps.app.goo.gl/964Fmzx7FBwab39g8')">
+        Local no mapa
+      </button>
+    </div>
 
-  <label for="nome" style="font-weight:bold; margin-top:12px; display:block;">Nome Completo:</label>
-  <input type="text" id="nome" placeholder="Seu nome" readonly style="width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid #ccc; background:#f2f2f2;">
-
-  <button class="inscreva-btn" style="margin-top:18px;" onclick="buscarJogador()">Buscar Jogador</button>
-
-  <div id="pix-area" style="margin-top:22px; display:none; text-align:center;">
-    <p><strong>Valor da inscrição:</strong> R$ 30,00</p>
-    <button class="inscreva-btn" onclick="gerarPix()">Gerar QR Pix</button>
-    <div id="qr-area" style="margin-top:14px;"></div>
-    <p id="confirmacao" style="color:green; font-weight:bold; margin-top:12px; display:none;">
-      Inscrição confirmada com sucesso!
-    </p>
+    <div class="calendar-item">
+      <h3>Pouso Alegre - MG</h3>
+      <p>Data: 21/03/2026</p>
+      <button onclick="window.open('https://maps.app.goo.gl/aBaACeY54QZ5Yiqb7')">
+        Local no mapa
+      </button>
+    </div>
   </div>
 </div>
 
-    <!-- Calendário de Próximos Torneios -->
-    <div class="card" id="calendario">
-     <h2>
-  <i class="fas fa-calendar-alt" style="font-size:1.57rem;"></i> 
-  Calendário dos Próximos Torneios
-</h2>
-        <div class="calendar-item">
-          <h3>Final: Conceição do Rio Verde - MG</h3>
-          <p>Data: 29/11/2025</p>
-          <button onclick="window.open('https://maps.app.goo.gl/UEWuu5ffJ9AgEeHV7')">Local no mapa</button>
-        </div>
-      </div>
-    </div>
 
 <!-- Galeria de Fotos -->
 <div class="card" id="galeria">
@@ -877,8 +854,15 @@ header img {
         <a href="https://drive.google.com/drive/folders/18rVi-mC3SOwQS5YOgIlwuoWp9EXmXDvA?usp=sharing">Ver fotos</a>
       </div>
     </div>
-    
 
+     <div class="result-item" data-year="2025">
+      <i class="fas fa-image"></i>
+      <div>
+        <strong>Três Corações - 2025</strong><br />
+        <a href="https://drive.google.com/drive/folders/1pKpZUFraQL_9q-ND981W4DKD9qccoW0Z?usp=sharing">Ver fotos</a>
+      </div>
+    </div>
+    
     <div class="result-item" data-year="2024">
       <i class="fas fa-image"></i>
       <div>
@@ -912,28 +896,28 @@ header img {
     <tbody>
       <tr class="ouro">  
         <td>1º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=312066" target="_blank">Júlio Reinaldo dos Santos</a> <span class="evolucao up">▲</span></td>
-        <td>2368</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Cristian da Silva Romão</a> <span class="evolucao up">▲</span></td>
+        <td>2356</td>
       </tr>
       <tr class="prata">
         <td>2º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=311883" target="_blank">Nataniel Júlio Pereira Mota</a> <span class="evolucao up">▲</span></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311883" target="_blank">Nataniel Júlio Pereira Mota</a> <span class="evolucao same">–</span></td>
         <td>2349</td>
       </tr>
       <tr class="bronze">
         <td>3º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Cristian da Silva Romão</a> <span class="evolucao down">▼</span></td>
-        <td>2344</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Júlio Reinaldo dos Santos </a> <span class="evolucao down">▼</span></td>
+        <td>2338</td>
       </tr>
       <tr class="quarto">
         <td>4º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=314300" target="_blank">Simão Posciônio Dias</a> <span class="evolucao up">▲</span></td>
-        <td>2309</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311996" target="_blank">Bruce Vicente Ramos</a> <span class="evolucao up">▲</span></td>
+        <td>2334</td>
       </tr>
       <tr class="quinto">
         <td>5º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=351759" target="_blank">Joaquim de Deus Filho</a> <span class="evolucao down">▼</span></td>
-        <td>2306</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=314300" target="_blank">Simão Poscidonio Dias</a> <span class="evolucao down">▼</span></td>
+        <td>2323</td>
       </tr>
     </tbody>
   </table>
@@ -954,27 +938,27 @@ header img {
       <tr class="ouro">
         <td>1º</td>
         <td><a href="https://lbx.org.br/atleta/?ID=312574" target="_blank">Yasmin Oliveira Carvalho</a> <span class="evolucao same">–</span></td>
-        <td>2325</td>
+        <td>2360</td>
       </tr>
       <tr class="prata">
         <td>2º</td>
         <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank">Maria Luz Gonçalves Vicencio</a> <span class="evolucao same">–</span></td>
-        <td>2292</td>
+        <td>2312</td>
       </tr>
       <tr class="bronze">
         <td>3º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao same">–</span></td>
-        <td>2284</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=602669" target="_blank">Cecilia Sanches S. Gomes de Macedo</a> <span class="evolucao up">▲</span></td>
+        <td>2245</td>  
       </tr>
       <tr class="quarto">
         <td>4º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank">Vitoria Aparecida Barros de Oliveira</a> <span class="evolucao same">–</span></td>
-        <td>2233</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank">Vitória Aparecida Barros de Oliveira</a> <span class="evolucao same">–</span></td>
+        <td>2237</td>
       </tr>
       <tr class="quinto">
         <td>5º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=602669" target="_blank">Cecilia Sanches S. Gomes de Macedo</a> <span class="evolucao up">▲</span></td>
-        <td>2229</td>
+        <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao down">▼</span></td>
+        <td>2213</td>
       </tr>
     </tbody>
   </table>
@@ -1079,6 +1063,14 @@ header img {
     <strong>9ª Etapa:</strong> Três Corações - 2025
     <br />
     <a href="https://s2.chess-results.com/tnr1284670.aspx?lan=10&SNode=S0">Ver resultados</a>
+  </div>
+</div>
+    <div class="result-item" data-year="2025">
+  <i class="fas fa-chess-king"></i>
+  <div>
+    <strong>Final:</strong> Conceição do Rio Verde - 2025
+    <br />
+    <a href="https://s3.chess-results.com/tnr1304190.aspx?lan=10">Ver resultados</a>
   </div>
 </div>
  <!-- Resultados 2024 -->
@@ -1240,7 +1232,7 @@ header img {
       <div>
         <strong>Torneio Ao vivo (Disponível somente no dia do torneio)</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/rYfGNI/final-da-copa-lbx-sul-de-minas-2025">Assistir</a>
+        <a href="https://lichess.org/broadcast/abertura-lbx-sul-de-minas/Cs3rzhHz">Assistir</a>
       </div>
     </div>
 
@@ -1300,6 +1292,16 @@ header img {
       </div>
     </div>
 
+    <div class="result-item">
+      <i class="fas fa-tv"></i>
+      <div>
+        <strong>Partidas transmitidas em Conceição do Rio Verde</strong>
+        <br />
+        <a href="https://media.idchess.com/en/tournaments/WjfGNI/final-da-copa-lbx-sul-de-minas-2025" target="_blank">Assistir</a>
+      </div>
+    </div>
+
+
   </div>
 </div>
 
@@ -1342,11 +1344,10 @@ header img {
   </footer>
 
 <!-- ==================== Scripts ==================== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 // ===== Contagem regressiva =====
 const countdownElement = document.getElementById('countdown');
-const nextTournamentDate = new Date('2025-11-29T00:00:00');
+const nextTournamentDate = new Date('2026-03-07T00:00:00');
 
 function updateCountdown() {
   const now = new Date();
@@ -1395,6 +1396,7 @@ const sobreContent = document.getElementById('SobreConteudo');
 
 toggleVideoBtn.addEventListener('click', () => {
   if (videoContainer.style.display === 'block') {
+    // Fecha o vídeo e mostra o conteúdo
     videoContainer.style.display = 'none';
     sobreContent.querySelectorAll('p, h2, div').forEach(el => {
       if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
@@ -1403,6 +1405,7 @@ toggleVideoBtn.addEventListener('click', () => {
     });
     toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
   } else {
+    // Mostra o vídeo e oculta o conteúdo
     videoContainer.style.display = 'block';
     sobreContent.querySelectorAll('p, h2, div').forEach(el => {
       if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
@@ -1469,71 +1472,9 @@ function toggleClassificados() {
   sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
 }
 
-// ============================
-// ===== SISTEMA DE INSCRIÇÃO
-// ============================
-
-let dadosJogadores = {}; // será preenchido com os dados da planilha
-
-async function carregarPlanilha() {
-  try {
-    const response = await fetch("atletas.xls"); // o arquivo está no mesmo diretório
-    const arrayBuffer = await response.arrayBuffer();
-    const workbook = XLSX.read(arrayBuffer, { type: "array" });
-    const primeiraAba = workbook.SheetNames[0];
-    const planilha = workbook.Sheets[primeiraAba];
-    const dados = XLSX.utils.sheet_to_json(planilha, { header: 1 });
-
-    for (let i = 1; i < dados.length; i++) {
-      const linha = dados[i];
-      const id = String(linha[0]).trim().toUpperCase();
-      const nome = linha[1] ? String(linha[1]).trim() : "";
-      if (id && nome) dadosJogadores[id] = nome;
-    }
-
-    console.log("Planilha carregada com sucesso:", Object.keys(dadosJogadores).length, "jogadores");
-  } catch (erro) {
-    console.error("Erro ao carregar planilha:", erro);
-    alert("Não foi possível carregar os dados da planilha.");
-  }
-}
-
-window.addEventListener("DOMContentLoaded", carregarPlanilha);
-
-function buscarJogador() {
-  const id = document.getElementById("idLBX").value.trim().toUpperCase();
-  const nomeCampo = document.getElementById("nome");
-  const pixArea = document.getElementById("pix-area");
-  const confirmacao = document.getElementById("confirmacao");
-
-  confirmacao.style.display = "none";
-
-  if (dadosJogadores[id]) {
-    nomeCampo.value = dadosJogadores[id];
-    pixArea.style.display = "block";
-  } else {
-    nomeCampo.value = "";
-    pixArea.style.display = "none";
-    alert("ID LBX não encontrado. Verifique e tente novamente.");
-  }
-}
-
-function gerarPix() {
-  const qrArea = document.getElementById("qr-area");
-  const confirmacao = document.getElementById("confirmacao");
-
-  qrArea.innerHTML = `
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=PIX-LBX-DEMO-R$30&size=180x180" alt="QR Pix" style="border-radius:10px;">
-    <p style="margin-top:8px;">Escaneie o QR Code para efetuar o pagamento.</p>
-  `;
-
-  setTimeout(() => {
-    confirmacao.style.display = "block";
-    confirmacao.textContent = "Inscrição confirmada com sucesso!";
-  }, 2000);
-}
+  
 </script>
-
 
 </body>
 </html>
+
