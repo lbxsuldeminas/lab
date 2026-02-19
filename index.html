@@ -1679,5 +1679,24 @@ if (yearTransmissoesFilter) {
   }
 });
 
+  document.getElementById("toggleBanner2").addEventListener("click", function () {
+  const conteudo = document.getElementById("proximoTorneioConteudo2");
+  const banner = document.getElementById("bannerTorneio2");
+  const icon = this.querySelector("i");
+
+  if (banner.style.display === "none" || banner.style.display === "") {
+    banner.style.display = "block";
+    conteudo.style.display = "none";
+    icon.classList.remove("fa-chevron-right");
+    icon.classList.add("fa-chevron-down");
+  } else {
+    banner.style.display = "none";
+    conteudo.style.display = "block";
+    icon.classList.remove("fa-chevron-down");
+    icon.classList.add("fa-chevron-right");
+  }
+});
+
 </script>
+
 
