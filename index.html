@@ -1499,10 +1499,35 @@ header img {
     </p>
   </footer>
 
+  <!-- ==================== Scripts ==================== -->
+
 <script>
-// ===== Contagem regressiva =====
+// ===== Contagem regressiva Torneio 1 =====
 const countdownElement = document.getElementById('countdown');
 const nextTournamentDate = new Date('2026-03-07T00:00:00');
+
+function updateCountdown() {
+  if (!countdownElement) return;
+
+  const now = new Date();
+  const diff = nextTournamentDate - now;
+
+  if (diff <= 0) {
+    countdownElement.innerHTML = '<i class="fas fa-clock" style="margin-right:5px;"></i> O torneio já começou!';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdownElement.innerHTML = `<i class="fas fa-clock" style="margin-right:5px;"></i> Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
 // ===== Contagem regressiva Torneio 2 =====
 const countdownElement2 = document.getElementById('countdown2');
 const nextTournamentDate2 = new Date('2026-03-21T00:00:00');
@@ -1514,7 +1539,7 @@ function updateCountdown2() {
   const diff = nextTournamentDate2 - now;
 
   if (diff <= 0) {
-    countdownElement2.textContent = 'O torneio já começou!';
+    countdownElement2.innerHTML = '<i class="fas fa-clock" style="margin-right:5px;"></i> O torneio já começou!';
     return;
   }
 
@@ -1523,36 +1548,13 @@ function updateCountdown2() {
   const minutes = Math.floor((diff / (1000 * 60)) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
 
-  countdownElement2.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  countdownElement2.innerHTML = `<i class="fas fa-clock" style="margin-right:5px;"></i> Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
 setInterval(updateCountdown2, 1000);
 updateCountdown2();
 
-function updateCountdown() {
-  if (!countdownElement) return;
-
-  const now = new Date();
-  const diff = nextTournamentDate - now;
-
-  if (diff <= 0) {
-    countdownElement.textContent = 'O torneio já começou!';
-    clearInterval(interval);
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  countdownElement.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-const interval = setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// ===== Função genérica para toggle de torneio =====
+// ===== Função genérica para toggle de torneio (robusta) =====
 function configurarToggle(toggleId, bannerId, conteudoId) {
   const toggleBtn = document.getElementById(toggleId);
   const banner = document.getElementById(bannerId);
@@ -1562,7 +1564,7 @@ function configurarToggle(toggleId, bannerId, conteudoId) {
 
   toggleBtn.addEventListener("click", function () {
     const icon = this.querySelector("i");
-    const bannerVisivel = banner.style.display === "block";
+    const bannerVisivel = window.getComputedStyle(banner).display !== "none";
 
     if (bannerVisivel) {
       banner.style.display = "none";
@@ -1578,10 +1580,8 @@ function configurarToggle(toggleId, bannerId, conteudoId) {
   });
 }
 
-// Torneio 1
+// Torneios
 configurarToggle("toggleBanner", "bannerTorneio", "proximoTorneioConteudo");
-
-// Torneio 2
 configurarToggle("toggleBanner2", "bannerTorneio2", "proximoTorneioConteudo2");
 
 // ===== Toggle do vídeo Seção Sobre =====
@@ -1591,7 +1591,7 @@ const sobreContent = document.getElementById('SobreConteudo');
 
 if (toggleVideoBtn && videoContainer && sobreContent) {
   toggleVideoBtn.addEventListener('click', () => {
-    const aberto = videoContainer.style.display === 'block';
+    const aberto = window.getComputedStyle(videoContainer).display === 'block';
 
     videoContainer.style.display = aberto ? 'none' : 'block';
 
@@ -1622,38 +1622,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ===== Filtro de ano da galeria =====
+// ===== Filtros =====
 const yearFilter = document.getElementById('yearFilter');
 const galleryItems = document.querySelectorAll('#galeria .result-item');
 
-function filterGallery() {
-  if (!yearFilter) return;
-  const selectedYear = yearFilter.value;
-  galleryItems.forEach(item => {
-    item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
+if (yearFilter) {
+  yearFilter.addEventListener('change', () => {
+    const selectedYear = yearFilter.value;
+    galleryItems.forEach(item => {
+      item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
+    });
   });
 }
 
-if (yearFilter) {
-  yearFilter.addEventListener('change', filterGallery);
-  filterGallery();
-}
-
-// ===== Filtro de ano dos resultados =====
 const yearResultsFilter = document.getElementById('yearResultsFilter');
 const resultsItems = document.querySelectorAll('#resultados .result-item');
 
-function filterResults() {
-  if (!yearResultsFilter) return;
-  const selectedYear = yearResultsFilter.value;
-  resultsItems.forEach(item => {
-    item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
+if (yearResultsFilter) {
+  yearResultsFilter.addEventListener('change', () => {
+    const selectedYear = yearResultsFilter.value;
+    resultsItems.forEach(item => {
+      item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
+    });
   });
 }
 
-if (yearResultsFilter) {
-  yearResultsFilter.addEventListener('change', filterResults);
-  filterResults();
+const yearTransmissoesFilter = document.getElementById('yearTransmissoesFilter');
+const transmissoesItems = document.querySelectorAll('#partidas-transmitidas .result-item');
+
+if (yearTransmissoesFilter) {
+  yearTransmissoesFilter.addEventListener('change', () => {
+    const selectedYear = yearTransmissoesFilter.value;
+    transmissoesItems.forEach(item => {
+      item.style.display = item.classList.contains('ano-' + selectedYear) ? 'flex' : 'none';
+    });
+  });
 }
 
 // ===== Menu hamburguer =====
@@ -1671,25 +1674,8 @@ function toggleClassificados() {
   if (!sub) return;
   sub.style.display = (sub.style.display === "none" || sub.style.display === "") ? "flex" : "none";
 }
-
-// ===== Filtro de ano - Partidas Transmitidas =====
-const yearTransmissoesFilter = document.getElementById('yearTransmissoesFilter');
-const transmissoesItems = document.querySelectorAll('#partidas-transmitidas .result-item');
-
-function filterTransmissoes() {
-  if (!yearTransmissoesFilter) return;
-  const selectedYear = yearTransmissoesFilter.value;
-
-  transmissoesItems.forEach(item => {
-    item.style.display = item.classList.contains('ano-' + selectedYear) ? 'flex' : 'none';
-  });
-}
-
-if (yearTransmissoesFilter) {
-  yearTransmissoesFilter.addEventListener('change', filterTransmissoes);
-  filterTransmissoes();
-}
 </script>
+
 
 
 
