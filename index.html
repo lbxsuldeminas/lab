@@ -1318,18 +1318,17 @@ header img {
 <!-- Partidas Transmitidas -->
 <div class="card" id="partidas-transmitidas">
   <div class="results-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:15px;">
-  <h3 style="margin:0;">
-    <i class="fas fa-video"></i> Partidas Transmitidas
-  </h3>
+    <h3 style="margin:0;">
+      <i class="fas fa-video"></i> Partidas Transmitidas
+    </h3>
 
-  <div class="menu-anos">
-    <button onclick="filtrarAno('2025')" class="ativo">2025</button>
-    <button onclick="filtrarAno('2026')">2026</button>
+    <div class="menu-anos">
+      <button onclick="filtrarAno(this, '2025')" class="ativo">2025</button>
+      <button onclick="filtrarAno(this, '2026')">2026</button>
+    </div>
   </div>
-</div>
 
   <div class="results-list">
-
     <div class="result-item ano-2026">
       <i class="fas fa-tv"></i>
       <div>
@@ -1348,7 +1347,7 @@ header img {
       </div>
     </div>
 
-   <div class="result-item ano-2025">
+    <div class="result-item ano-2025">
       <i class="fas fa-tv"></i>
       <div>
         <strong>Partidas transmitidas em São Vicente de Minas</strong>
@@ -1367,24 +1366,24 @@ header img {
     </div>
 
     <div class="result-item ano-2025">
-  <i class="fas fa-tv"></i>
-  <div>
-    <strong>Partidas transmitidas em Pouso Alegre</strong>
-    <br />
-    <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025" target="_blank" class="assistir-btn">Assistir (Masculino) </a>
-    <a href="https://lichess.org/study/21xYjmQZ/YWQKJtxQ" target="_blank" class="assistir-btn"> - Assistir (Feminino) </a>
-  </div>
-</div>
+      <i class="fas fa-tv"></i>
+      <div>
+        <strong>Partidas transmitidas em Pouso Alegre</strong>
+        <br />
+        <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025" target="_blank" class="assistir-btn">Assistir (Masculino)</a>
+        <a href="https://lichess.org/study/21xYjmQZ/YWQKJtxQ" target="_blank" class="assistir-btn"> - Assistir (Feminino)</a>
+      </div>
+    </div>
 
-   <div class="result-item ano-2025">
-  <i class="fas fa-tv"></i>
-  <div>
-    <strong>Partidas transmitidas em Santana da Vargem</strong>
-    <br />
-    <a href="https://media.idchess.com/en/tournaments/M9fJFI/2--torneio-de-santana-da-vargem-mg-lbx-2025" target="_blank" class="assistir-btn">Assistir (Abs A) </a>
-    <a href="https://lichess.org/study/0KFtuzWa" target="_blank" class="assistir-btn"> - Assistir (Abs B) </a>
-  </div>
-</div>
+    <div class="result-item ano-2025">
+      <i class="fas fa-tv"></i>
+      <div>
+        <strong>Partidas transmitidas em Santana da Vargem</strong>
+        <br />
+        <a href="https://media.idchess.com/en/tournaments/M9fJFI/2--torneio-de-santana-da-vargem-mg-lbx-2025" target="_blank" class="assistir-btn">Assistir (Abs A)</a>
+        <a href="https://lichess.org/study/0KFtuzWa" target="_blank" class="assistir-btn"> - Assistir (Abs B)</a>
+      </div>
+    </div>
 
     <div class="result-item ano-2025">
       <i class="fas fa-tv"></i>
@@ -1395,7 +1394,7 @@ header img {
       </div>
     </div>
 
-   <div class="result-item ano-2025">
+    <div class="result-item ano-2025">
       <i class="fas fa-tv"></i>
       <div>
         <strong>Partidas transmitidas em Conceição do Rio Verde</strong>
@@ -1403,10 +1402,9 @@ header img {
         <a href="https://media.idchess.com/en/tournaments/WjfGNI/final-da-copa-lbx-sul-de-minas-2025" target="_blank">Assistir</a>
       </div>
     </div>
-
-
   </div>
 </div>
+
 
 
     <!-- Contatos -->
@@ -1478,46 +1476,48 @@ const toggleBtn = document.getElementById('toggleBanner');
 const banner = document.getElementById('bannerTorneio');
 const conteudo = document.getElementById('proximoTorneioConteudo');
 
-toggleBtn.addEventListener('click', () => {
-  if (banner.classList.contains('show')) {
-    banner.classList.remove('show');
-    setTimeout(() => banner.style.display = 'none', 500);
-    conteudo.style.display = 'block';
-    toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-  } else {
-    banner.style.display = 'block';
-    setTimeout(() => banner.classList.add('show'), 10);
-    conteudo.style.display = 'none';
-    toggleBtn.innerHTML = '<i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>';
-  }
-});
+if (toggleBtn && banner && conteudo) {
+  toggleBtn.addEventListener('click', () => {
+    if (banner.classList.contains('show')) {
+      banner.classList.remove('show');
+      setTimeout(() => banner.style.display = 'none', 500);
+      conteudo.style.display = 'block';
+      toggleBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    } else {
+      banner.style.display = 'block';
+      setTimeout(() => banner.classList.add('show'), 10);
+      conteudo.style.display = 'none';
+      toggleBtn.innerHTML = '<i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>';
+    }
+  });
+}
 
 // ===== Toggle do vídeo Seção Sobre =====
 const toggleVideoBtn = document.getElementById('toggleVideo');
 const videoContainer = document.getElementById('videoSobre');
 const sobreContent = document.getElementById('SobreConteudo');
 
-toggleVideoBtn.addEventListener('click', () => {
-  if (videoContainer.style.display === 'block') {
-    // Fecha o vídeo e mostra o conteúdo
-    videoContainer.style.display = 'none';
-    sobreContent.querySelectorAll('p, h2, div').forEach(el => {
-      if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
-        el.style.display = 'block';
-      }
-    });
-    toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-  } else {
-    // Mostra o vídeo e oculta o conteúdo
-    videoContainer.style.display = 'block';
-    sobreContent.querySelectorAll('p, h2, div').forEach(el => {
-      if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
-        el.style.display = 'none';
-      }
-    });
-    toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>';
-  }
-});
+if (toggleVideoBtn && videoContainer && sobreContent) {
+  toggleVideoBtn.addEventListener('click', () => {
+    if (videoContainer.style.display === 'block') {
+      videoContainer.style.display = 'none';
+      sobreContent.querySelectorAll('p, h2, div').forEach(el => {
+        if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
+          el.style.display = 'block';
+        }
+      });
+      toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    } else {
+      videoContainer.style.display = 'block';
+      sobreContent.querySelectorAll('p, h2, div').forEach(el => {
+        if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
+          el.style.display = 'none';
+        }
+      });
+      toggleVideoBtn.innerHTML = '<i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>';
+    }
+  });
+}
 
 // ===== Rolagem suave =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1525,7 +1525,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     e.preventDefault();
     const targetId = this.getAttribute('href').substring(1);
     const targetElement = document.getElementById(targetId);
-    if(targetElement){
+    if (targetElement) {
       window.scrollTo({
         top: targetElement.offsetTop - 300,
         behavior: 'smooth'
@@ -1539,50 +1539,58 @@ const yearFilter = document.getElementById('yearFilter');
 const galleryItems = document.querySelectorAll('#galeria .result-item');
 
 function filterGallery() {
+  if (!yearFilter) return;
   const selectedYear = yearFilter.value;
   galleryItems.forEach(item => {
     item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
   });
 }
 
-yearFilter.addEventListener('change', filterGallery);
-filterGallery();
+if (yearFilter) {
+  yearFilter.addEventListener('change', filterGallery);
+  filterGallery();
+}
 
 // ===== Filtro de ano dos resultados =====
 const yearResultsFilter = document.getElementById('yearResultsFilter');
 const resultsItems = document.querySelectorAll('#resultados .result-item');
 
 function filterResults() {
+  if (!yearResultsFilter) return;
   const selectedYear = yearResultsFilter.value;
   resultsItems.forEach(item => {
     item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
   });
 }
 
-yearResultsFilter.addEventListener('change', filterResults);
-filterResults();
+if (yearResultsFilter) {
+  yearResultsFilter.addEventListener('change', filterResults);
+  filterResults();
+}
 
 // ===== Menu hamburguer =====
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('header nav');
 
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('show');
-});
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+}
 
 function toggleClassificados() {
   const sub = document.getElementById("classificados-sub");
-  sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
+  if (!sub) return;
+  sub.style.display = (sub.style.display === "none" || sub.style.display === "") ? "flex" : "none";
 }
 
-
-  <script>
-function filtrarAno(ano) {
+// ===== Menu por ano - Partidas Transmitidas =====
+function filtrarAno(botao, ano) {
   const itens = document.querySelectorAll("#partidas-transmitidas .result-item");
   const botoes = document.querySelectorAll("#partidas-transmitidas .menu-anos button");
 
   botoes.forEach(btn => btn.classList.remove("ativo"));
-  event.target.classList.add("ativo");
+  if (botao) botao.classList.add("ativo");
 
   itens.forEach(item => {
     if (item.classList.contains("ano-" + ano)) {
@@ -1593,16 +1601,11 @@ function filtrarAno(ano) {
   });
 }
 
-// Inicia mostrando 2025
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("#partidas-transmitidas .menu-anos button").click();
+  const btn2025 = document.querySelector("#partidas-transmitidas .menu-anos button");
+  if (btn2025) btn2025.click();
 });
 </script>
 
 
-  
-</script>
-
-</body>
-</html>
 
