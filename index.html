@@ -782,6 +782,64 @@ header img {
   </div>
 </div>
 
+    <!-- Próximo Torneio 2 -->
+<div class="card" id="proximo-torneio-2">
+  <div id="proximoTorneioConteudo2">
+    <div style="display:flex; flex-wrap: wrap; align-items:center; justify-content: space-between; gap:10px;">
+      <h2 style="color: var(--primary-color); margin:0; font-size:1.67rem;">
+        <i class="fa-solid fa-chess-king" style="font-size:1.5rem;"></i>
+        Copa Pouso Alegre de Xadrez - MG
+      </h2>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <p style="color:red; font-weight:bold; margin:0;">INSCRIÇÕES ABERTAS!</p>
+        <button class="inscreva-btn" onclick="window.open('https://wa.me/5535997648241?text=Oi,%20tudo%20bem?%20Queria%20saber%20as%20informações%20para%20me%20inscrever%20no%20torneio%20de%20Pouso%20Alegre.')">
+          Inscreva-se
+        </button>
+      </div>
+    </div>
+
+    <p style="margin:10px 0; color: var(--primary-color); font-weight:600;">
+      <strong>Data:</strong> 21 de Março de 2026
+    </p>
+
+    <p style="color: var(--primary-color); margin-bottom:20px;">
+      Prepare-se para mais um grande evento de xadrez no Sul de Minas!
+    </p>
+
+    <div style="display:flex; flex-wrap: wrap; align-items:center; gap:12px;">
+      <div style="display:flex; flex-wrap:wrap; gap:12px;">
+        <button class="map-btn" onclick="window.open('https://maps.app.goo.gl/TFGUZBjgewqVne3A6')">Ver no Google Maps</button>     
+        <button class="map-btn" onclick="window.open('https://s2.chess-results.com/tnr1352794.aspx?lan=10&SNode=S0')">Inscritos</button>   
+        <button class="map-btn" onclick="window.open('premiacao.html', '_blank')">Premiação</button> 
+        <button class="map-btn" onclick="window.open('programacao.html', '_blank')">Programação</button>
+      </div>
+    </div>
+
+    <div id="countdown2" style="color: #3399ff; font-weight:bold; display:flex; align-items:center; margin-left: auto;">
+      <i class="fas fa-clock" style="margin-right:5px;"></i>
+    </div>
+
+    <!-- Seta dentro do card -->
+    <div style="display:flex; justify-content:center; margin-top:20px;">
+      <button id="toggleBanner2" class="toggle-seta">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Banner do torneio -->
+  <div id="bannerTorneio2" style="display:none; position: relative; margin-top:10px;">
+    <img src="CRV-POUSO.jpg" alt="Banner do Torneio" style="width:100%; border-radius:10px;">
+    
+    <!-- Botão de compartilhamento -->
+    <a href="https://api.whatsapp.com/send?text=Ol%C3%A1!%20Veja%20este%20torneio%20incr%C3%ADvel!%20https://lbxsuldeminas.com.br" 
+       target="_blank" 
+       style="position: absolute; top: 10px; right: 10px; background-color: #25D366; color: white; padding: 10px 12px; border-radius: 50%; font-size: 1.2rem; text-decoration: none;">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</div>
+
     <!-- Calendário de Próximos Torneios -->
 <div class="card" id="calendario">
   <h2 style="color: var(--primary-color); margin:0 0 15px 0; font-size:1.5rem; display:flex; align-items:center; gap:8px;">
@@ -966,7 +1024,7 @@ header img {
       </tr>
       <tr class="bronze">
         <td>3º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Alexandre Thiago Pereira da Silva</a> <span class="evolucao up">▲</span></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=313885" target="_blank">Alexandre Thiago Pereira da Silva</a> <span class="evolucao up">▲</span></td>
         <td>2347</td>
       </tr>
       <tr class="quarto">
@@ -1012,12 +1070,12 @@ header img {
       </tr>
       <tr class="quarto">
         <td>4º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao up">▲</span></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Lara de Fátima Carvalho Faria</a> <span class="evolucao up">▲</span></td>
         <td>2243</td>
       </tr>
       <tr class="quinto">
         <td>5º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=601414" target="_blank">Vitória Aparecida Barros de Oliveira</a> <span class="evolucao down">▼</span></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank">Vitória Aparecida Barros de Oliveira</a> <span class="evolucao down">▼</span></td>
         <td>2201</td>
       </tr>
     </tbody>
@@ -1606,13 +1664,20 @@ if (yearTransmissoesFilter) {
   filterTransmissoes(); // já inicia mostrando 2026
 }
 
+  document.getElementById("toggleBanner2").addEventListener("click", function () {
+  const banner = document.getElementById("bannerTorneio2");
+  const icon = this.querySelector("i");
+
+  if (banner.style.display === "none" || banner.style.display === "") {
+    banner.style.display = "block";
+    icon.classList.remove("fa-chevron-right");
+    icon.classList.add("fa-chevron-down");
+  } else {
+    banner.style.display = "none";
+    icon.classList.remove("fa-chevron-down");
+    icon.classList.add("fa-chevron-right");
+  }
+});
+
 </script>
-
-
-
-
-
-
-
-
 
