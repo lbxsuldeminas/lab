@@ -1499,9 +1499,7 @@ header img {
     </p>
   </footer>
 
-  <!-- ==================== Scripts ==================== -->
-
-<script>
+  <script>
 // ===== Contagem regressiva Torneio 1 =====
 const countdownElement = document.getElementById('countdown');
 const nextTournamentDate = new Date('2026-03-07T00:00:00');
@@ -1554,7 +1552,7 @@ function updateCountdown2() {
 setInterval(updateCountdown2, 1000);
 updateCountdown2();
 
-// ===== Função genérica para toggle de torneio (robusta) =====
+// ===== Toggle dos banners =====
 function configurarToggle(toggleId, bannerId, conteudoId) {
   const toggleBtn = document.getElementById(toggleId);
   const banner = document.getElementById(bannerId);
@@ -1564,23 +1562,16 @@ function configurarToggle(toggleId, bannerId, conteudoId) {
 
   toggleBtn.addEventListener("click", function () {
     const icon = this.querySelector("i");
-    const bannerVisivel = window.getComputedStyle(banner).display !== "none";
+    const aberto = window.getComputedStyle(banner).display !== "none";
 
-    if (bannerVisivel) {
-      banner.style.display = "none";
-      conteudo.style.display = "block";
-      icon.classList.remove("fa-chevron-down");
-      icon.classList.add("fa-chevron-right");
-    } else {
-      banner.style.display = "block";
-      conteudo.style.display = "none";
-      icon.classList.remove("fa-chevron-right");
-      icon.classList.add("fa-chevron-down");
-    }
+    banner.style.display = aberto ? "none" : "block";
+    conteudo.style.display = aberto ? "block" : "none";
+
+    icon.classList.toggle("fa-chevron-right", aberto);
+    icon.classList.toggle("fa-chevron-down", !aberto);
   });
 }
 
-// Torneios
 configurarToggle("toggleBanner", "bannerTorneio", "proximoTorneioConteudo");
 configurarToggle("toggleBanner2", "bannerTorneio2", "proximoTorneioConteudo2");
 
@@ -1622,41 +1613,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ===== Filtros =====
+// ===== Filtros (com execução inicial) =====
 const yearFilter = document.getElementById('yearFilter');
 const galleryItems = document.querySelectorAll('#galeria .result-item');
 
-if (yearFilter) {
-  yearFilter.addEventListener('change', () => {
-    const selectedYear = yearFilter.value;
-    galleryItems.forEach(item => {
-      item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
-    });
+function filtrarGaleria() {
+  if (!yearFilter) return;
+  const selectedYear = yearFilter.value;
+  galleryItems.forEach(item => {
+    item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
   });
+}
+
+if (yearFilter) {
+  yearFilter.addEventListener('change', filtrarGaleria);
+  filtrarGaleria(); // <<< aplica 2026 ao carregar
 }
 
 const yearResultsFilter = document.getElementById('yearResultsFilter');
 const resultsItems = document.querySelectorAll('#resultados .result-item');
 
-if (yearResultsFilter) {
-  yearResultsFilter.addEventListener('change', () => {
-    const selectedYear = yearResultsFilter.value;
-    resultsItems.forEach(item => {
-      item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
-    });
+function filtrarResultados() {
+  if (!yearResultsFilter) return;
+  const selectedYear = yearResultsFilter.value;
+  resultsItems.forEach(item => {
+    item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
   });
+}
+
+if (yearResultsFilter) {
+  yearResultsFilter.addEventListener('change', filtrarResultados);
+  filtrarResultados(); // <<< aplica 2026 ao carregar
 }
 
 const yearTransmissoesFilter = document.getElementById('yearTransmissoesFilter');
 const transmissoesItems = document.querySelectorAll('#partidas-transmitidas .result-item');
 
-if (yearTransmissoesFilter) {
-  yearTransmissoesFilter.addEventListener('change', () => {
-    const selectedYear = yearTransmissoesFilter.value;
-    transmissoesItems.forEach(item => {
-      item.style.display = item.classList.contains('ano-' + selectedYear) ? 'flex' : 'none';
-    });
+function filtrarTransmissoes() {
+  if (!yearTransmissoesFilter) return;
+  const selectedYear = yearTransmissoesFilter.value;
+  transmissoesItems.forEach(item => {
+    item.style.display = item.classList.contains('ano-' + selectedYear) ? 'flex' : 'none';
   });
+}
+
+if (yearTransmissoesFilter) {
+  yearTransmissoesFilter.addEventListener('change', filtrarTransmissoes);
+  filtrarTransmissoes(); // <<< aplica 2026 ao carregar
 }
 
 // ===== Menu hamburguer =====
