@@ -1322,9 +1322,10 @@ header img {
       <i class="fas fa-video"></i> Partidas Transmitidas
     </h3>
 
-    <div class="menu-anos">
-      <button onclick="filtrarAno(this, '2025')" class="ativo">2025</button>
-      <button onclick="filtrarAno(this, '2026')">2026</button>
+    <div class="menu-anos" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+  <span style="font-size:0.85rem; opacity:0.8;">Selecione o ano:</span>
+      <button onclick="filtrarAno(this, '2026')" class="ativo">2026</button>
+      <button onclick="filtrarAno(this, '2025')">2025</button>
     </div>
   </div>
 
@@ -1606,6 +1607,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btn2025) btn2025.click();
 });
 </script>
+
 
 
 
