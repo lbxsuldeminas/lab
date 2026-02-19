@@ -801,6 +801,7 @@ header img {
 
     <p style="margin:10px 0; color: var(--primary-color); font-weight:600;">
       <strong>Data:</strong> 21 de Março de 2026
+      <p id="countdown2" class="countdown"></p>
     </p>
 
     <p style="color: var(--primary-color); margin-bottom:20px;">
@@ -1512,6 +1513,31 @@ header img {
 // ===== Contagem regressiva =====
 const countdownElement = document.getElementById('countdown');
 const nextTournamentDate = new Date('2026-03-07T00:00:00');
+// ===== Contagem regressiva Torneio 2 =====
+const countdownElement2 = document.getElementById('countdown2');
+const nextTournamentDate2 = new Date('2026-03-21T00:00:00');
+
+function updateCountdown2() {
+  if (!countdownElement2) return;
+
+  const now = new Date();
+  const diff = nextTournamentDate2 - now;
+
+  if (diff <= 0) {
+    countdownElement2.textContent = 'O torneio já começou!';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdownElement2.textContent = `Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateCountdown2, 1000);
+updateCountdown2();
 
 function updateCountdown() {
   if (!countdownElement) return;
@@ -1674,6 +1700,7 @@ if (yearTransmissoesFilter) {
   filterTransmissoes();
 }
 </script>
+
 
 
 
