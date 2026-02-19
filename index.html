@@ -1322,12 +1322,15 @@ header img {
       <i class="fas fa-video"></i> Partidas Transmitidas
     </h3>
 
-    <div class="menu-anos" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-  <span style="font-size:0.85rem; opacity:0.8;">Selecione o ano:</span>
-      <button onclick="filtrarAno(this, '2026')" class="ativo">2026</button>
-      <button onclick="filtrarAno(this, '2025')">2025</button>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <label for="yearTransmissoesFilter" style="margin:0; font-weight:600;">Selecione o ano:</label>
+      <select id="yearTransmissoesFilter" style="padding:5px 10px; border-radius:6px; border:1px solid #ccc;">
+        <option value="2026" selected>2026</option>
+        <option value="2025">2025</option>
+      </select>
     </div>
   </div>
+
 
   <div class="results-list">
     <div class="result-item ano-2026">
@@ -1585,28 +1588,26 @@ function toggleClassificados() {
   sub.style.display = (sub.style.display === "none" || sub.style.display === "") ? "flex" : "none";
 }
 
-// ===== Menu por ano - Partidas Transmitidas =====
-function filtrarAno(botao, ano) {
-  const itens = document.querySelectorAll("#partidas-transmitidas .result-item");
-  const botoes = document.querySelectorAll("#partidas-transmitidas .menu-anos button");
+// ===== Filtro de ano - Partidas Transmitidas =====
+const yearTransmissoesFilter = document.getElementById('yearTransmissoesFilter');
+const transmissoesItems = document.querySelectorAll('#partidas-transmitidas .result-item');
 
-  botoes.forEach(btn => btn.classList.remove("ativo"));
-  if (botao) botao.classList.add("ativo");
+function filterTransmissoes() {
+  if (!yearTransmissoesFilter) return;
+  const selectedYear = yearTransmissoesFilter.value;
 
-  itens.forEach(item => {
-    if (item.classList.contains("ano-" + ano)) {
-      item.style.display = "flex";
-    } else {
-      item.style.display = "none";
-    }
+  transmissoesItems.forEach(item => {
+    item.style.display = item.classList.contains('ano-' + selectedYear) ? 'flex' : 'none';
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btn2025 = document.querySelector("#partidas-transmitidas .menu-anos button");
-  if (btn2025) btn2025.click();
-});
+if (yearTransmissoesFilter) {
+  yearTransmissoesFilter.addEventListener('change', filterTransmissoes);
+  filterTransmissoes(); // já inicia mostrando 2026
+}
+
 </script>
+
 
 
 
