@@ -624,6 +624,31 @@ header img {
   background-color: rgba(180, 180, 180, 0.4);
 }
 
+    .menu-anos {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.menu-anos button {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-anos button:hover {
+  filter: brightness(0.95);
+}
+
+.menu-anos button.ativo {
+  background: var(--primary-color);
+  color: #fff;
+}
 
      </style>
 </head>
@@ -1550,10 +1575,34 @@ function toggleClassificados() {
   sub.style.display = sub.style.display === "none" || sub.style.display === "" ? "flex" : "none";
 }
 
+
+  <script>
+function filtrarAno(ano) {
+  const itens = document.querySelectorAll("#partidas-transmitidas .result-item");
+  const botoes = document.querySelectorAll("#partidas-transmitidas .menu-anos button");
+
+  botoes.forEach(btn => btn.classList.remove("ativo"));
+  event.target.classList.add("ativo");
+
+  itens.forEach(item => {
+    if (item.classList.contains("ano-" + ano)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+
+// Inicia mostrando 2025
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#partidas-transmitidas .menu-anos button").click();
+});
+</script>
+
+
   
 </script>
 
 </body>
 </html>
-
 
