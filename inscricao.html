@@ -35,8 +35,16 @@ button{
   border:none;
   border-radius:8px;
   color:white;
+  cursor:pointer;
 }
-#pixArea{display:none;text-align:center;}
+#pixArea{
+  display:none;
+  text-align:center;
+}
+.pix-valor{
+  font-size:18px;
+  margin:10px 0;
+}
 </style>
 
 </head>
@@ -47,7 +55,7 @@ button{
 <h2>Inscrição LBX</h2>
 
 <form id="form">
-<input id="nome" placeholder="Nome" required>
+<input id="nome" placeholder="Nome completo" required>
 <input type="date" id="nascimento" required>
 
 <select id="cadastro">
@@ -57,7 +65,7 @@ button{
 
 <div class="valor" id="valor">Valor: -</div>
 
-<button type="submit">Confirmar</button>
+<button type="submit">Confirmar Inscrição</button>
 </form>
 
 <div id="pixArea">
@@ -70,11 +78,14 @@ button{
 
 <script>
 
+// 🔥 COLOQUE SEU LINK AQUI
 const url = "https://script.google.com/macros/s/AKfycbw5HPiIZrtz_xauXCSTI0WmZ1INkHe0d3vqh3SyBQOOOQ6eNOUFBWZW36tdX58aUw9J/exec";
 
+// ELEMENTOS
 const nascimento = document.getElementById("nascimento");
 const valorTxt = document.getElementById("valor");
 
+// CALCULAR IDADE
 function idade(data){
   let hoje = new Date();
   let nasc = new Date(data);
@@ -82,11 +93,13 @@ function idade(data){
   return i;
 }
 
+// ATUALIZAR VALOR
 nascimento.addEventListener("change",()=>{
   let v = idade(nascimento.value) >= 18 ? 40 : 30;
   valorTxt.innerText = "Valor: R$ " + v;
 });
 
+// ENVIO
 document.getElementById("form").addEventListener("submit", async (e)=>{
   e.preventDefault();
 
@@ -100,7 +113,9 @@ document.getElementById("form").addEventListener("submit", async (e)=>{
 
     const res = await fetch(url,{
       method:"POST",
-      mode:"no-cors", // 🔥 CORREÇÃO DO CORS
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         nome,
         nascimento:nasc,
@@ -110,18 +125,37 @@ document.getElementById("form").addEventListener("submit", async (e)=>{
       })
     });
 
-    // ⚠️ no-cors não retorna resposta → vamos simular QR
-    document.getElementById("form").style.display="none";
-    document.getElementById("pixArea").style.display="block";
+    const text = await res.text();
+    console.log("RESPOSTA DO SCRIPT:", text);
 
-    document.getElementById("pixValor").innerText = "Valor: R$ " + valor;
+    let result;
+
+    try {
+      result = JSON.parse(text);
+    } catch {
+      alert("Erro: resposta não é JSON\n\n" + text);
+      return;
+    }
+
+    // 🔴 SE DER ERRO NO BACKEND
+    if (result.erro) {
+      alert("Erro no servidor:\n" + result.erro);
+      return;
+    }
+
+    // ✅ MOSTRAR QR REAL
+    document.getElementById("form").style.display = "none";
+    document.getElementById("pixArea").style.display = "block";
+
+    document.getElementById("pixValor").innerText =
+      "Valor: R$ " + valor;
 
     document.getElementById("qr").src =
-      "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX_LBX";
+      "data:image/png;base64," + result.qr_base64;
 
   } catch(err){
-    alert("Erro ao enviar");
-    console.log(err);
+    console.log("ERRO FETCH:", err);
+    alert("Erro ao conectar com servidor");
   }
 
 });
