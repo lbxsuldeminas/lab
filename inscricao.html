@@ -70,6 +70,7 @@
       font-size:16px;
       font-weight:bold;
       cursor:pointer;
+      transition:0.2s;
     }
 
     button:hover{
@@ -200,9 +201,8 @@
     const idade = calcularIdade(nascimento);
     const valor = idade >= 18 ? 40 : 30;
 
-    // 🔥 ENVIO PARA GOOGLE SHEETS
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbzwVojQIyE5yLFyioj46IvoDNQLuPo-gv90SaEqv-vmPdb2L8Iw-76z2oQYj9X1Fjs/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbw9K2SPj6XMOLauMzDXFDkT0sst73UhbOqvUlzMBU-1rgko-xZNQLK6SbUjB941JzCS/exec", {
         method: "POST",
         body: JSON.stringify({
           nome,
@@ -213,7 +213,7 @@
         })
       });
     } catch (err) {
-      console.log("Erro:", err);
+      console.log("Erro ao enviar:", err);
     }
 
     form.style.display = "none";
