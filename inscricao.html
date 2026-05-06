@@ -70,7 +70,6 @@
       font-size:16px;
       font-weight:bold;
       cursor:pointer;
-      transition:0.2s;
     }
 
     button:hover{
@@ -85,17 +84,9 @@
       margin-top:10px;
     }
 
-    /* PIX */
     #pixArea{
       display:none;
       text-align:center;
-    }
-
-    .pix-box{
-      background:#0f172a; 
-      padding:15px;
-      border-radius:10px;
-      margin-top:15px;
     }
 
     .pix-valor{
@@ -103,6 +94,13 @@
       font-weight:bold;
       color:#22c55e;
       margin:10px 0;
+    }
+
+    .pix-box{
+      background:#0f172a; 
+      padding:15px;
+      border-radius:10px;
+      margin-top:15px;
     }
   </style>
 </head>
@@ -139,7 +137,7 @@
 
   </form>
 
-  <!-- PIX AREA -->
+  <!-- PIX -->
   <div id="pixArea">
 
     <h2>Pagamento Pix</h2>
@@ -154,8 +152,6 @@
       <p><b>Chave Pix:</b></p>
       <p>SEU-PIX-AQUI</p>
     </div>
-
-    <p class="info">Após pagamento, sua inscrição ficará PENDENTE até confirmação manual.</p>
 
   </div>
 
@@ -183,14 +179,10 @@
     return idade;
   }
 
-  // atualiza valor automaticamente
   nascimentoInput.addEventListener("change", () => {
     const data = nascimentoInput.value;
 
-    if (!data) {
-      valorTexto.innerText = "Valor da inscrição: -";
-      return;
-    }
+    if (!data) return;
 
     const idade = calcularIdade(data);
 
@@ -198,7 +190,6 @@
       "Valor da inscrição: R$" + (idade >= 18 ? 40 : 30);
   });
 
-  // envio do formulário
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -211,11 +202,8 @@
 
     // 🔥 ENVIO PARA GOOGLE SHEETS
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbyl-tIoKyminC1gz_MA7aYDM5OGcdYTytT_EZWNQjZltCFxU8PIg5Nft9O9Nxivcdo/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbw9K2SPj6XMOLauMzDXFDkT0sst73UhbOqvUlzMBU-1rgko-xZNQLK6SbUjB941JzCS/exec", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
         body: JSON.stringify({
           nome,
           nascimento,
@@ -225,13 +213,10 @@
         })
       });
     } catch (err) {
-      console.log("Erro ao enviar:", err);
+      console.log("Erro:", err);
     }
 
-    // esconder formulário
     form.style.display = "none";
-
-    // mostrar pagamento Pix
     pixArea.style.display = "block";
 
     pixValor.innerText = "Valor a pagar: R$ " + valor;
