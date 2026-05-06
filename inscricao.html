@@ -13,8 +13,8 @@
     <label>Nome completo:</label><br>
     <input type="text" id="nome" required><br><br>
 
-    <label>Idade:</label><br>
-    <input type="number" id="idade" required><br><br>
+    <label>Data de nascimento:</label><br>
+    <input type="date" id="nascimento" required><br><br>
 
     <label>Já possui cadastro na LBX?</label><br>
     <select id="cadastro">
@@ -29,18 +29,35 @@
   </form>
 
   <script>
-    const idadeInput = document.getElementById("idade");
+    const nascimentoInput = document.getElementById("nascimento");
     const valorTexto = document.getElementById("valor");
     const form = document.getElementById("formInscricao");
 
-    // Atualiza valor automaticamente conforme idade
-    idadeInput.addEventListener("input", () => {
-      const idade = Number(idadeInput.value);
+    // calcula idade a partir da data de nascimento
+    function calcularIdade(dataNascimento) {
+      const hoje = new Date();
+      const nascimento = new Date(dataNascimento);
 
-      if (!idade) {
+      let idade = hoje.getFullYear() - nascimento.getFullYear();
+      const mes = hoje.getMonth() - nascimento.getMonth();
+
+      if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+      }
+
+      return idade;
+    }
+
+    // atualiza valor automaticamente
+    nascimentoInput.addEventListener("change", () => {
+      const data = nascimentoInput.value;
+
+      if (!data) {
         valorTexto.innerText = "Valor da inscrição: -";
         return;
       }
+
+      const idade = calcularIdade(data);
 
       if (idade >= 18) {
         valorTexto.innerText = "Valor da inscrição: R$40";
@@ -49,19 +66,21 @@
       }
     });
 
-    // Envio do formulário
+    // envio do formulário
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const nome = document.getElementById("nome").value;
-      const idade = Number(document.getElementById("idade").value);
+      const nascimento = nascimentoInput.value;
       const cadastro = document.getElementById("cadastro").value;
 
+      const idade = calcularIdade(nascimento);
       const valor = idade >= 18 ? 40 : 30;
 
       alert(
         "Resumo da inscrição:\n\n" +
         "Nome: " + nome + "\n" +
+        "Nascimento: " + nascimento + "\n" +
         "Idade: " + idade + "\n" +
         "Cadastro LBX: " + cadastro + "\n" +
         "Valor: R$" + valor
