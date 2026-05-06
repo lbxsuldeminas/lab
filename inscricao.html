@@ -3,90 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <title>Inscrição LBX</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .card{
+      background:#111827;
+      padding:25px;
+      border-radius:12px;
+      width:100%;
+      max-width:420px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:20px;
+      color:#38bdf8;
+    }
+
+    label{
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    input, select{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      margin-bottom:15px;
+      border-radius:8px;
+      border:none;
+      outline:none;
+      font-size:14px;
+    }
+
+    input:focus, select:focus{
+      box-shadow:0 0 0 2px #38bdf8;
+    }
+
+    .valor{
+      background:#0ea5e9;
+      padding:12px;
+      border-radius:8px;
+      text-align:center;
+      font-weight:bold;
+      margin:15px 0;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:8px;
+      background:#22c55e;
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    button:hover{
+      background:#16a34a;
+      transform:scale(1.02);
+    }
+
+    .info{
+      text-align:center;
+      font-size:12px;
+      opacity:0.7;
+      margin-top:10px;
+    }
+  </style>
 </head>
+
 <body>
+
+<div class="card">
 
   <h2>Inscrição Torneio LBX</h2>
 
   <form id="formInscricao">
 
-    <label>Nome completo:</label><br>
-    <input type="text" id="nome" required><br><br>
+    <label>Nome completo</label>
+    <input type="text" id="nome" required>
 
-    <label>Data de nascimento:</label><br>
-    <input type="date" id="nascimento" required><br><br>
+    <label>Data de nascimento</label>
+    <input type="date" id="nascimento" required>
 
-    <label>Já possui cadastro na LBX?</label><br>
+    <label>Já possui cadastro na LBX?</label>
     <select id="cadastro">
       <option value="sim">Sim</option>
       <option value="nao">Não</option>
-    </select><br><br>
+    </select>
 
-    <p id="valor">Valor da inscrição: -</p>
+    <div class="valor" id="valor">
+      Valor da inscrição: -
+    </div>
 
-    <button type="submit">Continuar</button>
+    <button type="submit">Confirmar Inscrição</button>
+
+    <div class="info">
+      Após confirmar, você verá o resumo da inscrição.
+    </div>
 
   </form>
 
-  <script>
-    const nascimentoInput = document.getElementById("nascimento");
-    const valorTexto = document.getElementById("valor");
-    const form = document.getElementById("formInscricao");
+</div>
 
-    // calcula idade a partir da data de nascimento
-    function calcularIdade(dataNascimento) {
-      const hoje = new Date();
-      const nascimento = new Date(dataNascimento);
+<script>
+  const nascimentoInput = document.getElementById("nascimento");
+  const valorTexto = document.getElementById("valor");
+  const form = document.getElementById("formInscricao");
 
-      let idade = hoje.getFullYear() - nascimento.getFullYear();
-      const mes = hoje.getMonth() - nascimento.getMonth();
+  function calcularIdade(dataNascimento) {
+    const hoje = new Date();
+    const nascimento = new Date(dataNascimento);
 
-      if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-        idade--;
-      }
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
 
-      return idade;
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
     }
 
-    // atualiza valor automaticamente
-    nascimentoInput.addEventListener("change", () => {
-      const data = nascimentoInput.value;
+    return idade;
+  }
 
-      if (!data) {
-        valorTexto.innerText = "Valor da inscrição: -";
-        return;
-      }
+  nascimentoInput.addEventListener("change", () => {
+    const data = nascimentoInput.value;
 
-      const idade = calcularIdade(data);
+    if (!data) {
+      valorTexto.innerText = "Valor da inscrição: -";
+      return;
+    }
 
-      if (idade >= 18) {
-        valorTexto.innerText = "Valor da inscrição: R$40";
-      } else {
-        valorTexto.innerText = "Valor da inscrição: R$30";
-      }
-    });
+    const idade = calcularIdade(data);
 
-    // envio do formulário
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+    valorTexto.innerText =
+      "Valor da inscrição: R$" + (idade >= 18 ? 40 : 30);
+  });
 
-      const nome = document.getElementById("nome").value;
-      const nascimento = nascimentoInput.value;
-      const cadastro = document.getElementById("cadastro").value;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-      const idade = calcularIdade(nascimento);
-      const valor = idade >= 18 ? 40 : 30;
+    const nome = document.getElementById("nome").value;
+    const nascimento = nascimentoInput.value;
+    const cadastro = document.getElementById("cadastro").value;
 
-      alert(
-        "Resumo da inscrição:\n\n" +
-        "Nome: " + nome + "\n" +
-        "Nascimento: " + nascimento + "\n" +
-        "Idade: " + idade + "\n" +
-        "Cadastro LBX: " + cadastro + "\n" +
-        "Valor: R$" + valor
-      );
-    });
-  </script>
+    const idade = calcularIdade(nascimento);
+    const valor = idade >= 18 ? 40 : 30;
+
+    alert(
+      "INSCRIÇÃO CONFIRMADA ✔\n\n" +
+      "Nome: " + nome + "\n" +
+      "Nascimento: " + nascimento + "\n" +
+      "Idade: " + idade + "\n" +
+      "Cadastro LBX: " + cadastro + "\n" +
+      "Valor: R$" + valor
+    );
+  });
+</script>
 
 </body>
 </html>
