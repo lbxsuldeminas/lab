@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscrição LBX</title>
+</head>
+<body>
+
+  <h2>Inscrição Torneio LBX</h2>
+
+  <form id="formInscricao">
+
+    <label>Nome completo:</label><br>
+    <input type="text" id="nome" required><br><br>
+
+    <label>Idade:</label><br>
+    <input type="number" id="idade" required><br><br>
+
+    <label>Já possui cadastro na LBX?</label><br>
+    <select id="cadastro">
+      <option value="sim">Sim</option>
+      <option value="nao">Não</option>
+    </select><br><br>
+
+    <p id="valor">Valor da inscrição: -</p>
+
+    <button type="submit">Continuar</button>
+
+  </form>
+
+  <script>
+    const idadeInput = document.getElementById("idade");
+    const valorTexto = document.getElementById("valor");
+
+    idadeInput.addEventListener("input", function () {
+      let idade = parseInt(idadeInput.value);
+
+      if (!idade) {
+        valorTexto.innerText = "Valor da inscrição: -";
+        return;
+      }
+
+      if (idade >= 18) {
+        valorTexto.innerText = "Valor da inscrição: R$40";
+      } else {
+        valorTexto.innerText = "Valor da inscrição: R$30";
+      }
+    });
+
+    document.getElementById("formInscricao").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let nome = document.getElementById("nome").value;
+      let idade = parseInt(document.getElementById("idade").value);
+      let cadastro = document.getElementById("cadastro").value;
+
+      let valor = idade >= 18 ? 40 : 30;
+
+      alert(
+        "Resumo da inscrição:\n" +
+        "Nome: " + nome + "\n" +
+        "Idade: " + idade + "\n" +
+        "Cadastro LBX: " + cadastro + "\n" +
+        "Valor: R$" + valor
+      );
+    });
+  </script>
+
+</body>
+</html>
