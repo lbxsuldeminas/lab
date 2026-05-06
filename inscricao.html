@@ -31,9 +31,11 @@
   <script>
     const idadeInput = document.getElementById("idade");
     const valorTexto = document.getElementById("valor");
+    const form = document.getElementById("formInscricao");
 
-    idadeInput.addEventListener("input", function () {
-      let idade = parseInt(idadeInput.value);
+    // Atualiza valor automaticamente conforme idade
+    idadeInput.addEventListener("input", () => {
+      const idade = Number(idadeInput.value);
 
       if (!idade) {
         valorTexto.innerText = "Valor da inscrição: -";
@@ -47,17 +49,18 @@
       }
     });
 
-    document.getElementById("formInscricao").addEventListener("submit", function(e) {
+    // Envio do formulário
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      let nome = document.getElementById("nome").value;
-      let idade = parseInt(document.getElementById("idade").value);
-      let cadastro = document.getElementById("cadastro").value;
+      const nome = document.getElementById("nome").value;
+      const idade = Number(document.getElementById("idade").value);
+      const cadastro = document.getElementById("cadastro").value;
 
-      let valor = idade >= 18 ? 40 : 30;
+      const valor = idade >= 18 ? 40 : 30;
 
       alert(
-        "Resumo da inscrição:\n" +
+        "Resumo da inscrição:\n\n" +
         "Nome: " + nome + "\n" +
         "Idade: " + idade + "\n" +
         "Cadastro LBX: " + cadastro + "\n" +
