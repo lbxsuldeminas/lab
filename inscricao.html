@@ -70,12 +70,10 @@
       font-size:16px;
       font-weight:bold;
       cursor:pointer;
-      transition:0.2s;
     }
 
     button:hover{
       background:#16a34a;
-      transform:scale(1.02);
     }
 
     .info{
@@ -95,13 +93,6 @@
       font-weight:bold;
       color:#22c55e;
       margin:10px 0;
-    }
-
-    .pix-box{
-      background:#0f172a; 
-      padding:15px;
-      border-radius:10px;
-      margin-top:15px;
     }
   </style>
 </head>
@@ -126,33 +117,25 @@
       <option value="nao">Não</option>
     </select>
 
-    <div class="valor" id="valor">
-      Valor da inscrição: -
-    </div>
+    <div class="valor" id="valor">Valor da inscrição: -</div>
 
     <button type="submit">Confirmar Inscrição</button>
 
     <div class="info">
-      Após confirmar, você verá o pagamento Pix.
+      Após confirmar, será gerado o pagamento Pix.
     </div>
 
   </form>
 
-  <!-- PIX -->
   <div id="pixArea">
 
     <h2>Pagamento Pix</h2>
 
-    <p>Finalize sua inscrição pagando o valor abaixo:</p>
+    <p>Escaneie o QR Code abaixo:</p>
 
     <div class="pix-valor" id="pixValor"></div>
 
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX_LBX">
-
-    <div class="pix-box">
-      <p><b>Chave Pix:</b></p>
-      <p>SEU-PIX-AQUI</p>
-    </div>
+    <img id="qr" width="200">
 
   </div>
 
@@ -181,14 +164,8 @@
   }
 
   nascimentoInput.addEventListener("change", () => {
-    const data = nascimentoInput.value;
-
-    if (!data) return;
-
-    const idade = calcularIdade(data);
-
-    valorTexto.innerText =
-      "Valor da inscrição: R$" + (idade >= 18 ? 40 : 30);
+    const idade = calcularIdade(nascimentoInput.value);
+    valorTexto.innerText = "Valor da inscrição: R$" + (idade >= 18 ? 40 : 30);
   });
 
   form.addEventListener("submit", async (e) => {
@@ -202,7 +179,7 @@
     const valor = idade >= 18 ? 40 : 30;
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbw9K2SPj6XMOLauMzDXFDkT0sst73UhbOqvUlzMBU-1rgko-xZNQLK6SbUjB941JzCS/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbw9K2SPj6XMOLauMzDXFDkT0sst73UhbOqvUlzMBU-1rgko-xZNQLK6SbUjB941JzCS/exec", {
         method: "POST",
         body: JSON.stringify({
           nome,
@@ -212,8 +189,16 @@
           valor
         })
       });
+
+      const data = await res.json();
+
+      // QR CODE REAL DO MERCADO PAGO
+      document.getElementById("qr").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
+        encodeURIComponent(data.qr_code);
+
     } catch (err) {
-      console.log("Erro ao enviar:", err);
+      console.log("Erro:", err);
     }
 
     form.style.display = "none";
