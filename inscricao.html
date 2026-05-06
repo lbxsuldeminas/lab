@@ -135,7 +135,7 @@
 
     <div class="pix-valor" id="pixValor"></div>
 
-    <img id="qr" width="200">
+    <img id="qr" width="220">
 
   </div>
 
@@ -179,8 +179,11 @@
     const valor = idade >= 18 ? 40 : 30;
 
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbw5HPiIZrtz_xauXCSTI0WmZ1INkHe0d3vqh3SyBQOOOQ6eNOUFBWZW36tdX58aUw9J/exec", {
+      const res = await fetch("https://docs.google.com/spreadsheets/d/1917tDZFWAPQFHaqIf_vSdgiBm5QC_M8YBSCdd2kuU18/edit?gid=0#gid=0", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           nome,
           nascimento,
@@ -192,13 +195,19 @@
 
       const data = await res.json();
 
-      // QR CODE REAL DO MERCADO PAGO
-      document.getElementById("qr").src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
-        encodeURIComponent(data.qr_code);
+      console.log("RESPOSTA:", data);
+
+      if (data.qr_code) {
+        document.getElementById("qr").src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+          encodeURIComponent(data.qr_code);
+      } else {
+        alert("QR Code não foi gerado. Verifique o Apps Script.");
+      }
 
     } catch (err) {
       console.log("Erro:", err);
+      alert("Erro ao criar pagamento.");
     }
 
     form.style.display = "none";
