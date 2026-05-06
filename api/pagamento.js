@@ -30,9 +30,17 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    return res.status(200).json({
-      qr_base64: data.point_of_interaction.transaction_data.qr_code_base64
-    });
+console.log(data); // 🔥 MOSTRA ERRO REAL
+
+if (!data.point_of_interaction) {
+  return res.status(400).json({
+    erro: data
+  });
+}
+
+return res.status(200).json({
+  qr_base64: data.point_of_interaction.transaction_data.qr_code_base64
+});
 
   } catch (err) {
     return res.status(500).json({
