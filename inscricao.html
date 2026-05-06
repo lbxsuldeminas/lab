@@ -1,163 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Inscrição LBX</title>
+  <meta charset="UTF-8">
+  <title>Inscrição LBX</title>
 
-<style>
-body{
-  margin:0;
-  font-family: Arial;
-  background:#0f172a;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-.card{
-  background:#111827;
-  padding:25px;
-  border-radius:12px;
-  width:400px;
-}
-.valor{
-  background:#0ea5e9;
-  padding:10px;
-  border-radius:8px;
-  text-align:center;
-  margin:10px 0;
-}
-button{
-  width:100%;
-  padding:12px;
-  background:#22c55e;
-  border:none;
-  border-radius:8px;
-  color:white;
-  cursor:pointer;
-}
-#pixArea{
-  display:none;
-  text-align:center;
-}
-.pix-valor{
-  font-size:18px;
-  margin:10px 0;
-}
-</style>
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
 
+    .card{
+      background:#111827;
+      padding:25px;
+      border-radius:12px;
+      width:100%;
+      max-width:420px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:20px;
+      color:#38bdf8;
+    }
+
+    label{
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    input, select{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      margin-bottom:15px;
+      border-radius:8px;
+      border:none;
+      outline:none;
+      font-size:14px;
+    }
+
+    input:focus, select:focus{
+      box-shadow:0 0 0 2px #38bdf8;
+    }
+
+    .valor{
+      background:#0ea5e9;
+      padding:12px;
+      border-radius:8px;
+      text-align:center;
+      font-weight:bold;
+      margin:15px 0;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:8px;
+      background:#22c55e;
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#16a34a;
+    }
+
+    .info{
+      text-align:center;
+      font-size:12px;
+      opacity:0.7;
+      margin-top:10px;
+    }
+
+    #pixArea{
+      display:none;
+      text-align:center;
+    }
+
+    .pix-valor{
+      font-size:18px;
+      font-weight:bold;
+      color:#22c55e;
+      margin:10px 0;
+    }
+  </style>
 </head>
+
 <body>
 
 <div class="card">
 
-<h2>Inscrição LBX</h2>
+  <h2>Inscrição Torneio LBX</h2>
 
-<form id="form">
-<input id="nome" placeholder="Nome completo" required>
-<input type="date" id="nascimento" required>
+  <form id="formInscricao">
 
-<select id="cadastro">
-<option value="sim">Sim</option>
-<option value="nao">Não</option>
-</select>
+    <label>Nome completo</label>
+    <input type="text" id="nome" required>
 
-<div class="valor" id="valor">Valor: -</div>
+    <label>Data de nascimento</label>
+    <input type="date" id="nascimento" required>
 
-<button type="submit">Confirmar Inscrição</button>
-</form>
+    <label>Já possui cadastro na LBX?</label>
+    <select id="cadastro">
+      <option value="sim">Sim</option>
+      <option value="nao">Não</option>
+    </select>
 
-<div id="pixArea">
-<h3>Pagamento PIX</h3>
-<p id="pixValor"></p>
-<img id="qr" width="220">
-</div>
+    <div class="valor" id="valor">Valor da inscrição: -</div>
+
+    <button type="submit">Confirmar Inscrição</button>
+
+    <div class="info">
+      Após confirmar, será gerado o pagamento Pix.
+    </div>
+
+  </form>
+
+  <div id="pixArea">
+
+    <h2>Pagamento Pix</h2>
+
+    <p>Escaneie o QR Code abaixo:</p>
+
+    <div class="pix-valor" id="pixValor"></div>
+
+    <img id="qr" width="220">
+
+  </div>
 
 </div>
 
 <script>
 
-// 🔥 COLOQUE SEU LINK AQUI
-const url = "https://script.google.com/macros/s/AKfycbw5HPiIZrtz_xauXCSTI0WmZ1INkHe0d3vqh3SyBQOOOQ6eNOUFBWZW36tdX58aUw9J/exec";
+const url = "https://lab-nu-three.vercel.app/api/pagamento";
 
-// ELEMENTOS
-const nascimento = document.getElementById("nascimento");
-const valorTxt = document.getElementById("valor");
+const nascimentoInput = document.getElementById("nascimento");
+const valorTexto = document.getElementById("valor");
+const form = document.getElementById("formInscricao");
 
-// CALCULAR IDADE
-function idade(data){
-  let hoje = new Date();
-  let nasc = new Date(data);
-  let i = hoje.getFullYear() - nasc.getFullYear();
-  return i;
+const pixArea = document.getElementById("pixArea");
+const pixValor = document.getElementById("pixValor");
+
+function calcularIdade(dataNascimento) {
+  const hoje = new Date();
+  const nascimento = new Date(dataNascimento);
+
+  let idade = hoje.getFullYear() - nascimento.getFullYear();
+  const mes = hoje.getMonth() - nascimento.getMonth();
+
+  if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+    idade--;
+  }
+
+  return idade;
 }
 
-// ATUALIZAR VALOR
-nascimento.addEventListener("change",()=>{
-  let v = idade(nascimento.value) >= 18 ? 40 : 30;
-  valorTxt.innerText = "Valor: R$ " + v;
+nascimentoInput.addEventListener("change", () => {
+  if (!nascimentoInput.value) return;
+
+  const idade = calcularIdade(nascimentoInput.value);
+  valorTexto.innerText = "Valor da inscrição: R$" + (idade >= 18 ? 40 : 30);
 });
 
-// ENVIO
-document.getElementById("form").addEventListener("submit", async (e)=>{
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  let nome = document.getElementById("nome").value;
-  let nasc = nascimento.value;
-  let cadastro = document.getElementById("cadastro").value;
-  let idadeCalc = idade(nasc);
-  let valor = idadeCalc >= 18 ? 40 : 30;
+  const nome = document.getElementById("nome").value;
+  const nascimento = nascimentoInput.value;
+
+  const idade = calcularIdade(nascimento);
+  const valor = idade >= 18 ? 40 : 30;
 
   try {
-
-    const res = await fetch(url,{
-      method:"POST",
+    const response = await fetch(url, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         nome,
-        nascimento:nasc,
-        idade:idadeCalc,
-        cadastro,
         valor
       })
     });
 
-    const text = await res.text();
-    console.log("RESPOSTA DO SCRIPT:", text);
+    const result = await response.json();
 
-    let result;
-
-    try {
-      result = JSON.parse(text);
-    } catch {
-      alert("Erro: resposta não é JSON\n\n" + text);
-      return;
-    }
-
-    // 🔴 SE DER ERRO NO BACKEND
     if (result.erro) {
-      alert("Erro no servidor:\n" + result.erro);
+      alert("Erro: " + result.erro);
       return;
     }
 
-    // ✅ MOSTRAR QR REAL
-    document.getElementById("form").style.display = "none";
-    document.getElementById("pixArea").style.display = "block";
+    form.style.display = "none";
+    pixArea.style.display = "block";
 
-    document.getElementById("pixValor").innerText =
-      "Valor: R$ " + valor;
+    pixValor.innerText = "Valor: R$ " + valor;
 
     document.getElementById("qr").src =
       "data:image/png;base64," + result.qr_base64;
 
-  } catch(err){
-    console.log("ERRO FETCH:", err);
-    alert("Erro ao conectar com servidor");
+  } catch (err) {
+    console.log(err);
+    alert("Erro ao criar pagamento");
   }
-
 });
 
 </script>
