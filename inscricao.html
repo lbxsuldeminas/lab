@@ -14,12 +14,13 @@
 
     body{
       margin:0;
-      height:100vh;
+      min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
       background: radial-gradient(circle at top, #1e3a8a, #0f172a);
       color:white;
+      padding:20px;
     }
 
     .card{
@@ -45,7 +46,7 @@
       opacity:0.8;
     }
 
-    input, select{
+    input, select, textarea{
       width:100%;
       padding:11px;
       margin-top:6px;
@@ -57,7 +58,7 @@
       color:white;
     }
 
-    input:focus, select:focus{
+    input:focus, select:focus, textarea:focus{
       box-shadow:0 0 0 2px #38bdf8;
     }
 
@@ -98,12 +99,23 @@
       margin-top:10px;
     }
 
-    #sucesso{
+    #pixArea{
       display:none;
       text-align:center;
       margin-top:20px;
-      color:#22c55e;
-      font-weight:700;
+    }
+
+    #qrCode{
+      width:250px;
+      background:white;
+      padding:10px;
+      border-radius:10px;
+      margin-top:10px;
+    }
+
+    textarea{
+      height:100px;
+      resize:none;
     }
   </style>
 </head>
@@ -119,6 +131,9 @@
     <label>Nome completo</label>
     <input type="text" id="nome" required>
 
+    <label>Email</label>
+    <input type="email" id="email" required>
+
     <label>Data de nascimento</label>
     <input type="date" id="nascimento" required>
 
@@ -128,21 +143,36 @@
       <option value="nao">Não</option>
     </select>
 
-    <div class="valor" id="valor">Valor da inscrição: -</div>
+    <div class="valor" id="valor">
+      Valor da inscrição: -
+    </div>
 
-    <button id="btn" type="submit">Confirmar Inscrição</button>
+    <button id="btn" type="submit">
+      Confirmar Inscrição
+    </button>
 
-    <div class="loading" id="loading">Enviando inscrição...</div>
-
-    <div id="sucesso">Inscrição enviada com sucesso! ✅</div>
+    <div class="loading" id="loading">
+      Gerando pagamento...
+    </div>
 
   </form>
+
+  <div id="pixArea">
+
+    <h3>Pagamento Pix</h3>
+
+    <img id="qrCode">
+
+    <textarea id="pixCopiaCola" readonly></textarea>
+
+  </div>
 
 </div>
 
 <script>
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwXJa8bNuk6CbqifvhZpNgdqfUcerzu875sAQAS3CceE6QGCXxHLyVHM_HY6YYZqq82/exec";
+// COLE A URL DO SEU APPS SCRIPT AQUI
+const API_URL = "COLE_SUA_URL_AQUI";
 
 const form = document.getElementById("formInscricao");
 const nascimentoInput = document.getElementById("nascimento");
@@ -150,71 +180,117 @@ const valorTexto = document.getElementById("valor");
 
 const btn = document.getElementById("btn");
 const loading = document.getElementById("loading");
-const sucesso = document.getElementById("sucesso");
 
 function calcularIdade(dataNascimento) {
+
   const hoje = new Date();
   const nascimento = new Date(dataNascimento);
 
-  let idade = hoje.getFullYear() - nascimento.getFullYear();
-  const mes = hoje.getMonth() - nascimento.getMonth();
+  let idade =
+    hoje.getFullYear() - nascimento.getFullYear();
 
-  if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+  const mes =
+    hoje.getMonth() - nascimento.getMonth();
+
+  if (
+    mes < 0 ||
+    (mes === 0 &&
+    hoje.getDate() < nascimento.getDate())
+  ) {
     idade--;
   }
 
   return idade;
 }
 
-// atualizar valor automaticamente
+// MOSTRAR VALOR AUTOMÁTICO
 nascimentoInput.addEventListener("change", () => {
+
   if (!nascimentoInput.value) return;
 
-  const idade = calcularIdade(nascimentoInput.value);
-  const valor = idade >= 18 ? 40 : 30;
+  const idade =
+    calcularIdade(nascimentoInput.value);
 
-  valorTexto.innerText = `Valor da inscrição: R$ ${valor}`;
+  const valor =
+    idade >= 18 ? 40 : 30;
+
+  valorTexto.innerText =
+    `Valor da inscrição: R$ ${valor}`;
 });
 
+// ENVIAR FORMULÁRIO
 form.addEventListener("submit", async (e) => {
+
   e.preventDefault();
 
-  const nome = document.getElementById("nome").value;
-  const nascimento = nascimentoInput.value;
-  const cadastro = document.getElementById("cadastro").value;
+  const nome =
+    document.getElementById("nome").value;
 
-  const idade = calcularIdade(nascimento);
-  const valor = idade >= 18 ? 40 : 30;
+  const email =
+    document.getElementById("email").value;
+
+  const nascimento =
+    nascimentoInput.value;
+
+  const cadastro =
+    document.getElementById("cadastro").value;
+
+  const idade =
+    calcularIdade(nascimento);
+
+  const valor =
+    idade >= 18 ? 40 : 30;
 
   btn.disabled = true;
   loading.style.display = "block";
 
   try {
-    await fetch(SHEET_URL, {
+
+    const resposta = await fetch(API_URL, {
+
       method: "POST",
+
       headers: {
         "Content-Type": "application/json"
       },
+
       body: JSON.stringify({
         nome,
+        email,
         nascimento,
         idade,
         cadastro,
         valor
       })
+
     });
 
-    form.reset();
+    const dados = await resposta.json();
+
+    loading.style.display = "none";
+
     form.style.display = "none";
-    sucesso.style.display = "block";
+
+    document.getElementById("pixArea")
+      .style.display = "block";
+
+    document.getElementById("qrCode").src =
+      "data:image/png;base64," +
+      dados.qr_code_base64;
+
+    document.getElementById("pixCopiaCola").value =
+      dados.qr_code;
 
   } catch (err) {
-    alert("Erro ao enviar inscrição");
+
+    loading.style.display = "none";
+
+    btn.disabled = false;
+
+    alert("Erro ao gerar pagamento");
+
     console.log(err);
   }
-
-  loading.style.display = "none";
-  btn.disabled = false;
 });
 
 </script>
