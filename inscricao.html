@@ -31,12 +31,6 @@
       padding:28px;
       border-radius:16px;
       box-shadow:0 20px 40px rgba(0,0,0,0.5);
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn{
-      from{opacity:0; transform:translateY(15px);}
-      to{opacity:1; transform:translateY(0);}
     }
 
     h2{
@@ -61,7 +55,6 @@
       outline:none;
       background:#0b1220;
       color:white;
-      transition:0.2s;
     }
 
     input:focus, select:focus{
@@ -87,43 +80,14 @@
       font-size:15px;
       font-weight:700;
       cursor:pointer;
-      transition:0.2s;
     }
 
     button:hover{
       background:#16a34a;
-      transform:scale(1.02);
     }
 
     button:disabled{
       opacity:0.6;
-      cursor:not-allowed;
-    }
-
-    .info{
-      text-align:center;
-      font-size:12px;
-      opacity:0.6;
-      margin-top:10px;
-    }
-
-    #pixArea{
-      display:none;
-      text-align:center;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .pix-valor{
-      font-size:18px;
-      font-weight:700;
-      color:#22c55e;
-      margin:10px 0;
-    }
-
-    img{
-      border-radius:12px;
-      margin-top:10px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.4);
     }
 
     .loading{
@@ -132,6 +96,14 @@
       font-size:13px;
       opacity:0.7;
       margin-top:10px;
+    }
+
+    #sucesso{
+      display:none;
+      text-align:center;
+      margin-top:20px;
+      color:#22c55e;
+      font-weight:700;
     }
   </style>
 </head>
@@ -160,41 +132,25 @@
 
     <button id="btn" type="submit">Confirmar Inscrição</button>
 
-    <div class="loading" id="loading">Gerando pagamento Pix...</div>
+    <div class="loading" id="loading">Enviando inscrição...</div>
 
-    <div class="info">
-      Após confirmar, será gerado o pagamento Pix.
-    </div>
+    <div id="sucesso">Inscrição enviada com sucesso! ✅</div>
 
   </form>
-
-  <div id="pixArea">
-
-    <h2>Pagamento Pix</h2>
-
-    <p>Escaneie o QR Code:</p>
-
-    <div class="pix-valor" id="pixValor"></div>
-
-    <img id="qr" width="220">
-
-  </div>
 
 </div>
 
 <script>
 
-const url = "https://lab-nu-three.vercel.app/api/pagamento";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwXJa8bNuk6CbqifvhZpNgdqfUcerzu875sAQAS3CceE6QGCXxHLyVHM_HY6YYZqq82/exec";
 
+const form = document.getElementById("formInscricao");
 const nascimentoInput = document.getElementById("nascimento");
 const valorTexto = document.getElementById("valor");
-const form = document.getElementById("formInscricao");
-
-const pixArea = document.getElementById("pixArea");
-const pixValor = document.getElementById("pixValor");
 
 const btn = document.getElementById("btn");
 const loading = document.getElementById("loading");
+const sucesso = document.getElementById("sucesso");
 
 function calcularIdade(dataNascimento) {
   const hoje = new Date();
@@ -210,6 +166,7 @@ function calcularIdade(dataNascimento) {
   return idade;
 }
 
+// atualizar valor automaticamente
 nascimentoInput.addEventListener("change", () => {
   if (!nascimentoInput.value) return;
 
@@ -224,6 +181,7 @@ form.addEventListener("submit", async (e) => {
 
   const nome = document.getElementById("nome").value;
   const nascimento = nascimentoInput.value;
+  const cadastro = document.getElementById("cadastro").value;
 
   const idade = calcularIdade(nascimento);
   const valor = idade >= 18 ? 40 : 30;
@@ -232,34 +190,31 @@ form.addEventListener("submit", async (e) => {
   loading.style.display = "block";
 
   try {
-    const response = await fetch(url, {
+    await fetch(SHEET_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome, valor })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nome,
+        nascimento,
+        idade,
+        cadastro,
+        valor
+      })
     });
 
-    const result = await response.json();
-
-    if (result.erro) {
-      alert("Erro: " + result.erro);
-      btn.disabled = false;
-      loading.style.display = "none";
-      return;
-    }
-
+    form.reset();
     form.style.display = "none";
-    pixArea.style.display = "block";
-
-    pixValor.innerText = `Valor: R$ ${valor}`;
-    document.getElementById("qr").src =
-      "data:image/png;base64," + result.qr_base64;
+    sucesso.style.display = "block";
 
   } catch (err) {
-    alert("Erro ao criar pagamento");
+    alert("Erro ao enviar inscrição");
     console.log(err);
   }
 
   loading.style.display = "none";
+  btn.disabled = false;
 });
 
 </script>
