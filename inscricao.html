@@ -4,47 +4,64 @@
   <meta charset="UTF-8">
   <title>Inscrição LBX</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    *{
+      box-sizing:border-box;
+      font-family:'Inter', sans-serif;
+    }
+
     body{
       margin:0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
-      color:white;
+      height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      height:100vh;
+      background: radial-gradient(circle at top, #1e3a8a, #0f172a);
+      color:white;
     }
 
     .card{
-      background:#111827;
-      padding:25px;
-      border-radius:12px;
       width:100%;
-      max-width:420px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.5);
+      max-width:430px;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:28px;
+      border-radius:16px;
+      box-shadow:0 20px 40px rgba(0,0,0,0.5);
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(15px);}
+      to{opacity:1; transform:translateY(0);}
     }
 
     h2{
       text-align:center;
-      margin-bottom:20px;
       color:#38bdf8;
+      margin-bottom:20px;
+      font-weight:700;
     }
 
     label{
-      font-size:14px;
-      opacity:0.9;
+      font-size:13px;
+      opacity:0.8;
     }
 
     input, select{
       width:100%;
-      padding:10px;
-      margin-top:5px;
-      margin-bottom:15px;
-      border-radius:8px;
+      padding:11px;
+      margin-top:6px;
+      margin-bottom:14px;
+      border-radius:10px;
       border:none;
       outline:none;
-      font-size:14px;
+      background:#0b1220;
+      color:white;
+      transition:0.2s;
     }
 
     input:focus, select:focus{
@@ -52,11 +69,11 @@
     }
 
     .valor{
-      background:#0ea5e9;
+      background:linear-gradient(135deg,#0ea5e9,#22c55e);
       padding:12px;
-      border-radius:8px;
+      border-radius:10px;
       text-align:center;
-      font-weight:bold;
+      font-weight:700;
       margin:15px 0;
     }
 
@@ -64,35 +81,57 @@
       width:100%;
       padding:12px;
       border:none;
-      border-radius:8px;
+      border-radius:10px;
       background:#22c55e;
       color:white;
-      font-size:16px;
-      font-weight:bold;
+      font-size:15px;
+      font-weight:700;
       cursor:pointer;
+      transition:0.2s;
     }
 
     button:hover{
       background:#16a34a;
+      transform:scale(1.02);
+    }
+
+    button:disabled{
+      opacity:0.6;
+      cursor:not-allowed;
     }
 
     .info{
       text-align:center;
       font-size:12px;
-      opacity:0.7;
+      opacity:0.6;
       margin-top:10px;
     }
 
     #pixArea{
       display:none;
       text-align:center;
+      animation: fadeIn 0.5s ease;
     }
 
     .pix-valor{
       font-size:18px;
-      font-weight:bold;
+      font-weight:700;
       color:#22c55e;
       margin:10px 0;
+    }
+
+    img{
+      border-radius:12px;
+      margin-top:10px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .loading{
+      display:none;
+      text-align:center;
+      font-size:13px;
+      opacity:0.7;
+      margin-top:10px;
     }
   </style>
 </head>
@@ -119,7 +158,9 @@
 
     <div class="valor" id="valor">Valor da inscrição: -</div>
 
-    <button type="submit">Confirmar Inscrição</button>
+    <button id="btn" type="submit">Confirmar Inscrição</button>
+
+    <div class="loading" id="loading">Gerando pagamento Pix...</div>
 
     <div class="info">
       Após confirmar, será gerado o pagamento Pix.
@@ -131,7 +172,7 @@
 
     <h2>Pagamento Pix</h2>
 
-    <p>Escaneie o QR Code abaixo:</p>
+    <p>Escaneie o QR Code:</p>
 
     <div class="pix-valor" id="pixValor"></div>
 
@@ -152,6 +193,9 @@ const form = document.getElementById("formInscricao");
 const pixArea = document.getElementById("pixArea");
 const pixValor = document.getElementById("pixValor");
 
+const btn = document.getElementById("btn");
+const loading = document.getElementById("loading");
+
 function calcularIdade(dataNascimento) {
   const hoje = new Date();
   const nascimento = new Date(dataNascimento);
@@ -170,7 +214,9 @@ nascimentoInput.addEventListener("change", () => {
   if (!nascimentoInput.value) return;
 
   const idade = calcularIdade(nascimentoInput.value);
-  valorTexto.innerText = "Valor da inscrição: R$" + (idade >= 18 ? 40 : 30);
+  const valor = idade >= 18 ? 40 : 30;
+
+  valorTexto.innerText = `Valor da inscrição: R$ ${valor}`;
 });
 
 form.addEventListener("submit", async (e) => {
@@ -182,37 +228,38 @@ form.addEventListener("submit", async (e) => {
   const idade = calcularIdade(nascimento);
   const valor = idade >= 18 ? 40 : 30;
 
+  btn.disabled = true;
+  loading.style.display = "block";
+
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        nome,
-        valor
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nome, valor })
     });
 
     const result = await response.json();
 
     if (result.erro) {
       alert("Erro: " + result.erro);
+      btn.disabled = false;
+      loading.style.display = "none";
       return;
     }
 
     form.style.display = "none";
     pixArea.style.display = "block";
 
-    pixValor.innerText = "Valor: R$ " + valor;
-
+    pixValor.innerText = `Valor: R$ ${valor}`;
     document.getElementById("qr").src =
       "data:image/png;base64," + result.qr_base64;
 
   } catch (err) {
-    console.log(err);
     alert("Erro ao criar pagamento");
+    console.log(err);
   }
+
+  loading.style.display = "none";
 });
 
 </script>
