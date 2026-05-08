@@ -203,7 +203,6 @@ function calcularIdade(dataNascimento) {
   return idade;
 }
 
-// MOSTRAR VALOR AUTOMÁTICO
 nascimentoInput.addEventListener("change", () => {
 
   if (!nascimentoInput.value) return;
@@ -218,7 +217,6 @@ nascimentoInput.addEventListener("change", () => {
     `Valor da inscrição: R$ ${valor}`;
 });
 
-// ENVIAR FORMULÁRIO
 form.addEventListener("submit", async (e) => {
 
   e.preventDefault();
@@ -242,6 +240,7 @@ form.addEventListener("submit", async (e) => {
     idade >= 18 ? 40 : 30;
 
   btn.disabled = true;
+
   loading.style.display = "block";
 
   try {
