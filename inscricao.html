@@ -171,7 +171,8 @@
 
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwXJa8bNuk6CbqifvhZpNgdqfUcerzu875sAQAS3CceE6QGCXxHLyVHM_HY6YYZqq82/exec";
+const API_URL =
+"https://script.google.com/macros/s/AKfycbwXJa8bNuk6CbqifvhZpNgdqfUcerzu875sAQAS3CceE6QGCXxHLyVHM_HY6YYZqq82/exec";
 
 const form = document.getElementById("formInscricao");
 const nascimentoInput = document.getElementById("nascimento");
@@ -245,24 +246,16 @@ form.addEventListener("submit", async (e) => {
 
   try {
 
-    const resposta = await fetch(API_URL, {
+    const url =
+      API_URL +
+      "?nome=" + encodeURIComponent(nome) +
+      "&email=" + encodeURIComponent(email) +
+      "&nascimento=" + encodeURIComponent(nascimento) +
+      "&idade=" + idade +
+      "&cadastro=" + cadastro +
+      "&valor=" + valor;
 
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-        nome,
-        email,
-        nascimento,
-        idade,
-        cadastro,
-        valor
-      })
-
-    });
+    const resposta = await fetch(url);
 
     const dados = await resposta.json();
 
