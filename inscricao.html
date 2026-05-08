@@ -178,9 +178,6 @@ const form = document.getElementById("formInscricao");
 const nascimentoInput = document.getElementById("nascimento");
 const valorTexto = document.getElementById("valor");
 
-const btn = document.getElementById("btn");
-const loading = document.getElementById("loading");
-
 function calcularIdade(dataNascimento) {
 
   const hoje = new Date();
@@ -203,6 +200,7 @@ function calcularIdade(dataNascimento) {
   return idade;
 }
 
+// MOSTRAR VALOR AUTOMÁTICO
 nascimentoInput.addEventListener("change", () => {
 
   if (!nascimentoInput.value) return;
@@ -217,7 +215,8 @@ nascimentoInput.addEventListener("change", () => {
     `Valor da inscrição: R$ ${valor}`;
 });
 
-form.addEventListener("submit", async (e) => {
+// ENVIAR FORMULÁRIO
+form.addEventListener("submit", (e) => {
 
   e.preventDefault();
 
@@ -239,49 +238,17 @@ form.addEventListener("submit", async (e) => {
   const valor =
     idade >= 18 ? 40 : 30;
 
-  btn.disabled = true;
+  const url =
+    API_URL +
+    "?nome=" + encodeURIComponent(nome) +
+    "&email=" + encodeURIComponent(email) +
+    "&nascimento=" + encodeURIComponent(nascimento) +
+    "&idade=" + idade +
+    "&cadastro=" + cadastro +
+    "&valor=" + valor;
 
-  loading.style.display = "block";
-
-  try {
-
-    const url =
-      API_URL +
-      "?nome=" + encodeURIComponent(nome) +
-      "&email=" + encodeURIComponent(email) +
-      "&nascimento=" + encodeURIComponent(nascimento) +
-      "&idade=" + idade +
-      "&cadastro=" + cadastro +
-      "&valor=" + valor;
-
-    const resposta = await fetch(url);
-
-    const dados = await resposta.json();
-
-    loading.style.display = "none";
-
-    form.style.display = "none";
-
-    document.getElementById("pixArea")
-      .style.display = "block";
-
-    document.getElementById("qrCode").src =
-      "data:image/png;base64," +
-      dados.qr_code_base64;
-
-    document.getElementById("pixCopiaCola").value =
-      dados.qr_code;
-
-  } catch (err) {
-
-    loading.style.display = "none";
-
-    btn.disabled = false;
-
-    alert("Erro ao gerar pagamento");
-
-    console.log(err);
-  }
+  // REDIRECIONA PARA PAGAMENTO PIX
+  window.location.href = url;
 });
 
 </script>
