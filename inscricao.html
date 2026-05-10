@@ -47,7 +47,7 @@
       font-size:14px;
     }
 
-    input, select, textarea{
+    input, select{
       width:100%;
       padding:12px;
       border:none;
@@ -59,14 +59,18 @@
     }
 
     input:focus,
-    select:focus,
-    textarea:focus{
+    select:focus{
       border:1px solid #38bdf8;
     }
 
-    textarea{
-      resize:none;
-      height:90px;
+    .valor{
+      background:#1e293b;
+      padding:15px;
+      border-radius:12px;
+      text-align:center;
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:20px;
     }
 
     button{
@@ -109,24 +113,22 @@
       <label>Nome completo</label>
       <input type="text" required>
 
-      <label>Telefone</label>
-      <input type="tel" required>
+      <label>Email</label>
+      <input type="email" required>
 
-      <label>Idade</label>
-      <input type="number" required>
-
-      <label>Posição</label>
-      <select required>
+      <label>Sexo</label>
+      <select id="sexo" required>
         <option value="">Selecione</option>
-        <option>Levantador</option>
-        <option>Ponteiro</option>
-        <option>Central</option>
-        <option>Oposto</option>
-        <option>Líbero</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
       </select>
 
-      <label>Observações</label>
-      <textarea placeholder="Opcional"></textarea>
+      <label>Data de nascimento</label>
+      <input type="date" id="nascimento" required>
+
+      <div class="valor" id="valor">
+        Valor da inscrição: R$ 0
+      </div>
 
       <button type="submit">
         Enviar Inscrição
@@ -142,8 +144,70 @@
 
 <script>
 
-const form = document.getElementById("formulario");
-const sucesso = document.getElementById("sucesso");
+const nascimento = document.getElementById("nascimento");
+const sexo = document.getElementById("sexo");
+const valor = document.getElementById("valor");
+
+function calcularIdade(data){
+
+  const hoje = new Date();
+  const nasc = new Date(data);
+
+  let idade =
+    hoje.getFullYear() - nasc.getFullYear();
+
+  const mes =
+    hoje.getMonth() - nasc.getMonth();
+
+  if(
+    mes < 0 ||
+    (mes === 0 && hoje.getDate() < nasc.getDate())
+  ){
+    idade--;
+  }
+
+  return idade;
+}
+
+function atualizarValor(){
+
+  if(!nascimento.value || !sexo.value){
+    valor.innerHTML =
+      "Valor da inscrição: R$ 0";
+    return;
+  }
+
+  const idade =
+    calcularIdade(nascimento.value);
+
+  let preco = 30;
+
+  if(
+    sexo.value === "masculino" &&
+    idade >= 18
+  ){
+    preco = 40;
+  }
+
+  valor.innerHTML =
+    `Valor da inscrição: R$ ${preco}`;
+}
+
+nascimento.addEventListener(
+  "change",
+  atualizarValor
+);
+
+sexo.addEventListener(
+  "change",
+  atualizarValor
+);
+
+const form =
+  document.getElementById("formulario");
+
+const sucesso =
+  document.getElementById("sucesso");
 
 form.addEventListener("submit", function(e){
 
@@ -152,6 +216,9 @@ form.addEventListener("submit", function(e){
   sucesso.style.display = "block";
 
   form.reset();
+
+  valor.innerHTML =
+    "Valor da inscrição: R$ 0";
 
 });
 
