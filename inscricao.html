@@ -2,252 +2,157 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscrição LBX</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+
     *{
+      margin:0;
+      padding:0;
       box-sizing:border-box;
       font-family:'Inter', sans-serif;
     }
 
     body{
-      margin:0;
+      background:#0f172a;
       min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      background: radial-gradient(circle at top, #1e3a8a, #0f172a);
-      color:white;
       padding:20px;
+      color:white;
     }
 
     .card{
       width:100%;
-      max-width:430px;
-      background: rgba(17, 24, 39, 0.85);
-      backdrop-filter: blur(10px);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:28px;
-      border-radius:16px;
-      box-shadow:0 20px 40px rgba(0,0,0,0.5);
+      max-width:450px;
+      background:#111827;
+      padding:30px;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
     }
 
-    h2{
+    h1{
       text-align:center;
+      margin-bottom:25px;
       color:#38bdf8;
-      margin-bottom:20px;
-      font-weight:700;
     }
 
     label{
-      font-size:13px;
-      opacity:0.8;
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
     }
 
     input, select, textarea{
       width:100%;
-      padding:11px;
-      margin-top:6px;
-      margin-bottom:14px;
-      border-radius:10px;
-      border:none;
-      outline:none;
-      background:#0b1220;
-      color:white;
-    }
-
-    input:focus, select:focus, textarea:focus{
-      box-shadow:0 0 0 2px #38bdf8;
-    }
-
-    .valor{
-      background:linear-gradient(135deg,#0ea5e9,#22c55e);
       padding:12px;
+      border:none;
       border-radius:10px;
-      text-align:center;
-      font-weight:700;
-      margin:15px 0;
+      background:#1f2937;
+      color:white;
+      margin-bottom:18px;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border:1px solid #38bdf8;
+    }
+
+    textarea{
+      resize:none;
+      height:90px;
     }
 
     button{
       width:100%;
-      padding:12px;
+      padding:14px;
       border:none;
       border-radius:10px;
       background:#22c55e;
       color:white;
-      font-size:15px;
+      font-size:16px;
       font-weight:700;
       cursor:pointer;
+      transition:0.2s;
     }
 
     button:hover{
       background:#16a34a;
     }
 
-    button:disabled{
-      opacity:0.6;
-    }
-
-    .loading{
-      display:none;
-      text-align:center;
-      font-size:13px;
-      opacity:0.7;
-      margin-top:10px;
-    }
-
-    #pixArea{
-      display:none;
-      text-align:center;
+    .sucesso{
       margin-top:20px;
-    }
-
-    #qrCode{
-      width:250px;
-      background:white;
-      padding:10px;
+      background:#16a34a;
+      padding:12px;
       border-radius:10px;
-      margin-top:10px;
+      text-align:center;
+      display:none;
     }
 
-    textarea{
-      height:100px;
-      resize:none;
-    }
   </style>
 </head>
 
 <body>
 
-<div class="card">
+  <div class="card">
 
-  <h2>Inscrição Torneio LBX</h2>
+    <h1>Inscrição LBX</h1>
 
-  <form id="formInscricao">
+    <form id="formulario">
 
-    <label>Nome completo</label>
-    <input type="text" id="nome" required>
+      <label>Nome completo</label>
+      <input type="text" required>
 
-    <label>Email</label>
-    <input type="email" id="email" required>
+      <label>Telefone</label>
+      <input type="tel" required>
 
-    <label>Data de nascimento</label>
-    <input type="date" id="nascimento" required>
+      <label>Idade</label>
+      <input type="number" required>
 
-    <label>Já possui cadastro na LBX?</label>
-    <select id="cadastro">
-      <option value="sim">Sim</option>
-      <option value="nao">Não</option>
-    </select>
+      <label>Posição</label>
+      <select required>
+        <option value="">Selecione</option>
+        <option>Levantador</option>
+        <option>Ponteiro</option>
+        <option>Central</option>
+        <option>Oposto</option>
+        <option>Líbero</option>
+      </select>
 
-    <div class="valor" id="valor">
-      Valor da inscrição: -
+      <label>Observações</label>
+      <textarea placeholder="Opcional"></textarea>
+
+      <button type="submit">
+        Enviar Inscrição
+      </button>
+
+    </form>
+
+    <div class="sucesso" id="sucesso">
+      Inscrição enviada com sucesso!
     </div>
-
-    <button id="btn" type="submit">
-      Confirmar Inscrição
-    </button>
-
-    <div class="loading" id="loading">
-      Gerando pagamento...
-    </div>
-
-  </form>
-
-  <div id="pixArea">
-
-    <h3>Pagamento Pix</h3>
-
-    <img id="qrCode">
-
-    <textarea id="pixCopiaCola" readonly></textarea>
 
   </div>
 
-</div>
-
 <script>
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwXJa8bNuk6CbqifvhZpNgdqfUcerzu875sAQAS3CceE6QGCXxHLyVHM_HY6YYZqq82/exec";
+const form = document.getElementById("formulario");
+const sucesso = document.getElementById("sucesso");
 
-const form = document.getElementById("formInscricao");
-const nascimentoInput = document.getElementById("nascimento");
-const valorTexto = document.getElementById("valor");
-
-function calcularIdade(dataNascimento) {
-
-  const hoje = new Date();
-  const nascimento = new Date(dataNascimento);
-
-  let idade =
-    hoje.getFullYear() - nascimento.getFullYear();
-
-  const mes =
-    hoje.getMonth() - nascimento.getMonth();
-
-  if (
-    mes < 0 ||
-    (mes === 0 &&
-    hoje.getDate() < nascimento.getDate())
-  ) {
-    idade--;
-  }
-
-  return idade;
-}
-
-// MOSTRAR VALOR AUTOMÁTICO
-nascimentoInput.addEventListener("change", () => {
-
-  if (!nascimentoInput.value) return;
-
-  const idade =
-    calcularIdade(nascimentoInput.value);
-
-  const valor =
-    idade >= 18 ? 40 : 30;
-
-  valorTexto.innerText =
-    `Valor da inscrição: R$ ${valor}`;
-});
-
-// ENVIAR FORMULÁRIO
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", function(e){
 
   e.preventDefault();
 
-  const nome =
-    document.getElementById("nome").value;
+  sucesso.style.display = "block";
 
-  const email =
-    document.getElementById("email").value;
+  form.reset();
 
-  const nascimento =
-    nascimentoInput.value;
-
-  const cadastro =
-    document.getElementById("cadastro").value;
-
-  const idade =
-    calcularIdade(nascimento);
-
-  const valor =
-    idade >= 18 ? 40 : 30;
-
-  const url =
-    API_URL +
-    "?nome=" + encodeURIComponent(nome) +
-    "&email=" + encodeURIComponent(email) +
-    "&nascimento=" + encodeURIComponent(nascimento) +
-    "&idade=" + idade +
-    "&cadastro=" + cadastro +
-    "&valor=" + valor;
-
-  // REDIRECIONA PARA PAGAMENTO PIX
-  window.location.href = url;
 });
 
 </script>
