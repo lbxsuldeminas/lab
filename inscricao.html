@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LBX - Inscrição Torneios</title>
+  <title>LBX Chess Tournament</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -158,14 +158,26 @@ button:hover{
   0 10px 20px rgba(212,175,55,0.25);
 }
 
-</style>
+textarea{
+  width:100%;
+  height:90px;
+  border:none;
+  border-radius:12px;
+  padding:12px;
+  resize:none;
+  background:#1a1a1a;
+  color:white;
+  margin-bottom:10px;
+}
+
+  </style>
 </head>
 
 <body>
 
   <div class="card">
 
-    <h1>LBX - Inscrição Torneios</h1>
+    <h1>♟ LBX Chess Tournament</h1>
 
     <form id="formulario">
 
@@ -182,14 +194,38 @@ button:hover{
         <option value="nao">Não</option>
       </select>
 
-      <div class="valor" id="valor" style="display:none;">
-      </div>
+      <div class="valor" id="valor" style="display:none;"></div>
 
       <button type="submit">
         Ir para pagamento
       </button>
 
     </form>
+
+    <div id="pixArea" style="display:none; margin-top:25px; text-align:center;">
+
+      <h2 style="margin-bottom:15px; color:#d4af37;">
+        Pagamento Pix
+      </h2>
+
+      <img 
+        src="LINK_DO_QRCODE_AQUI"
+        style="
+          width:230px;
+          background:white;
+          padding:10px;
+          border-radius:15px;
+          margin-bottom:15px;
+        "
+      >
+
+      <textarea id="pixKey" readonly>SUA_CHAVE_PIX_AQUI</textarea>
+
+      <button type="button" onclick="copiarPix()">
+        Copiar chave Pix
+      </button>
+
+    </div>
 
   </div>
 
@@ -198,6 +234,7 @@ button:hover{
 const form = document.getElementById("formulario");
 const nascimento = document.getElementById("nascimento");
 const valor = document.getElementById("valor");
+const pixArea = document.getElementById("pixArea");
 
 function calcularIdade(data){
 
@@ -238,7 +275,24 @@ form.addEventListener("submit", function(e){
   valor.innerHTML =
     `Valor da inscrição: R$ ${preco}`;
 
+  pixArea.style.display = "block";
+
 });
+
+function copiarPix(){
+
+  const pix =
+    document.getElementById("pixKey");
+
+  pix.select();
+
+  pix.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(pix.value);
+
+  alert("Chave Pix copiada!");
+
+}
 
 </script>
 
