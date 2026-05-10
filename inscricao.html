@@ -104,35 +104,39 @@
 
 <body>
 
-  <div class="card">
+<div class="card">
 
-    <h1>Inscrição LBX</h1>
+  <h1>Inscrição LBX</h1>
 
-    <form id="formulario">
+  <form id="formulario">
 
-      <label>Nome completo</label>
-      <input type="text" required>
+    <label>Nome completo</label>
+    <input type="text" required>
 
-      <label>Email</label>
-      <input type="email" required>
+    <label>Data de nascimento</label>
+    <input type="date" id="nascimento" required>
 
-      <label>Sexo</label>
-      <select id="sexo" required>
-        <option value="">Selecione</option>
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-      </select>
+    <label>Sexo</label>
+    <select id="sexo" required>
+      <option value="">Selecione</option>
+      <option value="masculino">Masculino</option>
+      <option value="feminino">Feminino</option>
+    </select>
 
-      <label>Data de nascimento</label>
-      <input type="date" id="nascimento" required>
+    <label>Tem cadastro na LBX?</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option value="sim">Sim</option>
+      <option value="nao">Não</option>
+    </select>
 
-      <div class="valor" id="valor">
-        Valor da inscrição: R$ 0
-      </div>
+    <div class="valor" id="valor">
+      Valor da inscrição: R$ 0
+    </div>
 
-      <button type="submit">
-        Enviar Inscrição
-      </button>
+    <button type="submit">
+      Enviar Inscrição
+    </button>
 
     </form>
 
