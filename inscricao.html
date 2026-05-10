@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscrição LBX</title>
+  <title>LBX - Inscrição Torneios</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -39,6 +39,7 @@
       text-align:center;
       margin-bottom:25px;
       color:#38bdf8;
+      font-size:28px;
     }
 
     label{
@@ -90,62 +91,45 @@
       background:#16a34a;
     }
 
-    .sucesso{
-      margin-top:20px;
-      background:#16a34a;
-      padding:12px;
-      border-radius:10px;
-      text-align:center;
-      display:none;
-    }
-
   </style>
 </head>
 
 <body>
 
-<div class="card">
+  <div class="card">
 
-  <h1>LBX - Inscrição Torneios</h1>
+    <h1>LBX - Inscrição Torneios</h1>
 
-  <form id="formulario">
+    <form id="formulario">
 
-    <label>Nome completo</label>
-    <input type="text" required>
+      <label>Nome completo</label>
+      <input type="text" required>
 
-    <label>Data de nascimento</label>
-    <input type="date" id="nascimento" required>
+      <label>Data de nascimento</label>
+      <input type="date" id="nascimento" required>
 
-    <label>Sexo</label>
-    <select id="sexo" required>
-      <option value="">Selecione</option>
-      <option value="masculino">Masculino</option>
-      <option value="feminino">Feminino</option>
-    </select>
+      <label>Tem cadastro na LBX?</label>
+      <select required>
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
 
-    <label>Tem cadastro na LBX?</label>
-    <select required>
-      <option value="">Selecione</option>
-      <option value="sim">Sim</option>
-      <option value="nao">Não</option>
-    </select>
+      <div class="valor" id="valor" style="display:none;">
+      </div>
 
-    <div class="valor" id="valor" style="display:none;">
-    </div>
+      <button type="submit">
+        Ir para pagamento
+      </button>
 
-    <button type="submit">
-      Ir para pagamento
-    </button>
+    </form>
 
-  </form>
-
-</div>
+  </div>
 
 <script>
 
 const form = document.getElementById("formulario");
 const nascimento = document.getElementById("nascimento");
-const sexo = document.getElementById("sexo");
 const valor = document.getElementById("valor");
 
 function calcularIdade(data){
@@ -178,10 +162,7 @@ form.addEventListener("submit", function(e){
 
   let preco = 30;
 
-  if(
-    sexo.value === "masculino" &&
-    idade >= 18
-  ){
+  if(idade >= 18){
     preco = 40;
   }
 
@@ -193,5 +174,6 @@ form.addEventListener("submit", function(e){
 });
 
 </script>
+
 </body>
 </html>
