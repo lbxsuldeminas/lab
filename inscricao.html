@@ -130,24 +130,20 @@
       <option value="nao">Não</option>
     </select>
 
-    <div class="valor" id="valor">
-      Valor da inscrição: R$ 0
+    <div class="valor" id="valor" style="display:none;">
     </div>
 
     <button type="submit">
       Enviar Inscrição
     </button>
 
-    </form>
+  </form>
 
-    <div class="sucesso" id="sucesso">
-      Inscrição enviada com sucesso!
-    </div>
-
-  </div>
+</div>
 
 <script>
 
+const form = document.getElementById("formulario");
 const nascimento = document.getElementById("nascimento");
 const sexo = document.getElementById("sexo");
 const valor = document.getElementById("valor");
@@ -173,13 +169,9 @@ function calcularIdade(data){
   return idade;
 }
 
-function atualizarValor(){
+form.addEventListener("submit", function(e){
 
-  if(!nascimento.value || !sexo.value){
-    valor.innerHTML =
-      "Valor da inscrição: R$ 0";
-    return;
-  }
+  e.preventDefault();
 
   const idade =
     calcularIdade(nascimento.value);
@@ -193,40 +185,13 @@ function atualizarValor(){
     preco = 40;
   }
 
+  valor.style.display = "block";
+
   valor.innerHTML =
     `Valor da inscrição: R$ ${preco}`;
-}
-
-nascimento.addEventListener(
-  "change",
-  atualizarValor
-);
-
-sexo.addEventListener(
-  "change",
-  atualizarValor
-);
-
-const form =
-  document.getElementById("formulario");
-
-const sucesso =
-  document.getElementById("sucesso");
-
-form.addEventListener("submit", function(e){
-
-  e.preventDefault();
-
-  sucesso.style.display = "block";
-
-  form.reset();
-
-  valor.innerHTML =
-    "Valor da inscrição: R$ 0";
 
 });
 
 </script>
-
 </body>
 </html>
