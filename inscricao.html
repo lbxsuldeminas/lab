@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LBX - Incrição Torneios</title>
+  <title>LBX - Inscrição Torneios</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-
 *{
   margin:0;
   padding:0;
@@ -22,140 +21,76 @@ body{
   justify-content:center;
   align-items:center;
   padding:20px;
-
   background:
   linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)),
   url('https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=1200');
-
   background-size:cover;
   background-position:center;
-
   color:white;
 }
 
 .card{
   width:100%;
   max-width:460px;
-
   background:rgba(15,15,15,0.92);
-
   border:1px solid rgba(255,255,255,0.08);
-
   backdrop-filter:blur(8px);
-
   padding:35px;
-
   border-radius:22px;
-
-  box-shadow:
-  0 0 30px rgba(0,0,0,0.7);
+  box-shadow:0 0 30px rgba(0,0,0,0.7);
 }
 
 h1{
   text-align:center;
   margin-bottom:30px;
-
   color:#d4af37;
-
   font-size:30px;
-
   font-weight:700;
-
-  letter-spacing:1px;
 }
 
 label{
   display:block;
-
   margin-bottom:7px;
-
   font-size:14px;
-
   color:#d1d5db;
 }
 
-input,
-select{
+input, select{
   width:100%;
-
   padding:14px;
-
   border:none;
-
   border-radius:12px;
-
   background:#1a1a1a;
-
   color:white;
-
   margin-bottom:18px;
-
-  outline:none;
-
   border:1px solid #2d2d2d;
-
-  transition:0.2s;
 }
 
-input:focus,
-select:focus{
-
+input:focus, select:focus{
   border:1px solid #d4af37;
-
-  box-shadow:
-  0 0 10px rgba(212,175,55,0.3);
 }
 
 .valor{
-
-  background:
-  linear-gradient(135deg,#d4af37,#8b6b1f);
-
+  background:linear-gradient(135deg,#d4af37,#8b6b1f);
   color:black;
-
   padding:16px;
-
   border-radius:14px;
-
   text-align:center;
-
   font-size:20px;
-
   font-weight:700;
-
   margin-bottom:20px;
 }
 
 button{
-
   width:100%;
-
   padding:15px;
-
   border:none;
-
   border-radius:14px;
-
-  background:
-  linear-gradient(135deg,#d4af37,#8b6b1f);
-
+  background:linear-gradient(135deg,#d4af37,#8b6b1f);
   color:black;
-
   font-size:16px;
-
   font-weight:700;
-
   cursor:pointer;
-
-  transition:0.25s;
-}
-
-button:hover{
-
-  transform:translateY(-2px);
-
-  box-shadow:
-  0 10px 20px rgba(212,175,55,0.25);
 }
 
 textarea{
@@ -164,70 +99,53 @@ textarea{
   border:none;
   border-radius:12px;
   padding:12px;
-  resize:none;
   background:#1a1a1a;
   color:white;
-  margin-bottom:10px;
 }
-
   </style>
 </head>
 
 <body>
 
-  <div class="card">
+<div class="card">
 
-    <h1>LBX - Inscrição Torneios</h1>
+  <h1>LBX - Inscrição Torneios</h1>
 
-    <form id="formulario">
+  <form id="formulario">
 
-      <label>Nome completo</label>
-      <input type="text" required>
+    <label>Nome completo</label>
+    <input type="text" required>
 
-      <label>Data de nascimento</label>
-      <input type="date" id="nascimento" required>
+    <label>Data de nascimento</label>
+    <input type="date" id="nascimento" required>
 
-      <label>Tem cadastro na LBX?</label>
-      <select required>
-        <option value="">Selecione</option>
-        <option value="sim">Sim</option>
-        <option value="nao">Não</option>
-      </select>
+    <label>Tem cadastro na LBX?</label>
+    <select required>
+      <option value="">Selecione</option>
+      <option value="sim">Sim</option>
+      <option value="nao">Não</option>
+    </select>
 
-      <div class="valor" id="valor" style="display:none;"></div>
+    <div class="valor" id="valor" style="display:none;"></div>
 
-      <button type="submit">
-        Ir para pagamento
-      </button>
+    <button type="submit">Ir para pagamento</button>
 
-    </form>
+  </form>
 
-    <div id="pixArea" style="display:none; margin-top:25px; text-align:center;">
+  <div id="pixArea" style="display:none; margin-top:25px; text-align:center;">
 
-      <h2 style="margin-bottom:15px; color:#d4af37;">
-        Pagamento Pix
-      </h2>
+    <h2 style="color:#d4af37; margin-bottom:15px;">Pagamento Pix</h2>
 
-      <img 
-        src="https://i.ibb.co/qFFC91Mv/IMG-0399.jpg"
-        style="
-          width:230px;
-          background:white;
-          padding:10px;
-          border-radius:15px;
-          margin-bottom:15px;
-        "
-      >
+    <img src="https://i.ibb.co/qFFC91Mv/IMG-0399.jpg"
+      style="width:230px; background:white; padding:10px; border-radius:15px;">
 
-      <textarea id="pixKey" readonly>andrebrjm@gmail.com</textarea>
+    <textarea id="pixKey" readonly>andrebrjm@gmail.com</textarea>
 
-      <button type="button" onclick="copiarPix()">
-        Copiar chave Pix
-      </button>
-
-    </div>
+    <button onclick="copiarPix()">Copiar chave Pix</button>
 
   </div>
+
+</div>
 
 <script>
 
@@ -236,62 +154,67 @@ const nascimento = document.getElementById("nascimento");
 const valor = document.getElementById("valor");
 const pixArea = document.getElementById("pixArea");
 
-function calcularIdade(data){
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzDcjdF5D3_wJAM6z2FuIxTXJXDS0cILM7ITWzwiLEaSgquMu5LzyOjU0-TBYP0jTOD/exec";
 
+function calcularIdade(data){
   const hoje = new Date();
   const nasc = new Date(data);
 
-  let idade =
-    hoje.getFullYear() - nasc.getFullYear();
+  let idade = hoje.getFullYear() - nasc.getFullYear();
 
-  const mes =
-    hoje.getMonth() - nasc.getMonth();
+  const mes = hoje.getMonth() - nasc.getMonth();
 
-  if(
-    mes < 0 ||
-    (mes === 0 && hoje.getDate() < nasc.getDate())
-  ){
+  if(mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())){
     idade--;
   }
 
   return idade;
 }
 
-form.addEventListener("submit", function(e){
-
+form.addEventListener("submit", async function(e){
   e.preventDefault();
 
-  const idade =
-    calcularIdade(nascimento.value);
+  const nome = form.querySelector('input[type="text"]').value;
+  const dataNascimento = nascimento.value;
+  const cadastro = form.querySelector("select").value;
+
+  const idade = calcularIdade(dataNascimento);
 
   let preco = 30;
-
   if(idade >= 18){
     preco = 40;
   }
 
   valor.style.display = "block";
-
-  valor.innerHTML =
-    `Valor da inscrição: R$ ${preco}`;
+  valor.innerHTML = `Valor da inscrição: R$ ${preco}`;
 
   pixArea.style.display = "block";
+
+  try{
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        nome: nome,
+        nascimento: dataNascimento,
+        cadastro: cadastro,
+        valor: preco
+      })
+    });
+
+    console.log("Enviado!");
+  }catch(err){
+    alert("Erro ao enviar inscrição");
+    console.log(err);
+  }
 
 });
 
 function copiarPix(){
-
-  const pix =
-    document.getElementById("pixKey");
-
+  const pix = document.getElementById("pixKey");
   pix.select();
-
-  pix.setSelectionRange(0, 99999);
-
   navigator.clipboard.writeText(pix.value);
-
   alert("Chave Pix copiada!");
-
 }
 
 </script>
