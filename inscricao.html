@@ -38,17 +38,10 @@ body{
   padding:35px;
   border-radius:22px;
   box-shadow:0 0 30px rgba(0,0,0,0.7);
-  position:relative; /* IMPORTANTE pro popup */
+  position:relative;
 }
 
-h1{
-  text-align:center;
-  margin-bottom:30px;
-  color:#d4af37;
-  font-size:30px;
-  font-weight:700;
-}
-
+/* inputs */
 label{
   display:block;
   margin-bottom:7px;
@@ -71,6 +64,7 @@ input:focus, select:focus{
   border:1px solid #d4af37;
 }
 
+/* valor */
 .valor{
   background:linear-gradient(135deg,#d4af37,#8b6b1f);
   color:black;
@@ -82,6 +76,7 @@ input:focus, select:focus{
   margin-bottom:20px;
 }
 
+/* botão */
 button{
   width:100%;
   padding:15px;
@@ -104,38 +99,65 @@ textarea{
   color:white;
 }
 
-/* ===== TÍTULO + ÍCONE ===== */
+/* ===== TÍTULO CORRIGIDO ===== */
 .titulo{
+  position:relative;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:10px;
-  position:relative;
+  margin-bottom:20px;
 }
 
+.titulo-texto{
+  text-align:center;
+  line-height:1.2;
+}
+
+.titulo-principal{
+  font-size:30px;
+  font-weight:700;
+  color:#d4af37;
+}
+
+.titulo-sub{
+  font-size:16px;
+  font-weight:500;
+  color:#d4af37;
+  opacity:0.85;
+}
+
+/* ===== ÍCONE NO CANTO DIREITO (CORREÇÃO PRINCIPAL) ===== */
 .info-icon{
+  position:absolute;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+
   width:22px;
   height:22px;
   border-radius:50%;
   background:#d4af37;
   color:black;
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   font-weight:bold;
   cursor:pointer;
 }
 
-/* ===== POPUP INFO (CORRIGIDO) ===== */
+/* ===== POPUP ===== */
 .info-box{
   display:none;
 
   position:absolute;
-  top:60px;
+  top:70px;
   left:50%;
   transform:translateX(-50%);
 
   width:220px;
+  max-width:80vw;
 
   background:rgba(20,20,20,0.95);
   border:1px solid rgba(255,255,255,0.1);
@@ -150,34 +172,6 @@ textarea{
   box-shadow:0 10px 25px rgba(0,0,0,0.6);
   z-index:999;
 }
-
-  .titulo{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  position:relative;
-}
-
-/* bloco do título */
-.titulo-texto{
-  text-align:center;
-  line-height:1.2;
-}
-
-.titulo-principal{
-  font-size:30px;
-  font-weight:700;
-  color:#d4af37;
-}
-
-.titulo-sub{
-  font-size:20px;
-  font-weight:600;
-  color:#d4af37;
-  opacity:0.85;
-}
-  
 </style>
   
 </head>
