@@ -150,6 +150,33 @@ textarea{
   box-shadow:0 10px 25px rgba(0,0,0,0.6);
   z-index:999;
 }
+
+  .titulo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  position:relative;
+}
+
+/* bloco do título */
+.titulo-texto{
+  text-align:center;
+  line-height:1.2;
+}
+
+.titulo-principal{
+  font-size:26px;
+  font-weight:700;
+  color:#d4af37;
+}
+
+.titulo-sub{
+  font-size:14px;
+  font-weight:500;
+  color:#d1d5db;
+  margin-top:2px;
+}
   
 </style>
   
@@ -159,16 +186,12 @@ textarea{
 
 <div class="card">
 
-  <div class="titulo">
-  <h1>
-    LBX<br>
-    <span style="font-size:18px; font-weight:500;">
-      Inscrição de Torneios
-    </span>
-  </h1>
-
-  <span class="info-icon" onclick="toggleInfo()">i</span>
+  <div class="titulo-texto">
+  <div class="titulo-principal">LBX</div>
+  <div class="titulo-sub">Inscrição de Torneios</div>
 </div>
+
+<span class="info-icon" onclick="toggleInfo()">i</span>
 
  <div id="infoBox" class="info-box">
   Valor:<br>
