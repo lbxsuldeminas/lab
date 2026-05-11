@@ -102,6 +102,26 @@ textarea{
   background:#1a1a1a;
   color:white;
 }
+
+    .titulo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+}
+
+.info-icon{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#d4af37;
+  color:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
+  cursor:pointer;
+}
   </style>
 </head>
 
@@ -109,7 +129,17 @@ textarea{
 
 <div class="card">
 
-  <h1>LBX - Inscrição Torneios</h1>
+  <div class="titulo">
+    <h1>LBX - Inscrição Torneios</h1>
+    <span class="info-icon" onclick="toggleInfo()">i</span>
+  </div>
+
+  <div id="infoBox" class="info-box">
+  Torneio LBX<br>
+  Inscrição: R$ 30 / R$ 40<br>
+  Pagamento via Pix<br>
+  Vagas limitadas!
+</div>
 
   <form id="formulario">
 
@@ -216,7 +246,15 @@ function copiarPix(){
   navigator.clipboard.writeText(pix.value);
   alert("Chave Pix copiada!");
 }
+function toggleInfo(){
+  const box = document.getElementById("infoBox");
 
+  if(box.style.display === "block"){
+    box.style.display = "none";
+  }else{
+    box.style.display = "block";
+  }
+}
 </script>
 
 </body>
