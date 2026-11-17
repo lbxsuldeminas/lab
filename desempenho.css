@@ -1,1 +1,138 @@
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f5f8;
+  color: #202936;
+  min-height: 100vh;
+}
+
+.cabecalho {
+  background: linear-gradient(135deg, #102b46, #174f72);
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+.voltar {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.voltar:hover {
+  text-decoration: underline;
+}
+
+.cabecalho h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.cabecalho p {
+  color: #d5e5f1;
+  font-size: 16px;
+}
+
+.container {
+  width: 90%;
+  max-width: 950px;
+  margin: 40px auto;
+}
+
+.busca {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.busca h2 {
+  color: #123b5a;
+  margin-bottom: 12px;
+}
+
+.busca p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.campo-busca {
+  display: flex;
+  gap: 12px;
+}
+
+.campo-busca input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.campo-busca input:focus {
+  border-color: #17618a;
+  box-shadow: 0 0 0 3px rgba(23, 97, 138, 0.12);
+}
+
+.campo-busca button {
+  background: #17618a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.campo-busca button:hover {
+  background: #104665;
+}
+
+.resultado {
+  margin-top: 25px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  min-height: 100px;
+  color: #64748b;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+footer {
+  text-align: center;
+  padding: 25px 15px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .cabecalho h1 {
+    font-size: 25px;
+  }
+
+  .campo-busca {
+    flex-direction: column;
+  }
+
+  .campo-busca button {
+    width: 100%;
+  }
+
+  .busca,
+  .resultado {
+    padding: 22px;
+  }
+}
+
