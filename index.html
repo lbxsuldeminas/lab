@@ -10,699 +10,11 @@
 
   <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <style>
-/* ==================== Variáveis CSS ==================== */
-:root {
-  --primary-color: #000000;
-  --accent-color: #3399ff; /* azul mais vibrante para contraste */
-  --light-bg: #f4f4f4;     /* não usado mais */
-  --card-bg: #ffffff;       
-}
-
-/* ==================== Reset e estilos globais ==================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #000000;
-  color: #fff;
-  line-height: 1.6;
-  scroll-behavior: smooth;
-}
-
-/* ==================== Header e Navegação ==================== */
-header {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 20px 10px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
-  flex-wrap: wrap;
-  border-bottom: 2px solid #fff;
-  background-image: repeating-conic-gradient(
-    rgba(255,255,255,0.1) 0% 25%,
-    transparent 0% 50%
-  );
-  background-size: 80px 80px;
-}
-
-header h1 {
-  font-size: 1.8rem;
-  margin: 0 0 5px 0;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-/* Menu normal (desktop) */
-nav {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-
-nav a:hover {
-  background-color: #005fa3;
-}
-
-/* Botão do menu (mobile) */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.6rem;
-  cursor: pointer;
-  margin-left: 15px;
-}
-
-.menu-toggle span {
-  font-size: 0.8rem;
-  margin-top: 4px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-/* ==================== Seção principal ==================== */
-section#inicio {
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
-
-/* ==================== Cards gerais ==================== */
-.card {
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(5px);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  padding: 25px;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.card h2, .card h3 {
-  color: var(--primary-color);
-  margin-bottom: 15px;
-}
-
-/* ==================== Próximo Torneio ==================== */
-#proximo-torneio {
-  padding-top: 16px;
-}
-
-/* ==================== Calendário de Próximos Torneios ==================== */
-#calendario {
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 20px 15px;
-  width: 100%;
-  box-sizing: border-box;
-  padding-top: 16px;
-}
-
-#calendario h2 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  color: var(--primary-color);
-}
-
-.calendar-list {
-  display: flex;
-  gap: 20px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding-bottom: 10px;
-}
-
-.calendar-item {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 20px;
-  min-width: 200px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.calendar-item h3 {
-  margin-bottom: 10px;
-  color: var(--accent-color);
-}
-
-.calendar-item p {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.calendar-item button {
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-.calendar-item button:hover {
-  background-color: #005fa3;
-}
-
-/* ==================== Galeria de Fotos ==================== */
-#galeria {
-  padding-top: 16px;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* ==================== Resultados ==================== */
-#resultados {
-  padding-top: 16px;
-}
-
-.results-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.result-item {
-  display: flex;
-  align-items: center;
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 12px 18px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-left: 6px solid var(--accent-color);
-}
-
-.result-item i {
-  font-size: 24px;
-  color: var(--accent-color);
-  margin-right: 15px;
-  min-width: 30px;
-  text-align: center;
-}
-
-.result-item a {
-  color: var(--accent-color);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.result-item a:hover {
-  text-decoration: underline;
-}
-
-/* ==================== Partidas Transmitidas ==================== */
-#partidas-transmitidas {
-  padding-top: 16px;
-}
-
-#partidas-transmitidas .results-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-#partidas-transmitidas .result-item {
-  display: flex;
-  align-items: center;
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 12px 18px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-left: 6px solid var(--accent-color);
-}
-
-#partidas-transmitidas .result-item i {
-  font-size: 24px;
-  color: var(--accent-color);
-  margin-right: 15px;
-  min-width: 30px;
-  text-align: center;
-}
-
-#partidas-transmitidas .result-item a {
-  color: var(--accent-color);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-#partidas-transmitidas .result-item a:hover {
-  text-decoration: underline;
-}
-
-/* item "TORNEIO AO VIVO" */
-#partidas-transmitidas .ao-vivo {
-  background-color: var(--card-bg);
-  border-left: 6px solid #e74c3c;
-}
-
-#partidas-transmitidas .ao-vivo i {
-  color: #e74c3c;
-}
-
-#partidas-transmitidas .ao-vivo a {
-  color: #e74c3c;
-}
-
-#partidas-transmitidas .ao-vivo a:hover {
-  text-decoration: underline;
-}
-
-/* ==================== Seção Contatos ==================== */
-#contatos {
-  padding-top: 17px;
-}
-
-#contatos h3 {
-  margin-bottom: 8px;
-}
-
-.contact a, .social a {
-  color: var(--accent-color);
-  text-decoration: none;
-  margin-right: 10px;
-  display: inline-block;
-}
-
-.contact a:hover, .social a:hover {
-  text-decoration: underline;
-}
-
-.contact i.fab {
-  font-size: 18px;
-  color: #000000;
-  vertical-align: middle;
-  margin-right: 5px;
-}
-
-.torneio-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-/* ==================== Seção Contatos ==================== 
-#countdown {
-  font-weight: bold;
-  color: var(--accent-color);
-  font-size: 0.94rem;
-}
-*/
-/* ==================== Botões gerais ==================== */
-.map-btn, .inscritos-btn {
-  background-color: var(--accent-color);
-  color: white;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.map-btn:hover, .inscritos-btn:hover {
-  background-color: #005fa3;
-}
-
-.inscreva-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.inscreva-btn:hover {
-  background-color: #c0392b;
-  transform: scale(1.05);
-}
-
-footer {
-  background-color: var(--primary-color);
-  color: white;
-  text-align: center;
-  padding: 20px;
-  border-top: 2px solid #fff;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-/* ==================== Banner Torneio ==================== */
-#bannerTorneio {
-  display: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.5s ease;
-}
-
-#bannerTorneio.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#proximo-torneio {
-  position: relative;
-}
-
-.toggle-seta {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: var(--accent-color);
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.share-buttons {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-.share-buttons a {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #333;
-  padding: 8px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
-}
-
-.share-buttons a:hover {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-header img {
-  max-width: 120px;
-  height: auto;
-}
-
-/* ==================== Responsividade ==================== */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.5rem;
-    margin: 0 0 5px 0;
-    text-align: center;
-  }
-
-  nav {
-    display: none; /* esconde menu desktop */
-    flex-direction: column;
-    gap: 10px;
-    background: rgba(0,0,0,0.9);
-    padding: 15px;
-    border-radius: 8px;
-    position: absolute;
-    top: 100%;
-    right: 10px;
-    width: 200px;
-    text-align: right;
-    z-index: 1000;
-  }
-
-  nav.show {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .menu-toggle span {
-    font-size: 0.8rem;
-    margin-top: 4px;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-
-  .header-text {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex: 1;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  .calendar-list {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  #calendario h2 {
-    font-size: 1.2rem;
-  }
-
-  .calendar-item {
-    min-width: auto;
-  }
-}
-    
-/* controla a abertura do banner em elas grandes */
-    #bannerTorneio img {
-  width: 100%;
-  max-width: 600px; /* controla o tamanho máximo do banner */
-  height: auto;
-  display: block;
-  margin: 0 auto; /* centraliza na tela */
-  border-radius: 10px;
-}
-
-    @media (min-width: 1024px) {
-  #bannerTorneio img {
-    max-width: 600px; /* menor ainda no PC */
-  }
-}
-
-    #sobre {
-  margin-bottom: 40px; /* Cria espaço abaixo da seção "Sobre" */
-  padding-top: 8px; /* diminui o espaço superior do card */
-  padding: 23px; /* espaço interno do card em todas as telas */
-  box-sizing: border-box; /* garante que padding não quebre o tamanho */
-}
-
-#ranking table, #ranking th, #ranking td {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-#ranking tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
-/* Linha inteira com cor */
-.ouro {
-  background: #ffd700 !important; /* dourado */
-  font-weight: bold;
-}
-
-.prata {
-  background: #c0c0c0 !important; /* prata */
-  font-weight: bold;
-}
-
-.bronze {
-  background: #cd7f32 !important; /* bronze */
-  font-weight: bold;
-}
-
-    .rankingTabela a {
-  color: inherit;         /* herda a cor do texto da célula */
-  text-decoration: none;  /* remove o sublinhado */
-  font-weight: bold;      /* opcional */
-}
-
-.rankingTabela a:hover {
-  text-decoration: underline; 
-  color: var(--primary-color); 
-}
-
-    #ranking .ranking-legenda {
-  font-size: 11px;
-  color: #777;
-  text-align: center;
-  margin: -8px 0 12px 0;
-  font-style: italic;
-  opacity: 0.8;
-}
-
-
-.evolucao {
-  font-size: 0.9rem;
-  margin-left: 6px;
-  font-weight: bold;
-}
-
-.evolucao.up {
-  color: green;  /* subiu */
-}
-
-.evolucao.down {
-  color: red;    /* desceu */
-}
-
-.evolucao.same {
-  color: gray;   /* mesma posição */
-}
-
-    .calendar-item {
-  margin-bottom: 20px; /* espaco entre etapas calendario (2etapas)*/
-}
-
-.rankingTabela tr.quarto,
-.rankingTabela tr.quinto {
-  background-color: rgba(180, 180, 180, 0.3);
-  backdrop-filter: blur(5px);
-}
-
-.rankingTabela tr.quarto:hover,
-.rankingTabela tr.quinto:hover {
-  background-color: rgba(180, 180, 180, 0.4);
-}
-
-    .menu-anos {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.menu-anos button {
-  background: #eee;
-  color: #333;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.menu-anos button:hover {
-  filter: brightness(0.95);
-}
-
-.menu-anos button.ativo {
-  background: var(--primary-color);
-  color: #fff;
-}
-
-  /* COMEÇO FINAL */  
-/* ===== PERSONALIZAÇÃO PRÓXIMO TORNEIO ===== */
-
-#proximo-torneio {
-    background: linear-gradient(135deg, #fffdf5, #f3e5bd);
-    border: 1px solid #d6b45c;
-    box-shadow: 0 5px 18px rgba(180, 140, 50, 0.18);
-    color: #393329;
-}
-
-/* Título */
-#proximo-torneio h2,
-#proximo-torneio h3 {
-    color: #29251d;
-}
-
-/* Botões de informações */
-#proximo-torneio .map-btn,
-#proximo-torneio .inscritos-btn {
-    background: linear-gradient(135deg, #d8b45b, #bd9135);
-    color: #fff;
-    box-shadow: 0 3px 7px rgba(130, 95, 25, 0.18);
-}
-
-#proximo-torneio .map-btn:hover,
-#proximo-torneio .inscritos-btn:hover {
-    background: linear-gradient(135deg, #bd9135, #a77a24);
-}
-
-/* Contagem regressiva */
-#proximo-torneio #countdown {
-    color: #a77a24;
-}
-
-/* Ícone da seta */
-#proximo-torneio .toggle-seta {
-    color: #bd9135;
-}
-
-/* Botões de inscrição permanecem vermelhos */
-#proximo-torneio .inscreva-btn {
-    background-color: #e74c3c;
-    color: white;
-}
-
-#proximo-torneio .inscreva-btn:hover {
-    background-color: #c0392b;
-}
-
-/* FIM FINAL */
-     </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  
   
   <!-- ==================== Header ==================== -->
   <header>
@@ -719,7 +31,7 @@ header img {
     <!-- Navegação -->
     <nav>
       <a href="#sobre">Sobre</a>
-      <a href="#proximo-torneio2">Próximo Torneio</a>
+      <a href="#proximo-torneio">Próximo Torneio</a>
       <a href="#calendario">Calendário</a>
       <a href="#galeria">Galeria</a>
       <a href="#ranking">Ranking</a>
@@ -840,7 +152,7 @@ header img {
   </div>
 
   <div id="bannerTorneio2" style="display:none; margin-top:10px;">
-    <img src=".jpg" style="width:100%; border-radius:10px;">
+    <img src="banner-itanhandu.jpg" alt="Banner do torneio de Itanhandu" style="width:100%; border-radius:10px;">
   </div>
 </div>
 
@@ -859,8 +171,6 @@ header img {
         Local no mapa
       </button>
     </div>
-
-  </div>
 </div>
 
 <!-- ==================== Galeria de Fotos ==================== -->
@@ -886,7 +196,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Recanto da Mata - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1RPfsZ5awx92x3Mkb_Hi1JTvY4dWpQn6v?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1RPfsZ5awx92x3Mkb_Hi1JTvY4dWpQn6v?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -895,7 +205,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Andrelândia - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1GzqBZzyljf8arrGNut3TRN1DNw-nW9l-?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1GzqBZzyljf8arrGNut3TRN1DNw-nW9l-?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -904,7 +214,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Pouso Alegre - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1pQB144YVdygM4q5h18F20gtlIL-_V9Y5?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1pQB144YVdygM4q5h18F20gtlIL-_V9Y5?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -912,7 +222,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Baependi - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1BBg64v6dSjdZcwOx2lhu10bepyXejdaR?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1BBg64v6dSjdZcwOx2lhu10bepyXejdaR?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -920,7 +230,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Bom Jardim de Minas - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/12KiQoM6yacNVuReDRP77oVmkXsOMy_PL?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/12KiQoM6yacNVuReDRP77oVmkXsOMy_PL?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div> 
 
@@ -928,7 +238,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Liberdade - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1pSrkooaZh56CUzBgWEDth-F4M6rjvsIW?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1pSrkooaZh56CUzBgWEDth-F4M6rjvsIW?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div> 
 
@@ -936,7 +246,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Minduri - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1sgm-3BmDiDOEK1O9Qn2Gm4Egv9igka7l?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1sgm-3BmDiDOEK1O9Qn2Gm4Egv9igka7l?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div> 
 
@@ -944,7 +254,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Cruzília - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1uCGHZ8PhR3PRgxtTQ1NpHoaRAIj_kE54?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1uCGHZ8PhR3PRgxtTQ1NpHoaRAIj_kE54?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div> 
 
@@ -952,7 +262,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Cambuquira - 2026</strong><br />
-        <a href="https://drive.google.com/drive/folders/1U-1taOHYBb7Pl7lV2JrG5ItcctuIE7w1?usp=drive_link"_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1U-1taOHYBb7Pl7lV2JrG5ItcctuIE7w1?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div> 
 
@@ -985,7 +295,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Caxambu - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1UC5NsnQ4zRtuovOYBtsJvHxTIy-ukHpo?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1UC5NsnQ4zRtuovOYBtsJvHxTIy-ukHpo?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -993,7 +303,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>São Lourenço - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1rTivXerZTckYwQwVHc260xUzmIWf7Gzs?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1rTivXerZTckYwQwVHc260xUzmIWf7Gzs?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1001,7 +311,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Paraguaçu - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1EzAaZkRTHVuGUiLlyBs7FnglzRq0eOyf?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1EzAaZkRTHVuGUiLlyBs7FnglzRq0eOyf?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1009,7 +319,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Cambuquira - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1iXZODY9KDe8GIikuzJ345U_Xi8bgtpfw?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1iXZODY9KDe8GIikuzJ345U_Xi8bgtpfw?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1017,7 +327,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>São Vicente de Minas - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1u9FEanatZ0xmk25PZDk_OrAgAa387Ozs?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1u9FEanatZ0xmk25PZDk_OrAgAa387Ozs?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1025,7 +335,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Itanhandu - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1EW8BgT_iEpCsGiBxDnpWMlCHUDGgqrzd?usp=sharing" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1EW8BgT_iEpCsGiBxDnpWMlCHUDGgqrzd?usp=sharing" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1033,7 +343,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Pouso Alegre - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1rcBqPwStlXwPLAoWTEesrVX6C7mbejuC?usp=sharing" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1rcBqPwStlXwPLAoWTEesrVX6C7mbejuC?usp=sharing" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1041,7 +351,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Santana da Vargem - 2025 (Etapa extra)</strong><br />
-        <a href="https://drive.google.com/drive/folders/18rVi-mC3SOwQS5YOgIlwuoWp9EXmXDvA?usp=sharing" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/18rVi-mC3SOwQS5YOgIlwuoWp9EXmXDvA?usp=sharing" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1049,7 +359,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Três Corações - 2025</strong><br />
-        <a href="https://drive.google.com/drive/folders/1pKpZUFraQL_9q-ND981W4DKD9qccoW0Z?usp=sharing" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1pKpZUFraQL_9q-ND981W4DKD9qccoW0Z?usp=sharing" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1058,7 +368,7 @@ header img {
       <i class="fas fa-image"></i>
       <div>
         <strong>Cambuquira - 2024</strong><br />
-        <a href="https://drive.google.com/drive/folders/1go7N8EepFOXTvRPEQpODCda0MYZNEtN1?usp=drive_link" target="_blank">Ver fotos</a>
+        <a href="https://drive.google.com/drive/folders/1go7N8EepFOXTvRPEQpODCda0MYZNEtN1?usp=drive_link" target="_blank" rel="noopener noreferrer">Ver fotos</a>
       </div>
     </div>
 
@@ -1091,31 +401,31 @@ header img {
     <tbody>
       <tr class="ouro">
         <td>1º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=617765" target="_blank">Lucas Aparecido Oliveira Dos Santos</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=617765" target="_blank" rel="noopener noreferrer">Lucas Aparecido Oliveira Dos Santos</a></td>
         <td>2419</td>
       </tr>
 
       <tr class="prata">
         <td>2º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=311309" target="_blank">Ciro Bernardes Pereira Junior</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311309" target="_blank" rel="noopener noreferrer">Ciro Bernardes Pereira Junior</a></td>
         <td>2359</td> 
       </tr>
 
       <tr class="bronze">
         <td>3º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=311996" target="_blank">Bruce Vicente Ramos</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311996" target="_blank" rel="noopener noreferrer">Bruce Vicente Ramos</a></td>
         <td>2348</td>
       </tr>
 
       <tr class="quarto">
         <td>4º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank">Cristian da Silva Romao</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=311158" target="_blank" rel="noopener noreferrer">Cristian da Silva Romao</a></td>
         <td>2340</td> 
       </tr>
 
       <tr class="quinto">
         <td>5º</td>
-        <td><a href="https://lbx.org.br/atleta?ID=312066" target="_blank">Julio Reinaldo dos Santos</a></td>
+        <td><a href="https://lbx.org.br/atleta?ID=312066" target="_blank" rel="noopener noreferrer">Julio Reinaldo dos Santos</a></td>
         <td>2309</td>
       </tr>
     </tbody>
@@ -1136,27 +446,27 @@ header img {
     <tbody>
       <tr class="ouro">
         <td>1º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank">Maria Luz Gonçalves Vicêncio</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=603138" target="_blank" rel="noopener noreferrer">Maria Luz Gonçalves Vicêncio</a></td>
         <td>2367</td>
       </tr>
       <tr class="prata">
         <td>2º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank">Vitória Aparecida Barros de Oliveira</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312834" target="_blank" rel="noopener noreferrer">Vitória Aparecida Barros de Oliveira</a></td>
         <td>2294</td>
       </tr>
       <tr class="bronze">
         <td>3º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=312574" target="_blank">Yasmin Oliveira Carvalho</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=312574" target="_blank" rel="noopener noreferrer">Yasmin Oliveira Carvalho</a></td>
         <td>2289</td> 
       </tr>
       <tr class="quarto">
         <td>4º</td>
-        <td><a href="https://lbx.org.br/atleta/?ID=606265" target="_blank">Julia Neves de Araujo</a></td>
+        <td><a href="https://lbx.org.br/atleta/?ID=606265" target="_blank" rel="noopener noreferrer">Julia Neves de Araujo</a></td>
         <td>2238</td>
       </tr>
       <tr class="quinto">
         <td>5º</td>
-        <td><a href="https://lbx.org.br/atleta?ID=316099" target="_blank">Mariana Yukari Sakaguti Pereira</a></td>
+        <td><a href="https://lbx.org.br/atleta?ID=316099" target="_blank" rel="noopener noreferrer">Mariana Yukari Sakaguti Pereira</a></td>
         <td>2208</td>
       </tr>
     </tbody>
@@ -1190,7 +500,7 @@ header img {
       <div>
         <strong>1ª Etapa:</strong> Recanto da Mata - 2026
         <br />
-        <a href="https://s2.chess-results.com/tnr1337961.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s2.chess-results.com/tnr1337961.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1199,7 +509,7 @@ header img {
       <div>
         <strong>2ª Etapa:</strong> Andrelândia - 2026
         <br />
-        <a href="https://s2.chess-results.com/tnr1366452.aspx?lan=10&art=0&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s2.chess-results.com/tnr1366452.aspx?lan=10&art=0&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1208,7 +518,7 @@ header img {
       <div>
         <strong>3ª Etapa:</strong> Pouso Alegre - 2026
         <br />
-        <a href="https://s3.chess-results.com/tnr1375903.aspx?lan=10&art=2&rd=4&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnr1375903.aspx?lan=10&art=2&rd=4&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1217,7 +527,7 @@ header img {
       <div>
         <strong>4ª Etapa:</strong> Baependi - 2026
         <br />
-        <a href="https://s1.chess-results.com/tnr1389931.aspx?lan=10&art=0&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr1389931.aspx?lan=10&art=0&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1226,7 +536,7 @@ header img {
       <div>
         <strong>5ª Etapa:</strong> Bom Jardim de Minas - 2026
         <br />
-        <a href="https://s1.chess-results.com/tnr1401027.aspx?lan=10&art=0&fed=BRA&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr1401027.aspx?lan=10&art=0&fed=BRA&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1235,7 +545,7 @@ header img {
       <div>
         <strong>6ª Etapa:</strong> Paraguaçu - 2026
         <br />
-        <a href="https://s3.chess-results.com/tnr1415747.aspx?lan=10&art=0&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnr1415747.aspx?lan=10&art=0&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1326,7 +636,7 @@ header img {
       <div>
         <strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1103985" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1335,7 +645,7 @@ header img {
       <div>
         <strong>2ª Etapa:</strong> Caxambu - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1144218" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1344,7 +654,7 @@ header img {
       <div>
         <strong>3ª Etapa:</strong> São Lourenço - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1164979" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1353,7 +663,7 @@ header img {
       <div>
         <strong>4ª Etapa:</strong> Paraguaçu - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1184185" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1362,7 +672,7 @@ header img {
       <div>
         <strong>5ª Etapa:</strong> Cambuquira - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1197857" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1371,7 +681,7 @@ header img {
       <div>
         <strong>6ª Etapa:</strong> São Vicente de Minas - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1214820" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1380,7 +690,7 @@ header img {
       <div>
         <strong>7ª Etapa:</strong> Itanhandu - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1239615" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnrWZ.aspx?lan=10&tno=1239615" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1389,7 +699,7 @@ header img {
       <div>
         <strong>8ª Etapa:</strong> Pouso Alegre - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnr1259676.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnr1259676.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1398,7 +708,7 @@ header img {
       <div>
         <strong>Etapa extra:</strong> Santana da Vargem - 2025
         <br />
-        <a href="https://s1.chess-results.com/tnr1265837.aspx?lan=10&turdet=YES&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr1265837.aspx?lan=10&turdet=YES&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1407,7 +717,7 @@ header img {
       <div>
         <strong>9ª Etapa:</strong> Três Corações - 2025
         <br />
-        <a href="https://s2.chess-results.com/tnr1284670.aspx?lan=10&SNode=S0" target="_blank">Ver resultados</a>
+        <a href="https://s2.chess-results.com/tnr1284670.aspx?lan=10&SNode=S0" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1416,7 +726,7 @@ header img {
       <div>
         <strong>Final:</strong> Conceição do Rio Verde - 2025
         <br />
-        <a href="https://s3.chess-results.com/tnr1304190.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s3.chess-results.com/tnr1304190.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1426,7 +736,7 @@ header img {
       <div>
         <strong>1ª Etapa:</strong> Recanto da Mata | Baependi - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr879886.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr879886.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1435,7 +745,7 @@ header img {
       <div>
         <strong>2ª Etapa:</strong> Caxambu - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr908757.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr908757.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1444,7 +754,7 @@ header img {
       <div>
         <strong>3ª Etapa:</strong> São Lourenço - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr9972.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr9972.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1453,7 +763,7 @@ header img {
       <div>
         <strong>4ª Etapa:</strong> Paraguaçu - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr945670.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr945670.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1462,7 +772,7 @@ header img {
       <div>
         <strong>5ª Etapa:</strong> Cambuquira - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr959635.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr959635.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1471,7 +781,7 @@ header img {
       <div>
         <strong>6ª Etapa:</strong> São Gonçalo do Sapucaí - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr991629.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr991629.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1480,7 +790,7 @@ header img {
       <div>
         <strong>7ª Etapa:</strong> Conceição do Rio Verde - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr977512.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr977512.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1489,7 +799,7 @@ header img {
       <div>
         <strong>8ª Etapa:</strong> Pouso Alegre - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr1019724.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr1019724.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1498,7 +808,7 @@ header img {
       <div>
         <strong>Final:</strong> Baependi - 2024
         <br />
-        <a href="https://s1.chess-results.com/tnr1052188.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr1052188.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1508,7 +818,7 @@ header img {
       <div>
         <strong>1ª Etapa:</strong> Soledade de Minas - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr722855.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr722855.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1517,7 +827,7 @@ header img {
       <div>
         <strong>2ª Etapa:</strong> Pouso Alegre - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr742235.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr742235.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1526,7 +836,7 @@ header img {
       <div>
         <strong>3ª Etapa:</strong> Paraguaçu - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr768803.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr768803.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1535,7 +845,7 @@ header img {
       <div>
         <strong>4ª Etapa:</strong> São Lourenço - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr785388.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr785388.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1544,7 +854,7 @@ header img {
       <div>
         <strong>5ª Etapa:</strong> Jesuânia - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr807562.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr807562.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1553,7 +863,7 @@ header img {
       <div>
         <strong>6ª Etapa:</strong> Caxambu - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr822575.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr822575.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1562,7 +872,7 @@ header img {
       <div>
         <strong>Final:</strong> Baependi - 2023
         <br />
-        <a href="https://s1.chess-results.com/tnr848256.aspx?lan=10" target="_blank">Ver resultados</a>
+        <a href="https://s1.chess-results.com/tnr848256.aspx?lan=10" target="_blank" rel="noopener noreferrer">Ver resultados</a>
       </div>
     </div>
 
@@ -1595,7 +905,7 @@ header img {
       <div>
         <strong> Partidas Ao Vivo - Itanhandu - MG (28/11)</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/uqfEdJ/final-copa-lbx-sul-de-minas---itanhandu---mg" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/uqfEdJ/final-copa-lbx-sul-de-minas---itanhandu---mg" target="_blank" rel="noopener noreferrer">
           Assistir Agora
         </a>
       </div>
@@ -1606,7 +916,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Três Corações - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/8AfbcJ/copa-lbx-sul-de-minas---trs-coraes---mg" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/8AfbcJ/copa-lbx-sul-de-minas---trs-coraes---mg" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1617,7 +927,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em São Vicente de Minas - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/V8f6VJ/copa-lbx-sul-de-minas---so-vicente-de-minas---mg"_blank">
+        <a href="https://media.idchess.com/en/tournaments/V8f6VJ/copa-lbx-sul-de-minas---so-vicente-de-minas---mg" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1628,7 +938,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Bocaina de Minas - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/XKffVJ/copa-lbx---final--copa-bocaina-de-minas-mg" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/XKffVJ/copa-lbx---final--copa-bocaina-de-minas-mg" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1639,7 +949,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Cambuquira - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/jFf0TJ/2026-copa-lbx-sul-de-minas---cambuquira" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/jFf0TJ/2026-copa-lbx-sul-de-minas---cambuquira" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1650,7 +960,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Cruzília - MG</strong>
         <br />
-        <a href="https://lichess.org/study/9043d0ZQ/GkgvNe2U" target="_blank">
+        <a href="https://lichess.org/study/9043d0ZQ/GkgvNe2U" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1661,7 +971,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Caxambu - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/rQf1MJ/copa-lbx-sul-de-minas---caxambu-mg-" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/rQf1MJ/copa-lbx-sul-de-minas---caxambu-mg-" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1672,7 +982,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Santana da Vargem - MG</strong>
         <br />
-        <a href="https://media.idchess.com/ru/tournaments/bQfQFJ/copa-lbx-sul-de-minas---santana-da-vargem-2026" target="_blank">
+        <a href="https://media.idchess.com/ru/tournaments/bQfQFJ/copa-lbx-sul-de-minas---santana-da-vargem-2026" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1684,7 +994,7 @@ header img {
     <strong>Partidas transmitidas em Minduri - MG</strong>
     
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
-      <a href="https://media.idchess.com/ru/tournaments/8bfGEJ/copa-lbx-sul-de-minas---minduri-2026" target="_blank">
+      <a href="https://media.idchess.com/ru/tournaments/8bfGEJ/copa-lbx-sul-de-minas---minduri-2026" target="_blank" rel="noopener noreferrer">
         Assistir - Feminino
       </a>
       
@@ -1701,7 +1011,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Liberdade - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/npfO7I/copa-lbx-sul-de-minas---liberdade-2026" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/npfO7I/copa-lbx-sul-de-minas---liberdade-2026" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1712,7 +1022,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Paraguaçu - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/VafW2I/copa-lbx-sul-de-minas---paraguau-2026" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/VafW2I/copa-lbx-sul-de-minas---paraguau-2026" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1723,7 +1033,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Bom Jardim de Minas - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/tbf2yI/copa-lbx-sul-de-minas---bom-jardim-de-minas-2026" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/tbf2yI/copa-lbx-sul-de-minas---bom-jardim-de-minas-2026" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1734,7 +1044,7 @@ header img {
       <div>
         <strong> Partidas transmitidas em Baependi - MG</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/2hfBxI/copa-lbx-sul-de-minas---baependi-2026" target="_blank">
+        <a href="https://media.idchess.com/en/tournaments/2hfBxI/copa-lbx-sul-de-minas---baependi-2026" target="_blank" rel="noopener noreferrer">
           Assistir 
         </a>
       </div>
@@ -1773,7 +1083,7 @@ header img {
       <div>
         <strong>Partidas transmitidas em Cambuquira</strong>
         <br />
-        <a href="https://lichess.org/study/QYx7Wh4c/5nO6tLks" target="_blank">Assistir</a>
+        <a href="https://lichess.org/study/QYx7Wh4c/5nO6tLks" target="_blank" rel="noopener noreferrer">Assistir</a>
       </div>
     </div>
 
@@ -1782,7 +1092,7 @@ header img {
       <div>
         <strong>Partidas transmitidas em São Vicente de Minas</strong>
         <br />
-        <a href="https://lichess.org/study/kf4cSYZV/879mP8Xm" target="_blank">Assistir</a>
+        <a href="https://lichess.org/study/kf4cSYZV/879mP8Xm" target="_blank" rel="noopener noreferrer">Assistir</a>
       </div>
     </div>
 
@@ -1791,7 +1101,7 @@ header img {
       <div>
         <strong>Partidas transmitidas em Itanhandu</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/YGf94H/copa-lbx-sul-de-minas---torneio-da-fundao-itanhandu-mg-2025" target="_blank">Assistir</a>
+        <a href="https://media.idchess.com/en/tournaments/YGf94H/copa-lbx-sul-de-minas---torneio-da-fundao-itanhandu-mg-2025" target="_blank" rel="noopener noreferrer">Assistir</a>
       </div>
     </div>
 
@@ -1800,8 +1110,8 @@ header img {
       <div>
         <strong>Partidas transmitidas em Pouso Alegre</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025" target="_blank" class="assistir-btn">Assistir (Masculino)</a>
-        <a href="https://lichess.org/study/21xYjmQZ/YWQKJtxQ" target="_blank" class="assistir-btn"> - Assistir (Feminino)</a>
+        <a href="https://media.idchess.com/en/tournaments/77fJ7H/copa-lbx-sul-de-minas---pouso-alegre-mg-2025" target="_blank" rel="noopener noreferrer" class="assistir-btn">Assistir (Masculino)</a>
+        <a href="https://lichess.org/study/21xYjmQZ/YWQKJtxQ" target="_blank" rel="noopener noreferrer" class="assistir-btn"> - Assistir (Feminino)</a>
       </div>
     </div>
 
@@ -1810,8 +1120,8 @@ header img {
       <div>
         <strong>Partidas transmitidas em Santana da Vargem</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/M9fJFI/2--torneio-de-santana-da-vargem-mg-lbx-2025" target="_blank" class="assistir-btn">Assistir (Abs A)</a>
-        <a href="https://lichess.org/study/0KFtuzWa" target="_blank" class="assistir-btn"> - Assistir (Abs B)</a>
+        <a href="https://media.idchess.com/en/tournaments/M9fJFI/2--torneio-de-santana-da-vargem-mg-lbx-2025" target="_blank" rel="noopener noreferrer" class="assistir-btn">Assistir (Abs A)</a>
+        <a href="https://lichess.org/study/0KFtuzWa" target="_blank" rel="noopener noreferrer" class="assistir-btn"> - Assistir (Abs B)</a>
       </div>
     </div>
 
@@ -1820,7 +1130,7 @@ header img {
       <div>
         <strong>Partidas transmitidas em Três Corações</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/rffJEI/copa-lbx-sul-de-minas---trs-coraes-mg-2025" target="_blank">Assistir</a>
+        <a href="https://media.idchess.com/en/tournaments/rffJEI/copa-lbx-sul-de-minas---trs-coraes-mg-2025" target="_blank" rel="noopener noreferrer">Assistir</a>
       </div>
     </div>
 
@@ -1829,7 +1139,7 @@ header img {
       <div>
         <strong>Partidas transmitidas em Conceição do Rio Verde</strong>
         <br />
-        <a href="https://media.idchess.com/en/tournaments/WjfGNI/final-da-copa-lbx-sul-de-minas-2025" target="_blank">Assistir</a>
+        <a href="https://media.idchess.com/en/tournaments/WjfGNI/final-da-copa-lbx-sul-de-minas-2025" target="_blank" rel="noopener noreferrer">Assistir</a>
       </div>
     </div>
 
@@ -1843,23 +1153,23 @@ header img {
     Contatos
   </h3>
   <p>
-    <a href="https://wa.me/5535999291224" target="_blank">
+    <a href="https://wa.me/5535999291224" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-whatsapp" style="color:#000000; font-size: 24px;"></i>
       (35) 99929-1224
     </a>
     |
-    <a href="https://wa.me/5535997648241" target="_blank">
+    <a href="https://wa.me/5535997648241" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-whatsapp" style="color:#000000; font-size: 24px;"></i>
       (35) 99764-8241
     </a>
   </p>
   <p>
     <i class="fab fa-instagram" style="color:#000000;"></i> 
-    <a href="https://instagram.com/lbxsuldeminas" target="_blank">@lbxsuldeminas</a>
+    <a href="https://instagram.com/lbxsuldeminas" target="_blank" rel="noopener noreferrer">@lbxsuldeminas</a>
   </p>
   <p>
     <i class="fab fa-facebook" style="color:#000000;"></i> 
-    <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank">/beto meirelles xadrez</a>
+    <a href="https://www.facebook.com/search/top?q=beto%20meirelles%20xadrez" target="_blank" rel="noopener noreferrer">/beto meirelles xadrez</a>
   </p>
 </div>
 
@@ -1869,198 +1179,11 @@ header img {
   <footer>
     <p>&copy; 2026 LBX Sul de Minas. Todos os direitos reservados.</p>
     <p><i class="fab fa-instagram"></i> 
-      <a href="https://instagram.com/betomeirellesxadrez" target="_blank">@betomeirellesxadrez</a>
+      <a href="https://instagram.com/betomeirellesxadrez" target="_blank" rel="noopener noreferrer">@betomeirellesxadrez</a>
     </p>
   </footer>
+  <script src="script.js" defer></script>
 
-  <script>
-// ===== Contagem regressiva Torneio 1 =====
-const countdownElement = document.getElementById('countdown');
-const nextTournamentDate = new Date('2026-10-31T00:00:00');
+  
 
-function updateCountdown() {
-  if (!countdownElement) return;
-
-  const now = new Date();
-  const diff = nextTournamentDate - now;
-
-  if (diff <= 0) {
-    countdownElement.innerHTML = '<i class="fas fa-clock" style="margin-right:5px;"></i> O torneio já começou!';
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  countdownElement.innerHTML = `<i class="fas fa-clock" style="margin-right:5px;"></i> Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// ===== Contagem regressiva Torneio 2 =====
-const countdownElement2 = document.getElementById('countdown2');
-const nextTournamentDate2 = new Date('2026-11-28T00:00:00');
-
-function updateCountdown2() {
-  if (!countdownElement2) return;
-
-  const now = new Date();
-  const diff = nextTournamentDate2 - now;
-
-  if (diff <= 0) {
-    countdownElement2.innerHTML = '<i class="fas fa-clock" style="margin-right:5px;"></i> O torneio já começou!';
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-
-  countdownElement2.innerHTML = `<i class="fas fa-clock" style="margin-right:5px;"></i> Contagem regressiva: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-setInterval(updateCountdown2, 1000);
-updateCountdown2();
-
-// ===== Toggle dos banners =====
-function configurarToggle(toggleId, bannerId, conteudoId) {
-  const toggleBtn = document.getElementById(toggleId);
-  const banner = document.getElementById(bannerId);
-  const conteudo = document.getElementById(conteudoId);
-
-  if (!toggleBtn || !banner || !conteudo) return;
-
-  toggleBtn.addEventListener("click", function () {
-  const icon = this.querySelector("i");
-  const aberto = banner.classList.contains("show");
-
-  if (aberto) {
-    banner.classList.remove("show");
-    setTimeout(() => {
-      banner.style.display = "none";
-    }, 300);
-    conteudo.style.display = "block";
-  } else {
-    banner.style.display = "block";
-    setTimeout(() => {
-      banner.classList.add("show");
-    }, 10);
-    conteudo.style.display = "none";
-  }
-
-  icon.classList.toggle("fa-chevron-right", aberto);
-  icon.classList.toggle("fa-chevron-down", !aberto);
-});
-}
-
-configurarToggle("toggleBanner", "bannerTorneio", "proximoTorneioConteudo");
-configurarToggle("toggleBanner2", "bannerTorneio2", "proximoTorneioConteudo2");
-
-// ===== Toggle do vídeo Seção Sobre =====
-const toggleVideoBtn = document.getElementById('toggleVideo');
-const videoContainer = document.getElementById('videoSobre');
-const sobreContent = document.getElementById('SobreConteudo');
-
-if (toggleVideoBtn && videoContainer && sobreContent) {
-  toggleVideoBtn.addEventListener('click', () => {
-    const aberto = window.getComputedStyle(videoContainer).display === 'block';
-
-    videoContainer.style.display = aberto ? 'none' : 'block';
-
-    sobreContent.querySelectorAll('p, h2, div').forEach(el => {
-      if (el !== videoContainer && el !== toggleVideoBtn.parentElement) {
-        el.style.display = aberto ? 'block' : 'none';
-      }
-    });
-
-    toggleVideoBtn.innerHTML = aberto
-      ? '<i class="fas fa-chevron-right"></i>'
-      : '<i class="fas fa-chevron-down"></i>';
-  });
-}
-
-// ===== Rolagem suave =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href').substring(1);
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 300,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
-
-// ===== Filtros (com execução inicial) =====
-const yearFilter = document.getElementById('yearFilter');
-const galleryItems = document.querySelectorAll('#galeria .result-item');
-
-function filtrarGaleria() {
-  if (!yearFilter) return;
-  const selectedYear = yearFilter.value;
-  galleryItems.forEach(item => {
-    item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
-  });
-}
-
-if (yearFilter) {
-  yearFilter.addEventListener('change', filtrarGaleria);
-  filtrarGaleria(); // <<< aplica 2026 ao carregar
-}
-
-const yearResultsFilter = document.getElementById('yearResultsFilter');
-const resultsItems = document.querySelectorAll('#resultados .result-item');
-
-function filtrarResultados() {
-  if (!yearResultsFilter) return;
-  const selectedYear = yearResultsFilter.value;
-  resultsItems.forEach(item => {
-    item.style.display = (item.dataset.year === selectedYear) ? 'flex' : 'none';
-  });
-}
-
-if (yearResultsFilter) {
-  yearResultsFilter.addEventListener('change', filtrarResultados);
-  filtrarResultados(); // <<< aplica 2026 ao carregar
-}
-
-const yearTransmissoesFilter = document.getElementById('yearTransmissoesFilter');
-const transmissoesItems = document.querySelectorAll('#partidas-transmitidas .result-item');
-
-function filtrarTransmissoes() {
-  if (!yearTransmissoesFilter) return;
-  const selectedYear = yearTransmissoesFilter.value;
-  transmissoesItems.forEach(item => {
-    item.style.display = item.classList.contains('ano-' + selectedYear) ? 'flex' : 'none';
-  });
-}
-
-if (yearTransmissoesFilter) {
-  yearTransmissoesFilter.addEventListener('change', filtrarTransmissoes);
-  filtrarTransmissoes(); // <<< aplica 2026 ao carregar
-}
-
-// ===== Menu hamburguer =====
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('header nav');
-
-if (menuToggle && navMenu) {
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
-}
-
-function toggleClassificados() {
-  const sub = document.getElementById("classificados-sub");
-  if (!sub) return;
-  sub.style.display = (sub.style.display === "none" || sub.style.display === "") ? "flex" : "none";
-}
-</script>
 
