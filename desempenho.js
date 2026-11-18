@@ -69,7 +69,7 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     criarElemento("h2", jogador.name, "nome-perfil")
   );
 
-  // CALCULAR ESTATÍSTICAS
+  // ESTATÍSTICAS
 
   const vitorias = partidas.filter(p =>
     interpretarResultado(p, jogador.id).startsWith("Vitória")
@@ -83,7 +83,7 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     interpretarResultado(p, jogador.id) === "Empate"
   ).length;
 
-  // CARDS DE ESTATÍSTICAS
+  // ORDEM: PARTIDAS, VITÓRIAS, DERROTAS E EMPATES
 
   const estatisticas = document.createElement("div");
   estatisticas.className = "estatisticas";
@@ -166,6 +166,11 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     criarElemento("h3", "Resultados por rodada")
   );
 
+  // CONTÊINER RESPONSIVO DA TABELA
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "tabela-wrapper";
+
   const tabela = document.createElement("table");
   tabela.className = "tabela-partidas";
 
@@ -181,11 +186,9 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
   cabecalho.appendChild(linhaCabecalho);
   tabela.appendChild(cabecalho);
 
-  // CORPO DA TABELA
-
   const corpoTabela = document.createElement("tbody");
 
-  // ORDENAR PARTIDAS POR RODADA E MESA
+  // ORDENAR PARTIDAS
 
   partidas.sort((a, b) =>
     a.round_number - b.round_number ||
@@ -193,7 +196,6 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
   );
 
   partidas.forEach(partida => {
-
     const adversarioId =
       partida.white_player_id === jogador.id
         ? partida.black_player_id
@@ -220,7 +222,7 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     dados.forEach((texto, indice) => {
       const celula = criarElemento("td", texto);
 
-      // DESTAQUE VISUAL DOS RESULTADOS
+      // CORES DOS RESULTADOS
 
       if (indice === 3) {
         if (resultadoPartida.startsWith("Vitória")) {
@@ -239,7 +241,9 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
   });
 
   tabela.appendChild(corpoTabela);
-  resultado.appendChild(tabela);
+  wrapper.appendChild(tabela);
+
+  resultado.appendChild(wrapper);
 }
 
 // BUSCAR ATLETA
@@ -291,6 +295,7 @@ async function buscarAtleta() {
     await carregarAtleta(jogadores[0]);
 
   } catch (erro) {
+    console.error(erro);
     resultado.textContent =
       "Erro ao consultar os dados: " + erro.message;
 
@@ -299,14 +304,13 @@ async function buscarAtleta() {
   }
 }
 
-// CARREGAR HISTÓRICO DO ATLETA
+// CARREGAR HISTÓRICO
 
 async function carregarAtleta(jogador) {
   resultado.textContent = "Carregando histórico...";
 
   try {
     const [participacoes, partidas] = await Promise.all([
-
       consultarTabela("tournament_players", {
         select: "final_rank,final_score,starting_rank,tournaments(name,tournament_date,total_rounds)",
         player_id: `eq.${jogador.id}`
@@ -317,7 +321,6 @@ async function carregarAtleta(jogador) {
         or: `(white_player_id.eq.${jogador.id},black_player_id.eq.${jogador.id})`,
         order: "round_number.asc"
       })
-
     ]);
 
     // IDENTIFICAR ADVERSÁRIOS
@@ -346,6 +349,7 @@ async function carregarAtleta(jogador) {
     );
 
   } catch (erro) {
+    console.error(erro);
     resultado.textContent =
       "Erro ao carregar histórico: " + erro.message;
   }
