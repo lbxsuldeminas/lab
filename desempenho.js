@@ -40,7 +40,10 @@ function interpretarResultado(partida, jogadorId) {
   const resultadoOriginal = (partida.result || "").replace(/\s/g, "");
   const jogadorBrancas = partida.white_player_id === jogadorId;
 
-  if (resultadoOriginal === "½-½" || resultadoOriginal === "0.5-0.5") {
+  if (
+    resultadoOriginal === "½-½" ||
+    resultadoOriginal === "0.5-0.5"
+  ) {
     return "Empate";
   }
 
@@ -66,6 +69,8 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     criarElemento("h2", jogador.name, "nome-perfil")
   );
 
+  // CALCULAR ESTATÍSTICAS
+
   const vitorias = partidas.filter(p =>
     interpretarResultado(p, jogador.id).startsWith("Vitória")
   ).length;
@@ -78,22 +83,34 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     interpretarResultado(p, jogador.id) === "Empate"
   ).length;
 
+  // CARDS DE ESTATÍSTICAS
+
   const estatisticas = document.createElement("div");
   estatisticas.className = "estatisticas";
 
- [
-  ["Partidas", partidas.length],
-  ["Vitórias", vitorias],
-  ["Derrotas", derrotas],
-  ["Empates", empates]
-].forEach(([titulo, valor]) => {
-  const bloco = document.createElement("div");
-  bloco.className = "estatistica";
-  bloco.appendChild(criarElemento("strong", valor));
-  bloco.appendChild(criarElemento("span", titulo));
-  estatisticas.appendChild(bloco);
-});
+  [
+    ["Partidas", partidas.length],
+    ["Vitórias", vitorias],
+    ["Derrotas", derrotas],
+    ["Empates", empates]
+  ].forEach(([titulo, valor]) => {
+    const bloco = document.createElement("div");
+    bloco.className = "estatistica";
+
+    bloco.appendChild(
+      criarElemento("strong", valor)
+    );
+
+    bloco.appendChild(
+      criarElemento("span", titulo)
+    );
+
+    estatisticas.appendChild(bloco);
+  });
+
   resultado.appendChild(estatisticas);
+
+  // HISTÓRICO DE TORNEIOS
 
   resultado.appendChild(
     criarElemento("h3", "Histórico de torneios")
@@ -107,6 +124,7 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
 
   participacoes.forEach(item => {
     const torneio = item.tournaments || {};
+
     const bloco = document.createElement("div");
     bloco.className = "torneio";
 
@@ -122,20 +140,27 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     );
 
     bloco.appendChild(
-      criarElemento("p", `Pontuação: ${item.final_score ?? "—"}`)
+      criarElemento(
+        "p",
+        `Pontuação: ${item.final_score ?? "—"}`
+      )
     );
 
     if (torneio.tournament_date) {
       bloco.appendChild(
         criarElemento(
           "p",
-          `Data: ${new Date(torneio.tournament_date + "T12:00:00").toLocaleDateString("pt-BR")}`
+          `Data: ${new Date(
+            torneio.tournament_date + "T12:00:00"
+          ).toLocaleDateString("pt-BR")}`
         )
       );
     }
 
     resultado.appendChild(bloco);
   });
+
+  // RESULTADOS POR RODADA
 
   resultado.appendChild(
     criarElemento("h3", "Resultados por rodada")
@@ -144,13 +169,23 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
   const tabela = document.createElement("table");
   tabela.className = "tabela-partidas";
 
-  const cabecalho = document.createElement("tr");
+  const cabecalho = document.createElement("thead");
+  const linhaCabecalho = document.createElement("tr");
 
   ["Rodada", "Mesa", "Adversário", "Resultado"].forEach(texto => {
-    cabecalho.appendChild(criarElemento("th", texto));
+    linhaCabecalho.appendChild(
+      criarElemento("th", texto)
+    );
   });
 
+  cabecalho.appendChild(linhaCabecalho);
   tabela.appendChild(cabecalho);
+
+  // CORPO DA TABELA
+
+  const corpoTabela = document.createElement("tbody");
+
+  // ORDENAR PARTIDAS POR RODADA E MESA
 
   partidas.sort((a, b) =>
     a.round_number - b.round_number ||
@@ -158,29 +193,56 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
   );
 
   partidas.forEach(partida => {
+
     const adversarioId =
       partida.white_player_id === jogador.id
         ? partida.black_player_id
         : partida.white_player_id;
 
-    const adversario = adversarios.find(p => p.id === adversarioId);
+    const adversario = adversarios.find(
+      p => p.id === adversarioId
+    );
 
     const linha = document.createElement("tr");
 
-    [
+    const resultadoPartida = interpretarResultado(
+      partida,
+      jogador.id
+    );
+
+    const dados = [
       partida.round_number,
       partida.board_number ?? "—",
       adversario?.name || "Adversário",
-      interpretarResultado(partida, jogador.id)
-    ].forEach(texto => {
-      linha.appendChild(criarElemento("td", texto));
+      resultadoPartida
+    ];
+
+    dados.forEach((texto, indice) => {
+      const celula = criarElemento("td", texto);
+
+      // DESTAQUE VISUAL DOS RESULTADOS
+
+      if (indice === 3) {
+        if (resultadoPartida.startsWith("Vitória")) {
+          celula.classList.add("resultado-vitoria");
+        } else if (resultadoPartida.startsWith("Derrota")) {
+          celula.classList.add("resultado-derrota");
+        } else if (resultadoPartida === "Empate") {
+          celula.classList.add("resultado-empate");
+        }
+      }
+
+      linha.appendChild(celula);
     });
 
-    tabela.appendChild(linha);
+    corpoTabela.appendChild(linha);
   });
 
+  tabela.appendChild(corpoTabela);
   resultado.appendChild(tabela);
 }
+
+// BUSCAR ATLETA
 
 async function buscarAtleta() {
   const nome = campoNome.value.trim();
@@ -213,8 +275,13 @@ async function buscarAtleta() {
 
       jogadores.forEach(jogador => {
         const botao = criarElemento("button", jogador.name);
+
         botao.type = "button";
-        botao.addEventListener("click", () => carregarAtleta(jogador));
+
+        botao.addEventListener("click", () => {
+          carregarAtleta(jogador);
+        });
+
         resultado.appendChild(botao);
       });
 
@@ -224,17 +291,22 @@ async function buscarAtleta() {
     await carregarAtleta(jogadores[0]);
 
   } catch (erro) {
-    resultado.textContent = "Erro ao consultar os dados: " + erro.message;
+    resultado.textContent =
+      "Erro ao consultar os dados: " + erro.message;
+
   } finally {
     botaoBuscar.disabled = false;
   }
 }
+
+// CARREGAR HISTÓRICO DO ATLETA
 
 async function carregarAtleta(jogador) {
   resultado.textContent = "Carregando histórico...";
 
   try {
     const [participacoes, partidas] = await Promise.all([
+
       consultarTabela("tournament_players", {
         select: "final_rank,final_score,starting_rank,tournaments(name,tournament_date,total_rounds)",
         player_id: `eq.${jogador.id}`
@@ -245,7 +317,10 @@ async function carregarAtleta(jogador) {
         or: `(white_player_id.eq.${jogador.id},black_player_id.eq.${jogador.id})`,
         order: "round_number.asc"
       })
+
     ]);
+
+    // IDENTIFICAR ADVERSÁRIOS
 
     const ids = [...new Set(
       partidas.flatMap(p => [
@@ -263,15 +338,25 @@ async function carregarAtleta(jogador) {
       });
     }
 
-    montarPerfil(jogador, participacoes, partidas, adversarios);
+    montarPerfil(
+      jogador,
+      participacoes,
+      partidas,
+      adversarios
+    );
 
   } catch (erro) {
-    resultado.textContent = "Erro ao carregar histórico: " + erro.message;
+    resultado.textContent =
+      "Erro ao carregar histórico: " + erro.message;
   }
 }
+
+// EVENTOS
 
 botaoBuscar.addEventListener("click", buscarAtleta);
 
 campoNome.addEventListener("keydown", evento => {
-  if (evento.key === "Enter") buscarAtleta();
+  if (evento.key === "Enter") {
+    buscarAtleta();
+  }
 });
