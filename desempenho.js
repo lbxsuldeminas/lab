@@ -82,11 +82,11 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
   estatisticas.className = "estatisticas";
 
   [
-    ["Vitórias", vitorias],
-    ["Empates", empates],
-    ["Derrotas", derrotas],
-    ["Partidas", partidas.length]
-  ].forEach(([titulo, valor]) => {
+  ["Vitórias", vitorias],
+  ["Empates", empates],
+  ["Derrotas", derrotas],
+  ["Partidas", partidas.length]
+].forEach(([titulo, valor]) => {
     const bloco = document.createElement("div");
     bloco.className = "estatistica";
     bloco.appendChild(criarElemento("strong", valor));
