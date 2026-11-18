@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: var(--fundo);
   background-image:
     linear-gradient(45deg, rgba(197,161,91,.035) 25%, transparent 25%),
@@ -118,7 +118,7 @@ body {
 .cabecalho h1 {
   position: relative;
   z-index: 2;
-  font-family: 'Cinzel', Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(27px, 4vw, 40px);
   font-weight: 800;
   letter-spacing: 1px;
@@ -186,7 +186,7 @@ body {
 }
 
 .busca h2 {
-  font-family: 'Cinzel', Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: var(--preto);
   font-size: 20px;
   margin-bottom: 7px;
@@ -282,7 +282,7 @@ button:disabled {
 }
 
 .estado-inicial h2 {
-  font-family: 'Cinzel', Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: var(--preto);
   font-size: 18px;
   margin-bottom: 9px;
@@ -295,7 +295,7 @@ button:disabled {
 }
 
 .nome-perfil {
-  font-family: 'Cinzel', Georgia, serif;
+ font-family: Arial, Helvetica, sans-serif;
   color: var(--preto);
   font-size: 27px;
   font-weight: 800;
@@ -398,7 +398,7 @@ button:disabled {
 /* TÍTULOS */
 
 .resultado h3 {
-  font-family: 'Cinzel', Georgia, serif;
+  ffont-family: Arial, Helvetica, sans-serif;
   color: var(--preto);
   font-size: 19px;
   margin: 38px 0 20px;
@@ -433,7 +433,7 @@ button:disabled {
 }
 
 .torneio h4 {
-  font-family: 'Cinzel', Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: var(--preto);
   font-size: 16px;
   margin-bottom: 12px;
