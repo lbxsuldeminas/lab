@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#102b46">
+  <meta name="theme-color" content="#111111">
   <meta name="description" content="Consulte o desempenho individual dos atletas da LBX Sul de Minas.">
 
   <title>Desempenho Individual | LBX Sul de Minas</title>
@@ -13,37 +13,39 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="desempenho.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="desempenho.css?v=3">
 </head>
 
 <body>
 
   <header class="cabecalho">
+    <a href="index.html" class="voltar">← Voltar ao site</a>
 
-    <a href="index.html" class="voltar">
-      ← Voltar ao site
-    </a>
+    <div class="marca-xadrez" aria-hidden="true">♔</div>
+
+    <span class="subtitulo-cabecalho">LBX · SUL DE MINAS</span>
 
     <h1>Desempenho Individual</h1>
 
-    <p>
-      Histórico e estatísticas dos atletas da LBX Sul de Minas
-    </p>
+    <p>Histórico e estatísticas dos atletas da LBX Sul de Minas</p>
 
+    <div class="linha-dourada"></div>
   </header>
 
   <main class="container">
 
     <section class="busca">
-
-      <h2>Consulte seu desempenho</h2>
-
-      <p>
-        Digite o nome do atleta para consultar seu histórico nos torneios da LBX.
-      </p>
+      <div class="titulo-busca">
+        <span class="icone-busca">♞</span>
+        <div>
+          <h2>Consulte seu desempenho</h2>
+          <p>Digite o nome do atleta para consultar seu histórico nos torneios da LBX.</p>
+        </div>
+      </div>
 
       <div class="campo-busca">
-
         <input
           type="text"
           id="nomeAtleta"
@@ -53,11 +55,9 @@
         >
 
         <button id="btnBuscar" type="button">
-          Buscar
+          BUSCAR <span>→</span>
         </button>
-
       </div>
-
     </section>
 
     <section
@@ -66,20 +66,22 @@
       aria-live="polite"
       aria-atomic="false"
     >
-
-      <p>
-        O perfil do atleta aparecerá aqui após a pesquisa.
-      </p>
-
+      <div class="estado-inicial">
+        <span class="peca-inicial">♟</span>
+        <h2>Seu histórico começa aqui</h2>
+        <p>Pesquise um atleta para visualizar suas estatísticas e participações nos torneios.</p>
+      </div>
     </section>
 
   </main>
 
   <footer>
+    <div class="footer-peca">♔</div>
     <p>LBX — Liga de Xadrez do Sul de Minas</p>
+    <span>EXCELÊNCIA • ESTRATÉGIA • COMPETIÇÃO</span>
   </footer>
 
-  <script src="desempenho.js"></script>
+  <script src="desempenho.js?v=3"></script>
 
 </body>
 </html>
