@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --azul-escuro: #102b46;
-  --azul: #17618a;
-  --azul-claro: #eaf4fb;
-  --fundo: #f4f7fb;
-  --texto: #1e293b;
-  --texto-secundario: #64748b;
-  --borda: #e5eaf0;
-  --verde: #16a36a;
-  --vermelho: #dc5252;
-  --amarelo: #d69b25;
+  --preto: #111111;
+  --preto-card: #191919;
+  --preto-hover: #222222;
+  --dourado: #c5a15b;
+  --dourado-claro: #e4c987;
+  --branco: #ffffff;
+  --fundo: #f5f3ed;
+  --texto: #292929;
+  --cinza: #777777;
+  --borda: #e8e2d5;
+  --verde: #21865c;
+  --vermelho: #bd4545;
+  --empate: #b18a36;
 }
 
 * {
@@ -21,7 +25,7 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--fundo);
+  background-color: var(--fundo);
   color: var(--texto);
   min-height: 100vh;
 }
@@ -31,41 +35,50 @@ body {
 .cabecalho {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(125deg, #102b46, #174f72 65%, #176b91);
+  background:
+    linear-gradient(rgba(17,17,17,.96), rgba(17,17,17,.96)),
+    repeating-conic-gradient(#292929 0% 25%, #111 0% 50%) 50% / 50px 50px;
   color: white;
   text-align: center;
-  padding: 32px 20px 65px;
+  padding: 28px 20px 70px;
+  border-bottom: 4px solid var(--dourado);
 }
 
-.cabecalho::before,
-.cabecalho::after {
-  content: "";
+/* Textura de tabuleiro */
+
+.cabecalho::before {
+  content: "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜";
   position: absolute;
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 50%;
+  left: 0;
+  right: 0;
+  top: 30px;
+  font-family: Georgia, serif;
+  font-size: clamp(35px, 7vw, 75px);
+  letter-spacing: 15px;
+  white-space: nowrap;
+  color: rgba(197,161,91,.07);
   pointer-events: none;
 }
 
-.cabecalho::before {
-  width: 350px;
-  height: 350px;
-  right: -100px;
-  top: -200px;
-}
-
 .cabecalho::after {
-  width: 250px;
-  height: 250px;
-  left: -100px;
-  bottom: -180px;
+  content: "♔";
+  position: absolute;
+  right: 7%;
+  bottom: -45px;
+  font-family: Georgia, serif;
+  font-size: 190px;
+  color: rgba(197,161,91,.09);
+  pointer-events: none;
 }
 
 .voltar {
+  position: relative;
+  z-index: 2;
   display: inline-block;
-  color: #d9eaf5;
+  color: var(--dourado-claro);
   text-decoration: none;
-  margin-bottom: 32px;
-  font-size: 14px;
+  margin-bottom: 30px;
+  font-size: 13px;
   font-weight: 600;
   transition: .2s;
 }
@@ -76,26 +89,30 @@ body {
 }
 
 .cabecalho h1 {
-  font-size: clamp(27px, 4vw, 38px);
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 12px;
   position: relative;
+  z-index: 2;
+  font-family: 'Cinzel', Georgia, serif;
+  font-size: clamp(27px, 4vw, 39px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
 }
 
 .cabecalho p {
-  color: #c7dbea;
-  font-size: 15px;
   position: relative;
+  z-index: 2;
+  color: #c8c1b3;
+  font-size: 14px;
+  letter-spacing: .4px;
 }
 
 /* CONTEÚDO */
 
 .container {
-  width: min(94%, 1050px);
-  margin: -28px auto 45px;
+  width: min(94%, 1100px);
+  margin: -32px auto 50px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* PESQUISA */
@@ -103,20 +120,20 @@ body {
 .busca {
   background: white;
   padding: 32px;
-  border-radius: 16px;
-  border: 1px solid rgba(226,232,240,.8);
-  box-shadow: 0 10px 35px rgba(16,43,70,.07);
+  border-radius: 5px;
+  border-top: 3px solid var(--dourado);
+  box-shadow: 0 8px 30px rgba(0,0,0,.07);
 }
 
 .busca h2 {
-  color: var(--azul-escuro);
-  font-size: 21px;
-  font-weight: 700;
+  font-family: 'Cinzel', Georgia, serif;
+  color: var(--preto);
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
 .busca p {
-  color: var(--texto-secundario);
+  color: var(--cinza);
   font-size: 14px;
   line-height: 1.7;
   margin-bottom: 22px;
@@ -132,50 +149,43 @@ body {
   min-width: 0;
   height: 52px;
   padding: 0 17px;
-  border: 1px solid #dce3ec;
-  border-radius: 10px;
-  background: #fbfcfe;
+  border: 1px solid #ddd8ce;
+  border-radius: 4px;
+  background: #fcfbf8;
   font-family: inherit;
   font-size: 14px;
-  color: var(--texto);
   outline: none;
   transition: .2s;
 }
 
-.campo-busca input::placeholder {
-  color: #9aa7b7;
-}
-
 .campo-busca input:focus {
-  border-color: var(--azul);
-  background: white;
-  box-shadow: 0 0 0 4px rgba(23,97,138,.10);
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(197,161,91,.15);
 }
 
 .campo-busca button {
-  min-width: 125px;
+  min-width: 130px;
   height: 52px;
   padding: 0 24px;
-  background: linear-gradient(135deg, #17618a, #104665);
-  color: white;
-  border: none;
-  border-radius: 10px;
+  background: var(--preto);
+  color: var(--dourado-claro);
+  border: 1px solid var(--dourado);
+  border-radius: 4px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: .2s;
 }
 
 .campo-busca button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(23,97,138,.22);
+  background: var(--dourado);
+  color: var(--preto);
 }
 
 button:disabled {
   opacity: .6;
   cursor: not-allowed;
-  transform: none !important;
 }
 
 /* RESULTADO */
@@ -184,33 +194,33 @@ button:disabled {
   margin-top: 25px;
   background: white;
   padding: 32px;
-  border-radius: 16px;
+  border-radius: 5px;
   min-height: 110px;
-  color: var(--texto-secundario);
   border: 1px solid var(--borda);
-  box-shadow: 0 5px 25px rgba(16,43,70,.045);
+  border-top: 3px solid var(--preto);
+  box-shadow: 0 5px 25px rgba(0,0,0,.045);
   overflow: hidden;
 }
 
 .resultado > p {
-  line-height: 1.7;
+  color: var(--cinza);
   font-size: 14px;
+  line-height: 1.7;
 }
 
 .nome-perfil {
-  color: var(--azul-escuro);
+  font-family: 'Cinzel', Georgia, serif;
+  color: var(--preto);
   font-size: 27px;
   font-weight: 800;
+  padding-bottom: 17px;
   margin-bottom: 25px;
-  letter-spacing: -.6px;
+  border-bottom: 1px solid var(--borda);
 }
 
-.resultado h3 {
-  color: var(--azul-escuro);
-  font-size: 18px;
-  margin: 32px 0 18px;
-  padding-bottom: 13px;
-  border-bottom: 1px solid var(--borda);
+.nome-perfil::before {
+  content: "♟ ";
+  color: var(--dourado);
 }
 
 /* ESTATÍSTICAS */
@@ -219,64 +229,121 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
-  margin: 25px 0 35px;
+  margin: 25px 0 38px;
 }
 
 .estatistica {
-  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  background: #faf9f6;
   border: 1px solid var(--borda);
-  border-radius: 13px;
-  padding: 23px 12px;
+  border-bottom: 3px solid var(--dourado);
+  padding: 24px 12px;
   text-align: center;
-  transition: .2s;
+  transition: .25s;
 }
 
 .estatistica:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 18px rgba(16,43,70,.07);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
 .estatistica strong {
   display: block;
-  color: var(--azul-escuro);
-  font-size: 29px;
+  color: var(--preto);
+  font-size: 32px;
   font-weight: 800;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 
 .estatistica span {
-  color: var(--texto-secundario);
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--cinza);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CORES INDIVIDUAIS DOS RESULTADOS */
+
+.estatistica:nth-child(1) {
+  border-bottom-color: var(--dourado);
+}
+
+.estatistica:nth-child(2) {
+  border-bottom-color: var(--verde);
+}
+
+.estatistica:nth-child(2) strong {
+  color: var(--verde);
+}
+
+.estatistica:nth-child(3) {
+  border-bottom-color: var(--vermelho);
+}
+
+.estatistica:nth-child(3) strong {
+  color: var(--vermelho);
+}
+
+.estatistica:nth-child(4) {
+  border-bottom-color: var(--empate);
+}
+
+.estatistica:nth-child(4) strong {
+  color: var(--empate);
+}
+
+/* TÍTULOS DAS SEÇÕES */
+
+.resultado h3 {
+  font-family: 'Cinzel', Georgia, serif;
+  color: var(--preto);
+  font-size: 18px;
+  margin: 35px 0 18px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.resultado h3::before {
+  content: "♜ ";
+  color: var(--dourado);
 }
 
 /* HISTÓRICO DE TORNEIOS */
 
 .torneio {
-  padding: 20px;
-  margin-bottom: 13px;
-  background: #fbfcfe;
+  position: relative;
+  background: linear-gradient(110deg, #faf9f6, #ffffff);
   border: 1px solid var(--borda);
-  border-radius: 12px;
+  border-left: 4px solid var(--dourado);
+  padding: 22px 24px;
+  margin-bottom: 15px;
   transition: .2s;
 }
 
 .torneio:hover {
-  border-color: #b7d3e5;
-  background: #f7fbff;
+  transform: translateX(3px);
+  border-color: var(--dourado);
+  box-shadow: 0 5px 18px rgba(0,0,0,.05);
 }
 
 .torneio h4 {
-  color: var(--azul-escuro);
+  font-family: 'Cinzel', Georgia, serif;
+  color: var(--preto);
   font-size: 16px;
-  font-weight: 700;
   margin-bottom: 12px;
 }
 
+.torneio h4::before {
+  content: "♛ ";
+  color: var(--dourado);
+}
+
 .torneio p {
-  color: var(--texto-secundario);
+  color: var(--cinza);
   font-size: 13px;
-  line-height: 1.9;
+  line-height: 2;
 }
 
 /* TABELA DE PARTIDAS */
@@ -289,38 +356,51 @@ button:disabled {
 }
 
 .tabela-partidas th {
-  background: #f1f6fa;
-  color: #35536b;
+  background: var(--preto);
+  color: var(--dourado-claro);
   font-weight: 700;
   text-align: left;
-  padding: 15px 12px;
+  padding: 16px 13px;
   white-space: nowrap;
-}
-
-.tabela-partidas th:first-child {
-  border-radius: 8px 0 0 8px;
-}
-
-.tabela-partidas th:last-child {
-  border-radius: 0 8px 8px 0;
+  border-bottom: 2px solid var(--dourado);
 }
 
 .tabela-partidas td {
-  padding: 15px 12px;
-  border-bottom: 1px solid #edf0f4;
-  color: #475569;
+  padding: 16px 13px;
+  border-bottom: 1px solid #eeeae2;
+  color: #454545;
 }
 
-.tabela-partidas tr:hover td {
-  background: #f8fbfd;
+/* Linhas alternadas */
+
+.tabela-partidas tbody tr:nth-child(even) {
+  background: #f5f3ed;
+}
+
+.tabela-partidas tbody tr:nth-child(odd) {
+  background: white;
+}
+
+.tabela-partidas tbody tr:hover {
+  background: #eee8d9;
 }
 
 .tabela-partidas td:last-child {
-  font-weight: 700;
+  font-weight: 800;
 }
 
-.tabela-partidas td:last-child:has(:not(*)) {
-  color: var(--azul);
+/* Destaque de resultados */
+
+.tabela-partidas td.resultado-vitoria {
+  color: var(--verde);
+}
+
+.tabela-partidas td.resultado-derrota {
+  color: var(--vermelho);
+}
+
+.tabela-partidas td.resultado-empate {
+  color: var(--empate);
 }
 
 /* SELEÇÃO DE ATLETAS */
@@ -330,10 +410,10 @@ button:disabled {
   width: 100%;
   padding: 15px 18px;
   margin-top: 10px;
-  background: #f8fafc;
+  background: #faf9f6;
   border: 1px solid var(--borda);
-  border-radius: 10px;
-  color: var(--azul-escuro);
+  border-left: 3px solid var(--dourado);
+  color: var(--preto);
   text-align: left;
   font-family: inherit;
   font-size: 14px;
@@ -343,19 +423,20 @@ button:disabled {
 }
 
 #resultado button:hover {
-  background: var(--azul-claro);
-  border-color: #a8c9df;
+  background: #eee8d9;
   transform: translateX(3px);
 }
 
 /* RODAPÉ */
 
 footer {
+  background: var(--preto);
+  border-top: 3px solid var(--dourado);
   text-align: center;
-  padding: 28px 15px;
-  color: #8794a5;
+  padding: 30px 15px;
+  color: #c8c1b3;
   font-size: 12px;
-  border-top: 1px solid #e9edf2;
+  letter-spacing: .5px;
 }
 
 /* RESPONSIVIDADE */
@@ -368,11 +449,11 @@ footer {
 
   .resultado,
   .busca {
-    padding: 23px 18px;
+    padding: 23px 17px;
   }
 
   .nome-perfil {
-    font-size: 23px;
+    font-size: 22px;
   }
 
   .tabela-partidas {
@@ -390,11 +471,11 @@ footer {
   }
 
   .cabecalho h1 {
-    font-size: 27px;
+    font-size: 25px;
   }
 
   .cabecalho p {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .campo-busca {
@@ -405,15 +486,11 @@ footer {
     width: 100%;
   }
 
-  .busca h2 {
-    font-size: 19px;
-  }
-
   .estatistica {
-    padding: 18px 10px;
+    padding: 19px 8px;
   }
 
   .estatistica strong {
-    font-size: 25px;
+    font-size: 27px;
   }
 }
