@@ -160,91 +160,105 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     resultado.appendChild(bloco);
   });
 
-  // RESULTADOS POR RODADA
+
+  // RESULTADOS POR RODADA — UMA TABELA PARA CADA TORNEIO
 
   resultado.appendChild(
-    criarElemento("h3", "Resultados por rodada")
+    criarElemento("h3", "Resultados por torneio")
   );
 
-  // CONTÊINER RESPONSIVO DA TABELA
+  participacoes.forEach(item => {
+    const torneio = item.tournaments || {};
 
-  const wrapper = document.createElement("div");
-  wrapper.className = "tabela-wrapper";
+    const partidasTorneio = partidas
+      .filter(partida => partida.tournament_id === item.tournament_id)
+      .sort((a, b) =>
+        a.round_number - b.round_number ||
+        (a.board_number || 0) - (b.board_number || 0)
+      );
 
-  const tabela = document.createElement("table");
-  tabela.className = "tabela-partidas";
+    const bloco = document.createElement("div");
+    bloco.className = "torneio";
 
-  const cabecalho = document.createElement("thead");
-  const linhaCabecalho = document.createElement("tr");
-
-  ["Rodada", "Mesa", "Adversário", "Resultado"].forEach(texto => {
-    linhaCabecalho.appendChild(
-      criarElemento("th", texto)
-    );
-  });
-
-  cabecalho.appendChild(linhaCabecalho);
-  tabela.appendChild(cabecalho);
-
-  const corpoTabela = document.createElement("tbody");
-
-  // ORDENAR PARTIDAS
-
-  partidas.sort((a, b) =>
-    a.round_number - b.round_number ||
-    (a.board_number || 0) - (b.board_number || 0)
-  );
-
-  partidas.forEach(partida => {
-    const adversarioId =
-      partida.white_player_id === jogador.id
-        ? partida.black_player_id
-        : partida.white_player_id;
-
-    const adversario = adversarios.find(
-      p => p.id === adversarioId
+    bloco.appendChild(
+      criarElemento("h4", torneio.name || "Torneio")
     );
 
-    const linha = document.createElement("tr");
+    const wrapper = document.createElement("div");
+    wrapper.className = "tabela-wrapper";
 
-    const resultadoPartida = interpretarResultado(
-      partida,
-      jogador.id
-    );
+    const tabela = document.createElement("table");
+    tabela.className = "tabela-partidas";
 
-    const dados = [
-      partida.round_number,
-      partida.board_number ?? "—",
-      adversario?.name || "Adversário",
-      resultadoPartida
-    ];
+    const cabecalho = document.createElement("thead");
+    const linhaCabecalho = document.createElement("tr");
 
-    dados.forEach((texto, indice) => {
-      const celula = criarElemento("td", texto);
-
-      // CORES DOS RESULTADOS
-
-      if (indice === 3) {
-        if (resultadoPartida.startsWith("Vitória")) {
-          celula.classList.add("resultado-vitoria");
-        } else if (resultadoPartida.startsWith("Derrota")) {
-          celula.classList.add("resultado-derrota");
-        } else if (resultadoPartida === "Empate") {
-          celula.classList.add("resultado-empate");
-        }
-      }
-
-      linha.appendChild(celula);
+    ["Rodada", "Mesa", "Adversário", "Resultado"].forEach(texto => {
+      linhaCabecalho.appendChild(criarElemento("th", texto));
     });
 
-    corpoTabela.appendChild(linha);
+    cabecalho.appendChild(linhaCabecalho);
+    tabela.appendChild(cabecalho);
+
+    const corpoTabela = document.createElement("tbody");
+
+    partidasTorneio.forEach(partida => {
+      const adversarioId =
+        partida.white_player_id === jogador.id
+          ? partida.black_player_id
+          : partida.white_player_id;
+
+      const adversario = adversarios.find(
+        p => p.id === adversarioId
+      );
+
+      const resultadoPartida = interpretarResultado(
+        partida,
+        jogador.id
+      );
+
+      const linha = document.createElement("tr");
+
+      const dados = [
+        partida.round_number,
+        partida.board_number ?? "—",
+        adversario?.name || "Adversário",
+        resultadoPartida
+      ];
+
+      dados.forEach((texto, indice) => {
+        const celula = criarElemento("td", texto);
+
+        if (indice === 3) {
+          if (resultadoPartida.startsWith("Vitória")) {
+            celula.classList.add("resultado-vitoria");
+          } else if (resultadoPartida.startsWith("Derrota")) {
+            celula.classList.add("resultado-derrota");
+          } else if (resultadoPartida === "Empate") {
+            celula.classList.add("resultado-empate");
+          }
+        }
+
+        linha.appendChild(celula);
+      });
+
+      corpoTabela.appendChild(linha);
+    });
+
+    tabela.appendChild(corpoTabela);
+    wrapper.appendChild(tabela);
+    bloco.appendChild(wrapper);
+
+    if (partidasTorneio.length === 0) {
+      bloco.appendChild(
+        criarElemento("p", "Nenhuma partida registrada neste torneio.")
+      );
+    }
+
+    resultado.appendChild(bloco);
   });
-
-  tabela.appendChild(corpoTabela);
-  wrapper.appendChild(tabela);
-
-  resultado.appendChild(wrapper);
 }
+
 
 // BUSCAR ATLETA
 
@@ -312,12 +326,12 @@ async function carregarAtleta(jogador) {
   try {
     const [participacoes, partidas] = await Promise.all([
       consultarTabela("tournament_players", {
-        select: "final_rank,final_score,starting_rank,tournaments(name,tournament_date,total_rounds)",
+        select: "tournament_id,final_rank,final_score,starting_rank,tournaments(name,tournament_date,total_rounds)",
         player_id: `eq.${jogador.id}`
       }),
 
       consultarTabela("games", {
-        select: "id,round_number,board_number,white_player_id,black_player_id,result",
+        select: "id,tournament_id,round_number,board_number,white_player_id,black_player_id,result",
         or: `(white_player_id.eq.${jogador.id},black_player_id.eq.${jogador.id})`,
         order: "round_number.asc"
       })
