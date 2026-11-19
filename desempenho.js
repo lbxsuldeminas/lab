@@ -62,6 +62,197 @@ function interpretarResultado(partida, jogadorId) {
   return partida.result || "Resultado não informado";
 }
 
+// CALCULAR ESTATÍSTICAS POR COR
+
+function calcularDesempenhoCor(partidas, jogadorId, cor) {
+  const partidasDaCor = partidas.filter(partida => {
+    if (cor === "brancas") {
+      return partida.white_player_id === jogadorId;
+    }
+
+    return partida.black_player_id === jogadorId;
+  });
+
+  let vitorias = 0;
+  let derrotas = 0;
+  let empates = 0;
+
+  partidasDaCor.forEach(partida => {
+    const resultadoPartida = interpretarResultado(partida, jogadorId);
+
+    if (resultadoPartida.startsWith("Vitória")) {
+      vitorias++;
+    } else if (resultadoPartida.startsWith("Derrota")) {
+      derrotas++;
+    } else if (resultadoPartida === "Empate") {
+      empates++;
+    }
+  });
+
+  const total = vitorias + derrotas + empates;
+
+  const pontos = vitorias + empates * 0.5;
+
+  const aproveitamento = total > 0
+    ? (pontos / total) * 100
+    : 0;
+
+  return {
+    vitorias,
+    derrotas,
+    empates,
+    total,
+    pontos,
+    aproveitamento
+  };
+}
+
+// CRIAR GRÁFICO DE PIZZA
+
+function criarGraficoPizza(titulo, dados) {
+  const bloco = document.createElement("div");
+  bloco.className = "grafico-cor";
+
+  bloco.style.cssText = `
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 18px;
+    flex: 1;
+    min-width: 230px;
+    box-sizing: border-box;
+  `;
+
+  bloco.appendChild(criarElemento("h4", titulo));
+
+  const grafico = document.createElement("div");
+
+  grafico.style.cssText = `
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const total = dados.total;
+
+  if (total > 0) {
+    const percentualVitorias = dados.vitorias / total * 100;
+    const percentualEmpates = dados.empates / total * 100;
+    const percentualDerrotas = dados.derrotas / total * 100;
+
+    const fimVitorias = percentualVitorias;
+    const fimEmpates = fimVitorias + percentualEmpates;
+
+    grafico.style.background = `
+      conic-gradient(
+        #16a34a 0% ${fimVitorias}%,
+        #f59e0b ${fimVitorias}% ${fimEmpates}%,
+        #dc2626 ${fimEmpates}% 100%
+      )
+    `;
+  } else {
+    grafico.style.background = "#ddd";
+  }
+
+  const centro = document.createElement("div");
+
+  centro.style.cssText = `
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const percentual = criarElemento(
+    "strong",
+    `${dados.aproveitamento.toFixed(1).replace(".", ",")}%`
+  );
+
+  percentual.style.fontSize = "20px";
+  percentual.style.color = "#222";
+
+  centro.appendChild(percentual);
+
+  const legendaCentro = criarElemento("small", "Aproveitamento");
+  legendaCentro.style.color = "#666";
+
+  centro.appendChild(legendaCentro);
+
+  grafico.appendChild(centro);
+  bloco.appendChild(grafico);
+
+  const legenda = document.createElement("div");
+  legenda.style.cssText = `
+    display: grid;
+    gap: 8px;
+    font-size: 14px;
+  `;
+
+  const itens = [
+    {
+      nome: "Vitórias",
+      quantidade: dados.vitorias,
+      cor: "#16a34a"
+    },
+    {
+      nome: "Empates",
+      quantidade: dados.empates,
+      cor: "#f59e0b"
+    },
+    {
+      nome: "Derrotas",
+      quantidade: dados.derrotas,
+      cor: "#dc2626"
+    }
+  ];
+
+  itens.forEach(item => {
+    const percentualItem = total > 0
+      ? (item.quantidade / total * 100).toFixed(1)
+      : "0,0";
+
+    const linha = document.createElement("div");
+
+    linha.style.cssText = `
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    `;
+
+    const nome = document.createElement("span");
+
+    nome.textContent = `● ${item.nome}`;
+    nome.style.color = item.cor;
+
+    const valor = criarElemento(
+      "strong",
+      `${item.quantidade} (${percentualItem.replace(".", ",")}%)`
+    );
+
+    linha.appendChild(nome);
+    linha.appendChild(valor);
+
+    legenda.appendChild(linha);
+  });
+
+  bloco.appendChild(legenda);
+
+  bloco.appendChild(
+    criarElemento("p", `Partidas consideradas: ${total}`)
+  );
+
+  return bloco;
+}
+
 function montarPerfil(jogador, participacoes, partidas, adversarios) {
   resultado.replaceChildren();
 
@@ -69,7 +260,7 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     criarElemento("h2", jogador.name, "nome-perfil")
   );
 
-  // ESTATÍSTICAS
+  // ESTATÍSTICAS GERAIS
 
   const vitorias = partidas.filter(p =>
     interpretarResultado(p, jogador.id).startsWith("Vitória")
@@ -83,8 +274,6 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     interpretarResultado(p, jogador.id) === "Empate"
   ).length;
 
-  // ORDEM: PARTIDAS, VITÓRIAS, DERROTAS E EMPATES
-
   const estatisticas = document.createElement("div");
   estatisticas.className = "estatisticas";
 
@@ -97,18 +286,50 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     const bloco = document.createElement("div");
     bloco.className = "estatistica";
 
-    bloco.appendChild(
-      criarElemento("strong", valor)
-    );
-
-    bloco.appendChild(
-      criarElemento("span", titulo)
-    );
+    bloco.appendChild(criarElemento("strong", valor));
+    bloco.appendChild(criarElemento("span", titulo));
 
     estatisticas.appendChild(bloco);
   });
 
   resultado.appendChild(estatisticas);
+
+  // APROVEITAMENTO POR COR
+
+  resultado.appendChild(
+    criarElemento("h3", "Aproveitamento por cor das peças")
+  );
+
+  const desempenhoBrancas = calcularDesempenhoCor(
+    partidas,
+    jogador.id,
+    "brancas"
+  );
+
+  const desempenhoNegras = calcularDesempenhoCor(
+    partidas,
+    jogador.id,
+    "negras"
+  );
+
+  const graficos = document.createElement("div");
+
+  graficos.style.cssText = `
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 15px 0 25px;
+  `;
+
+  graficos.appendChild(
+    criarGraficoPizza("Peças brancas", desempenhoBrancas)
+  );
+
+  graficos.appendChild(
+    criarGraficoPizza("Peças negras", desempenhoNegras)
+  );
+
+  resultado.appendChild(graficos);
 
   // HISTÓRICO DE TORNEIOS
 
@@ -159,7 +380,6 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
 
     resultado.appendChild(bloco);
   });
-
 
   // RESULTADOS POR RODADA — UMA TABELA PARA CADA TORNEIO
 
@@ -258,7 +478,6 @@ function montarPerfil(jogador, participacoes, partidas, adversarios) {
     resultado.appendChild(bloco);
   });
 }
-
 
 // BUSCAR ATLETA
 
