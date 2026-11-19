@@ -139,3 +139,38 @@ document.getElementById("cadastrarEvento").addEventListener("click", async () =>
     mensagem.textContent = erro.message || "Erro ao cadastrar evento.";
   }
 });
+async function carregarEventos() {
+  const seletor = document.getElementById("eventoSelecionado");
+  const token = localStorage.getItem("lbx_token");
+
+  try {
+    const resposta = await fetch(
+      `${SUPABASE_URL}/rest/v1/events?select=id,name&order=name`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    if (!resposta.ok) {
+      throw new Error("Não foi possível carregar os eventos.");
+    }
+
+    const eventos = await resposta.json();
+
+    seletor.innerHTML = '<option value="">Selecione um evento</option>';
+
+    eventos.forEach(evento => {
+      const opcao = document.createElement("option");
+      opcao.value = evento.id;
+      opcao.textContent = evento.name;
+      seletor.appendChild(opcao);
+    });
+
+  } catch (erro) {
+    seletor.innerHTML = '<option value="">Erro ao carregar eventos</option>';
+    console.error(erro);
+  }
+}
