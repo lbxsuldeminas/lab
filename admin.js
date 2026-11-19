@@ -12,26 +12,33 @@ const login = document.getElementById("login");
 const painel = document.getElementById("painel");
 
 async function verificarSessao() {
+  const token = localStorage.getItem("lbx_token");
+
   const resposta = await fetch(
     `${SUPABASE_URL}/auth/v1/user`,
     {
       headers: {
         apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${localStorage.getItem("lbx_token") || SUPABASE_KEY}`
+        Authorization: `Bearer ${token || SUPABASE_KEY}`
       }
     }
   );
 
   if (resposta.ok) {
-    login.hidden = true;
-    painel.hidden = false;
-  } else {
-    localStorage.removeItem("lbx_token");
-    login.hidden = false;
-    painel.hidden = true;
-  }
-}
+    const usuario = await resposta.json();
 
+    if (usuario.app_metadata?.role === "admin") {
+      login.hidden = true;
+      painel.hidden = false;
+      return;
+    }
+  }
+
+  localStorage.removeItem("lbx_token");
+  login.hidden = false;
+  painel.hidden = true;
+}
+ 
 botaoEntrar.addEventListener("click", async () => {
   mensagem.textContent = "Verificando acesso...";
   botaoEntrar.disabled = true;
