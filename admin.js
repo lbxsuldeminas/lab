@@ -28,10 +28,11 @@ async function verificarSessao() {
     const usuario = await resposta.json();
 
     if (usuario.app_metadata?.role === "admin") {
-      login.hidden = true;
-      painel.hidden = false;
-      return;
-    }
+  login.hidden = true;
+  painel.hidden = false;
+  await carregarEventos();
+  return;
+}
   }
 
   localStorage.removeItem("lbx_token");
