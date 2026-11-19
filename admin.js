@@ -99,3 +99,42 @@ botaoSair.addEventListener("click", async () => {
 });
 
 verificarSessao();
+
+document.getElementById("cadastrarEvento").addEventListener("click", async () => {
+  const nome = document.getElementById("nomeEvento").value.trim();
+  const data = document.getElementById("dataEvento").value;
+  const local = document.getElementById("localEvento").value.trim();
+  const mensagem = document.getElementById("mensagemEvento");
+
+  if (!nome) {
+    mensagem.textContent = "Informe o nome do evento.";
+    return;
+  }
+
+  const token = localStorage.getItem("lbx_token");
+
+  const resposta = await fetch(`${SUPABASE_URL}/rest/v1/events`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Prefer: "return=representation"
+    },
+    body: JSON.stringify({
+      name: nome,
+      event_date: data || null,
+      location: local || null
+    })
+  });
+
+  if (resposta.ok) {
+    mensagem.textContent = "Evento cadastrado com sucesso!";
+    document.getElementById("nomeEvento").value = "";
+    document.getElementById("dataEvento").value = "";
+    document.getElementById("localEvento").value = "";
+  } else {
+    const erro = await resposta.json();
+    mensagem.textContent = erro.message || "Erro ao cadastrar evento.";
+  }
+});
