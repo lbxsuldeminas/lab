@@ -241,3 +241,37 @@ button:disabled {
     transform: translateY(0);
   }
 }
+
+/* Campo de seleção de evento */
+#eventoSelecionado {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  margin: 8px 0 22px;
+  border: 1px solid #d5dce7;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #172b4d;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(15, 35, 65, 0.06);
+}
+
+#eventoSelecionado:hover {
+  border-color: #c49a45;
+}
+
+#eventoSelecionado:focus {
+  border-color: #c49a45;
+  box-shadow: 0 0 0 3px rgba(196, 154, 69, 0.18);
+}
+
+#eventoSelecionado option {
+  padding: 12px;
+  color: #172b4d;
+  background-color: #ffffff;
+}
