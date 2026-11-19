@@ -203,4 +203,64 @@ document.getElementById("cadastrarEvento").addEventListener("click", async () =>
   }
 });
 
+document.getElementById("importarTorneio").addEventListener("click", async () => {
+  const link = document.getElementById("linkTorneio").value.trim();
+  const rodadas = Number(document.getElementById("rodadasTorneio").value);
+  const eventoId = document.getElementById("eventoSelecionado").value;
+  const mensagemImportacao = document.getElementById("mensagemImportacao");
+  const botao = document.getElementById("importarTorneio");
+  const token = localStorage.getItem("lbx_token");
+
+  if (!eventoId) {
+    mensagemImportacao.textContent = "Selecione o evento.";
+    return;
+  }
+
+  if (!link) {
+    mensagemImportacao.textContent = "Informe o link do torneio.";
+    return;
+  }
+
+  if (!Number.isInteger(rodadas) || rodadas < 1 || rodadas > 30) {
+    mensagemImportacao.textContent = "Informe um número válido de rodadas.";
+    return;
+  }
+
+  botao.disabled = true;
+  mensagemImportacao.textContent = "Importando torneio. Aguarde...";
+
+  try {
+    const resposta = await fetch(
+      `${SUPABASE_URL}/functions/v1/dynamic-processor`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          url: link,
+          rodadas: rodadas,
+          event_id: eventoId
+        })
+      }
+    );
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok || !dados.sucesso) {
+      throw new Error(dados.erro || dados.message || "Erro na importação.");
+    }
+
+    mensagemImportacao.textContent =
+      `Importação concluída! Jogadores: ${dados.jogadores_importados}. Partidas: ${dados.partidas_importadas}.`;
+
+  } catch (erro) {
+    mensagemImportacao.textContent = erro.message;
+  } finally {
+    botao.disabled = false;
+  }
+});
+
 verificarSessao();
