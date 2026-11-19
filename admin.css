@@ -1,114 +1,243 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ===== CONFIGURAÇÕES GERAIS ===== */
+
+:root {
+  --navy: #10243e;
+  --navy-light: #193b60;
+  --gold: #c5a052;
+  --gold-light: #e5d3a7;
+  --background: #f1f4f8;
+  --white: #ffffff;
+  --text: #27364a;
+  --muted: #8290a3;
+  --border: #e5eaf0;
+  --success: #16845b;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding: 40px 20px;
-  font-family: Arial, sans-serif;
-  background: #eef2f7;
-  color: #263247;
+  min-height: 100vh;
+  padding: 45px 20px;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at top right, #e1e8f1 0%, transparent 45%),
+    var(--background);
 }
 
+/* ===== CABEÇALHO ===== */
+
 h1 {
-  text-align: center;
-  color: #102746;
-  margin-bottom: 35px;
+  max-width: 950px;
+  margin: 0 auto 30px;
+  padding: 30px 35px;
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  background: linear-gradient(120deg, #0d2038, #1d426a);
+  border-radius: 14px;
+  border-bottom: 4px solid var(--gold);
+  box-shadow: 0 14px 35px rgba(16, 36, 62, 0.16);
 }
+
+/* ===== CARTÕES PRINCIPAIS ===== */
 
 #login,
 #painel {
-  max-width: 750px;
+  max-width: 950px;
   margin: 0 auto;
-  padding: 32px;
-  background: #ffffff;
+  padding: 38px;
+  background: var(--white);
+  border: 1px solid rgba(220, 227, 237, 0.9);
   border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(16, 39, 70, 0.09);
+  box-shadow:
+    0 10px 35px rgba(26, 44, 69, 0.06),
+    0 2px 6px rgba(26, 44, 69, 0.03);
 }
 
+/* ===== TÍTULOS ===== */
+
 h2 {
-  color: #102746;
-  border-bottom: 2px solid #d6a94b;
-  padding-bottom: 14px;
-  margin-top: 0;
+  margin: 0 0 25px;
+  padding-bottom: 20px;
+  color: var(--navy);
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  border-bottom: 1px solid var(--border);
 }
 
 h3 {
-  color: #173b63;
-  margin-top: 30px;
+  margin: 35px 0 20px;
+  padding: 3px 0 3px 15px;
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 700;
+  border-left: 4px solid var(--gold);
 }
+
+/* ===== TEXTOS ===== */
+
+#painel > p:first-of-type {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ===== CAMPOS ===== */
 
 label {
   display: block;
-  margin: 18px 0 7px;
-  font-weight: bold;
+  margin: 20px 0 9px;
   color: #34445a;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 input {
+  display: block;
   width: 100%;
-  padding: 13px 14px;
-  border: 1px solid #d4dce7;
-  border-radius: 8px;
-  font-size: 15px;
-  background: #fbfcfe;
+  min-height: 49px;
+  padding: 13px 15px;
+  color: var(--text);
+  background: #f9fafc;
+  border: 1px solid #dce3ec;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+input::placeholder {
+  color: #a3adba;
+}
+
+input:hover {
+  border-color: #bdc9d8;
 }
 
 input:focus {
   outline: none;
-  border-color: #245b91;
-  box-shadow: 0 0 0 3px rgba(36, 91, 145, 0.12);
+  background: white;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(197, 160, 82, 0.13);
 }
 
+/* ===== BOTÕES ===== */
+
 button {
-  margin-top: 20px;
-  padding: 13px 22px;
-  border: none;
-  border-radius: 8px;
-  background: #173b63;
+  min-height: 47px;
+  margin-top: 23px;
+  padding: 0 25px;
   color: white;
-  font-size: 15px;
-  font-weight: bold;
+  background: linear-gradient(120deg, var(--navy), var(--navy-light));
+  border: 0;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
 button:hover {
-  background: #245b91;
-  transform: translateY(-1px);
+  background: linear-gradient(120deg, #1b416b, #285782);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(16, 36, 62, 0.17);
 }
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== BOTÃO SAIR ===== */
 
 #sair {
   background: #68778b;
 }
 
+#sair:hover {
+  background: #4e5d71;
+}
+
+/* ===== MENSAGENS ===== */
+
 #mensagem,
 #mensagemEvento {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #176b45;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
 }
 
-#painel > p:first-of-type {
-  color: #66758a;
+#mensagemEvento {
+  color: var(--success);
 }
 
-@media (max-width: 600px) {
+/* ===== SEPARAÇÃO DOS FORMULÁRIOS ===== */
+
+#painel h3 + label {
+  margin-top: 22px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 700px) {
   body {
     padding: 20px 12px;
   }
 
-  #login,
-  #painel {
-    padding: 22px;
+  h1 {
+    padding: 23px 20px;
+    font-size: 20px;
   }
 
-  h1 {
-    font-size: 23px;
+  #login,
+  #painel {
+    padding: 24px 19px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
   }
 
   button {
     width: 100%;
+  }
+}
+
+/* ===== ANIMAÇÃO SUAVE ===== */
+
+#painel,
+#login {
+  animation: aparecer 0.4s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
